@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+<style>
+    .notes-container {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        gap: 2rem;
+        min-height: calc(100vh - 200px);
+    }
+
+    .notes-sidebar {
+        background-color: #f1f5f9;
+        padding: 1.5rem;
+        border-radius: 8px;
+        height: fit-content;
+    }
+
+    .notes-sidebar h3 {
+        margin-top: 0;
+        font-size: 1.1rem;
+        color: var(--secondary-color);
+        border-bottom: 2px solid #e2e8f0;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .notes-sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .notes-sidebar li {
+        margin-bottom: 0.5rem;
+    }
+
+    .notes-sidebar a {
+        text-decoration: none;
+        color: var(--text-color);
+        display: block;
+        padding: 0.5rem;
+        border-radius: 4px;
+        transition: background-color 0.2s;
+    }
+
+    .notes-sidebar a:hover {
+        background-color: #e2e8f0;
+        color: var(--primary-color);
+    }
+
+    .notes-content {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+    }
+
+    /* Dropdown Logic (Simple CSS for now) */
+    .dropdown-content {
+        display: none;
+        padding-left: 1rem;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown-btn {
+        cursor: pointer;
+        padding: 0.5rem;
+        font-weight: 600;
+    }
+
+    /* Math Content Styles */
+    .math-content {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .note-section {
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        margin-bottom: 2rem;
+    }
+
+    .note-section h2 {
+        color: var(--secondary-color);
+        border-bottom: 2px solid #f1f5f9;
+        padding-bottom: 0.5rem;
+        margin-top: 0;
+    }
+
+    .formula-box {
+        background: #f8fafc;
+        border-left: 4px solid var(--primary-color);
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 0 8px 8px 0;
+    }
+
+    .example-box {
+        background: #f0fdf4;
+        border: 1px solid #bbf7d0;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+    }
+
+    .example-box h3 {
+        color: #166534;
+        margin-top: 0;
+        font-size: 1.1rem;
+    }
+
+    .tip-box {
+        background: #fffbeb;
+        border: 1px solid #fde68a;
+        border-radius: 8px;
+        padding: 1rem;
+        margin: 1rem 0;
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .tip-icon {
+        font-size: 1.2rem;
+    }
+
+    .math-display {
+        background: #ffffff;
+        padding: 1rem;
+        overflow-x: auto;
+        margin: 0.5rem 0;
+        text-align: center;
+        font-size: 1.1rem;
+    }
+
+    /* Scroll margin for anchors */
+    :target {
+        scroll-margin-top: 100px;
+    }
+</style>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="notes-container">
+    <aside class="notes-sidebar">
+        <div class="dropdown">
+            <div class="dropdown-btn">Calculus 1</div>
+            <ul class="dropdown-content" style="display: block;"> <!-- Expanded for now -->
+                <li><a href="{% url 'notes_calc1_derivatives' %}">Derivatives</a></li>
+            </ul>
+        </div>
+
+        <div class="dropdown">
+            <div class="dropdown-btn">Calculus 2</div>
+            <ul class="dropdown-content">
+                <li><a href="#">(Coming Soon)</a></li>
+            </ul>
+        </div>
+
+        <div class="dropdown">
+            <div class="dropdown-btn">Calculus 3</div>
+            <ul class="dropdown-content">
+                <li><a href="#">(Coming Soon)</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <div class="notes-content math-content">
+        {% block note_content %}
+        <h1>Select a Topic</h1>
+        <p>Please select a note topic from the sidebar.</p>
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}
