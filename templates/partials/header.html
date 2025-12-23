@@ -3,10 +3,22 @@
     <nav>
         <ul>
             <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="#">About</a></li>
             <li><a href="{% url 'notes_index' %}">Notes</a></li>
-            <li><a href="#">Tests</a></li>
+            <li><a href="{% url 'quiz_list' %}">Quizzes</a></li>
+            {% if user.is_authenticated %}
             <li><a href="#">Profile</a></li>
+            <li>
+                <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit"
+                        style="background: none; border: none; color: inherit; font: inherit; cursor: pointer; padding: 0;">Log
+                        Out</button>
+                </form>
+            </li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Log In</a></li>
+            <li><a href="{% url 'signup' %}" style="color: var(--primary-color); font-weight: 600;">Sign Up</a></li>
+            {% endif %}
         </ul>
     </nav>
 </header>

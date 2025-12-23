@@ -59,11 +59,21 @@
     /* Dropdown Logic (Simple CSS for now) */
     .dropdown-content {
         display: none;
-        padding-left: 1rem;
+        padding-left: 2rem;
+    }
+
+    .dropdown-content li {
+        margin-bottom: 0.2rem;
+    }
+
+    .dropdown-content a {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.95em;
     }
 
     .dropdown:hover .dropdown-content {
         display: block;
+        padding-left: 1rem;
     }
 
     .dropdown-btn {
@@ -152,8 +162,10 @@
     <aside class="notes-sidebar">
         <div class="dropdown">
             <div class="dropdown-btn">Calculus 1</div>
-            <ul class="dropdown-content" style="display: block;"> <!-- Expanded for now -->
+            <ul class="dropdown-content">
+                <li><a href="{% url 'notes_calc1_limits' %}">Limits</a></li>
                 <li><a href="{% url 'notes_calc1_derivatives' %}">Derivatives</a></li>
+                <li><a href="{% url 'notes_calc1_applications' %}">Applications of Derivatives</a></li>
             </ul>
         </div>
 
@@ -175,6 +187,16 @@
     <div class="notes-content math-content">
         {% block note_content %}
         <h1>Select a Topic</h1>
+        <div class="tip-box">
+            <span class="tip-icon">ℹ️</span>
+            <div>
+                <strong>Note:</strong> These notes are designed for <strong>quick revision</strong> of key concepts and
+                formulas.
+                They are not intended to replace comprehensive learning resources. If you are learning these topics for
+                the first time,
+                please refer to your primary lectures or textbooks.
+            </div>
+        </div>
         <p>Please select a note topic from the sidebar.</p>
         {% endblock %}
     </div>

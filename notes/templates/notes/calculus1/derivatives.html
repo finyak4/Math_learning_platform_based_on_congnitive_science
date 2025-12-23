@@ -1,18 +1,27 @@
 {% extends 'notes/base_notes.html' %}
 
 {% block title %}Calculus 1 - Derivatives{% endblock %}
-
 {% block note_content %}
 <div class="math-content">
 
-    <!-- 1. Definition -->
     <section id="definition" class="note-section">
-        <h2>Definition of a Derivative</h2>
-        <p>The derivative measures the instantaneous rate of change of a function. Geometrically, it is the slope of the
-            tangent line to the curve at a specific point \((x)\).</p>
+        <h2>1. The Definition of a Derivative</h2>
+        <p>
+            The derivative is the fundamental tool of calculus used to measure how a function changes at any specific
+            instant.
+            While algebra calculates the <em>average</em> rate of change (slope of a secant line between two points),
+            calculus calculates the <strong>instantaneous</strong> rate of change (slope of the tangent line at a single
+            point).
+        </p>
+        <p>
+            Mathematically, this is found by taking the limit as the distance (\(h\)) between two points on the curve
+            shrinks to zero.
+        </p>
+
+
 
         <div class="formula-box">
-            <strong>Formal Definition (Limit Definition)</strong>
+            <strong>The Limit Definition</strong>
             <div class="math-display">
                 $$f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$$
             </div>
@@ -21,159 +30,204 @@
         <div class="tip-box">
             <span class="tip-icon">💡</span>
             <div>
-                <strong>Notation:</strong> Lagrange: \(f'(x)\) or \(y'\) | Leibniz: \(\frac{dy}{dx}\) or
-                \(\frac{d}{dx}[f(x)]\)
+                <strong>Notation Reference:</strong>
+                <ul>
+                    <li><strong>Lagrange (\(f'(x), y'\)):</strong> emphasizes the derivative as a function.</li>
+                    <li><strong>Leibniz (\(\frac{dy}{dx}\)):</strong> emphasizes the relationship "change in y divided
+                        by change in x".</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <!-- 2. Power Rule -->
-    <section id="power-rule" class="note-section">
-        <h2>The Power Rule</h2>
-        <p>A shortcut for differentiating polynomials \(x^n\), avoiding the long limit process.</p>
+    <section id="basic-rules" class="note-section">
+        <h2>2. Basic Power & Polynomial Rules</h2>
+        <p>
+            Most algebraic functions rely on the Power Rule. This pattern allows you to differentiate polynomials
+            without using the long limit definition.
+            It works for any real number exponent \(n\), including fractions (roots) and negatives (reciprocals).
+        </p>
 
         <div class="formula-box">
             <div class="math-display">
-                $$\frac{d}{dx}(x^n) = n \cdot x^{n-1}$$
+                <strong>Power Rule:</strong> \(\frac{d}{dx}(x^n) = n \cdot x^{n-1}\)
             </div>
-            <p><strong>Steps:</strong> 1. Bring exponent down. 2. Subtract 1 from exponent.</p>
+            <div class="math-display">
+                <strong>Constant Rule:</strong> \(\frac{d}{dx}(c) = 0\)
+            </div>
         </div>
 
         <div class="example-box">
             <h3>Examples</h3>
-            <p><strong>1. Basic Polynomial:</strong> \(f(x) = x^4\)</p>
-            <div class="math-display">
-                $$f'(x) = 4x^{4-1} = \mathbf{4x^3}$$
-            </div>
+            <p><strong>1. Simple Polynomial:</strong> \(f(x) = x^4\)</p>
+            <div class="math-display">$$f'(x) = 4x^3$$</div>
 
-            <p><strong>2. With Coefficient:</strong> \(y = 5x^3\)</p>
-            <div class="math-display">
-                $$y' = 5 \cdot (3x^2) = \mathbf{15x^2}$$
-            </div>
-        </div>
+            <p><strong>2. Radical (Rewrite first):</strong> \(y = \sqrt{x} = x^{1/2}\)</p>
+            <div class="math-display">$$y' = \frac{1}{2}x^{-1/2} = \frac{1}{2\sqrt{x}}$$</div>
 
-        <div class="tip-box">
-            <span class="tip-icon">⚠️</span>
-            <div>
-                <strong>Rewriting Required:</strong> Always rewrite roots and fractions as powers first.
-                <br>
-                \(\frac{1}{x^3} \rightarrow x^{-3}\) &nbsp;|&nbsp; \(\sqrt{x} \rightarrow x^{1/2}\)
-            </div>
+            <p><strong>3. Rational (Rewrite first):</strong> \(y = \frac{1}{x^3} = x^{-3}\)</p>
+            <div class="math-display">$$y' = -3x^{-4} = -\frac{3}{x^4}$$</div>
         </div>
     </section>
 
-    <!-- 3. Sum & Difference -->
-    <section id="sum-difference" class="note-section">
-        <h2>Sum & Difference Rule</h2>
-        <p>If you have multiple terms, take the derivative of each one separately.</p>
-
-        <div class="example-box">
-            <h3>Example</h3>
-            <div class="math-display">
-                $$f(x) = 2x^5 - 4x^3 + 7x - 10$$
-            </div>
-            <div class="math-display">
-                $$f'(x) = 10x^4 - 12x^2 + 7 - 0$$
-            </div>
-            <p><strong>Note:</strong> Derivative of constant is 0. Derivative of \(x\) is 1.</p>
-        </div>
-    </section>
-
-    <!-- 4. Product Rule -->
-    <section id="product-rule" class="note-section">
-        <h2>Product Rule</h2>
-        <p>Used when two functions are <strong>multiplied</strong>: \(f(x) \cdot g(x)\).</p>
+    <section id="exp-log-rules" class="note-section">
+        <h2>3. Exponential & Logarithmic Rules</h2>
+        <p>
+            Exponential functions describe growth proportional to current size. The function \(e^x\) is unique because
+            it is its own derivative—its rate of growth is exactly equal to its value.
+            Logarithmic functions are the inverses of exponentials.
+        </p>
 
         <div class="formula-box">
             <div class="math-display">
-                $$(f \cdot g)' = f'g + fg'$$
+                \(\frac{d}{dx}(e^x) = e^x\) &nbsp;&nbsp;|&nbsp;&nbsp; \(\frac{d}{dx}(\ln x) = \frac{1}{x}\)
             </div>
-            <p>"Derivative of first · second + first · Derivative of second"</p>
         </div>
 
         <div class="example-box">
-            <h3>Example: \(y = (x^3)(2x + 5)\)</h3>
-            <ul>
-                <li>\(f = x^3 \rightarrow f' = 3x^2\)</li>
-                <li>\(g = 2x + 5 \rightarrow g' = 2\)</li>
-            </ul>
+            <h3>Examples</h3>
+            <p><strong>1. Mixed Terms:</strong> \(y = 3e^x - 2\ln x\)</p>
             <div class="math-display">
-                $$y' = (3x^2)(2x+5) + (x^3)(2)$$
+                $$y' = 3e^x - \frac{2}{x}$$
             </div>
+
+            <p><strong>2. With Coefficients:</strong> \(y = \frac{1}{2}\ln x\)</p>
             <div class="math-display">
-                $$y' = \mathbf{8x^3 + 15x^2}$$
+                $$y' = \frac{1}{2} \cdot \frac{1}{x} = \frac{1}{2x}$$
             </div>
         </div>
     </section>
 
-    <!-- 5. Quotient Rule -->
-    <section id="quotient-rule" class="note-section">
-        <h2>Quotient Rule</h2>
-        <p>Used when two functions are <strong>divided</strong>: \(\frac{f(x)}{g(x)}\).</p>
+    <section id="trig-derivatives" class="note-section">
+        <h2>4. Trigonometric Derivatives</h2>
+        <p>
+            Trigonometric derivatives model cyclic or oscillating motion (like pendulums or waves).
+            Memorizing these requires recognizing patterns: sine and cosine pair together, tangent and secant pair
+            together, and all "co-functions" result in a negative derivative.
+        </p>
 
         <div class="formula-box">
             <div class="math-display">
-                $$\left(\frac{f}{g}\right)' = \frac{f'g - fg'}{g^2}$$
+                \(\frac{d}{dx}(\sin x) = \cos x\) &nbsp;&nbsp;|&nbsp;&nbsp; \(\frac{d}{dx}(\cos x) = -\sin x\)
             </div>
-            <p>"Lo d-Hi minus Hi d-Lo, over Lo Lo"</p>
+            <div class="math-display">
+                \(\frac{d}{dx}(\tan x) = \sec^2 x\) &nbsp;&nbsp;|&nbsp;&nbsp; \(\frac{d}{dx}(\cot x) = -\csc^2 x\)
+            </div>
+            <div class="math-display">
+                \(\frac{d}{dx}(\sec x) = \sec x \tan x\) &nbsp;&nbsp;|&nbsp;&nbsp; \(\frac{d}{dx}(\csc x) = -\csc x \cot
+                x\)
+            </div>
         </div>
 
         <div class="example-box">
-            <h3>Example: \(y = \frac{5x^2}{3x + 1}\)</h3>
+            <h3>Examples</h3>
+            <p><strong>1. Basic Sum:</strong> \(y = \sin x + \tan x\)</p>
+            <div class="math-display">$$y' = \cos x + \sec^2 x$$</div>
+
+            <p><strong>2. Negative Check:</strong> \(y = 4\cos x\)</p>
+            <div class="math-display">$$y' = 4(-\sin x) = -4\sin x$$</div>
+        </div>
+    </section>
+
+    <section id="product-quotient" class="note-section">
+        <h2>5. Product & Quotient Rules</h2>
+        <p>
+            When functions are multiplied or divided, you cannot simply take the derivative of each part.
+            The product rule accounts for how the two changing quantities interact, adding their contributions together.
+            The quotient rule is similar but involves subtraction due to the division.
+        </p>
+
+        <div class="formula-box">
+            <strong>Product Rule</strong> \((f \cdot g)\)
             <div class="math-display">
-                $$y' = \frac{(3x+1)(10x) - (5x^2)(3)}{(3x+1)^2} = \mathbf{\frac{15x^2 + 10x}{(3x+1)^2}}$$
+                $$(fg)' = f'g + fg'$$
+            </div>
+
+            <hr style="border-top: 1px dashed #ccc; margin: 15px 0;">
+
+            <strong>Quotient Rule</strong> \((\frac{f}{g})\)
+            <div class="math-display">
+                $$\left(\frac{f}{g}\right)' = \frac{g f' - f g'}{g^2}$$
+            </div>
+        </div>
+
+        <div class="example-box">
+            <h3>Examples</h3>
+            <p><strong>1. Product:</strong> \(y = x^2 \sin x\)</p>
+            <div class="math-display">
+                $$y' = (2x)(\sin x) + (x^2)(\cos x)$$
+            </div>
+
+            <p><strong>2. Quotient:</strong> \(y = \frac{x^2}{3x+1}\)</p>
+            <div class="math-display">
+                $$y' = \frac{(3x+1)(2x) - (x^2)(3)}{(3x+1)^2} = \frac{3x^2+2x}{(3x+1)^2}$$
             </div>
         </div>
     </section>
 
-    <!-- 6. Chain Rule -->
     <section id="chain-rule" class="note-section">
-        <h2>Chain Rule</h2>
-        <p>Used for <strong>composite</strong> functions: \(f(g(x))\).</p>
+        <h2>6. The Chain Rule</h2>
+        <p>
+            The Chain Rule is used for <strong>composite functions</strong>, where one function is nested inside another
+            \(f(g(x))\).
+            It works by multiplying the rate of change of the outer function by the rate of change of the inner
+            function.
+        </p>
 
         <div class="formula-box">
             <div class="math-display">
                 $$\frac{d}{dx}[f(g(x))] = f'(g(x)) \cdot g'(x)$$
             </div>
-            <p>"Derivative of OUTSIDE (keep inside same) \(\times\) Derivative of INSIDE"</p>
+            <p><strong>Logic:</strong> Derivative of Outside \(\times\) Derivative of Inside.</p>
         </div>
 
         <div class="example-box">
-            <h3>Example: \(y = (3x^2 + 1)^7\)</h3>
+            <h3>Examples</h3>
+            <p><strong>1. Power Chain:</strong> \(y = (3x^2 + 1)^7\)</p>
             <ul>
-                <li><strong>Outside:</strong> \((\dots)^7 \rightarrow 7(\dots)^6\)</li>
-                <li><strong>Inside:</strong> \(3x^2 + 1 \rightarrow 6x\)</li>
+                <li>Outer: \((\dots)^7 \rightarrow 7(\dots)^6\)</li>
+                <li>Inner: \(3x^2 + 1 \rightarrow 6x\)</li>
             </ul>
             <div class="math-display">
-                $$y' = 7(3x^2 + 1)^6 \cdot (6x) = \mathbf{42x(3x^2 + 1)^6}$$
+                $$y' = 7(3x^2 + 1)^6 \cdot (6x) = 42x(3x^2 + 1)^6$$
+            </div>
+
+            <p><strong>2. Trig Chain:</strong> \(y = \cos(x^3)\)</p>
+            <ul>
+                <li>Outer: \(\cos(\dots) \rightarrow -\sin(\dots)\)</li>
+                <li>Inner: \(x^3 \rightarrow 3x^2\)</li>
+            </ul>
+            <div class="math-display">
+                $$y' = -\sin(x^3) \cdot (3x^2) = -3x^2 \sin(x^3)$$
             </div>
         </div>
     </section>
 
-    <!-- 7. Trigonometric Derivatives -->
-    <section id="trig-derivatives" class="note-section">
-        <h2>Trigonometric Derivatives</h2>
+    <section id="higher-order" class="note-section">
+        <h2>7. Higher Order Derivatives</h2>
+        <p>
+            Differentiation is an operation that can be repeated. If you derive the first derivative, you get the second
+            derivative.
+            This is critical in physics for connecting position, velocity, and acceleration.
+        </p>
 
         <div class="formula-box">
-            <p><strong>The Big Two:</strong></p>
-            <div class="math-display">
-                \(\frac{d}{dx}(\sin x) = \cos x\) &nbsp;&nbsp;|&nbsp;&nbsp; \(\frac{d}{dx}(\cos x) = -\sin x\)
-            </div>
-            <p><strong>The Others:</strong></p>
             <ul>
-                <li>\(\tan x \rightarrow \sec^2 x\)</li>
-                <li>\(\cot x \rightarrow -\csc^2 x\)</li>
-                <li>\(\sec x \rightarrow \sec x \tan x\)</li>
-                <li>\(\csc x \rightarrow -\csc x \cot x\)</li>
+                <li><strong>First Derivative \((f')\):</strong> Rate of Change (Velocity).</li>
+                <li><strong>Second Derivative \((f'')\):</strong> Rate of Change of the Velocity (Acceleration).</li>
             </ul>
-            <p><em>Tip: "Co" functions always return a negative.</em></p>
         </div>
 
         <div class="example-box">
-            <h3>Mixed Example (Product + Trig)</h3>
-            <p>\(y = x^2 \sin x\)</p>
+            <h3>Example: Motion</h3>
+            <p>Given Position \(s(t) = t^3 - 3t^2\)</p>
+            <p><strong>1. Velocity (First Derivative):</strong></p>
             <div class="math-display">
-                $$y' = (2x)(\sin x) + (x^2)(\cos x)$$
+                $$v(t) = s'(t) = 3t^2 - 6t$$
+            </div>
+            <p><strong>2. Acceleration (Second Derivative):</strong></p>
+            <div class="math-display">
+                $$a(t) = v'(t) = 6t - 6$$
             </div>
         </div>
     </section>

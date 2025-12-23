@@ -1,0 +1,287 @@
+{% extends 'notes/base_notes.html' %}
+
+{% block title %}Calculus 1 - Limits{% endblock %}
+
+{% block note_content %}
+<div class="math-content">
+
+    <section id="limit-definition" class="note-section">
+        <h2>1. Intuitive Definition of a Limit</h2>
+        <p>
+            A limit asks: "What value is the function <em>approaching</em> as \(x\) gets closer and closer to a specific
+            number?"
+            Crucially, limits care about the <strong>journey</strong> (the approach), not the destination (the actual
+            value at that point).
+            The function does not need to be defined at the specific point for the limit to exist.
+        </p>
+
+
+
+        <div class="formula-box">
+            <strong>Notation</strong>
+            <div class="math-display">
+                $$\lim_{x \to 3} f(x) = 5$$
+            </div>
+            <p>Read as: "The limit of \(f(x)\) as \(x\) approaches 3 is 5." (Even if \(f(3)\) is undefined).</p>
+        </div>
+
+        <div class="tip-box">
+            <span class="tip-icon">🚦</span>
+            <div>
+                <strong>The Two-Sided Requirement:</strong>
+                For the general limit to exist, the Left approach must equal the Right approach.
+                <br>
+                <div class="math-display" style="margin: 5px 0; font-size: 0.9em;">
+                    \(\lim_{x \to a^-} f(x) = \lim_{x \to a^+} f(x)\)
+                </div>
+                If they point to different numbers (like a jump in the graph), the Limit <strong>Does Not Exist
+                    (DNE)</strong>.
+            </div>
+        </div>
+    </section>
+
+    <section id="limit-laws" class="note-section">
+        <h2>2. Basic Limit Laws</h2>
+        <p>
+            Limit laws allow you to break complex functions into simpler pieces. You don't need to calculate the whole
+            function at once; you can find the limit of each part separately and then combine them.
+        </p>
+
+        <div class="formula-box">
+            <strong>Algebraic Rules</strong>
+
+            <div class="math-display">
+                <strong>Sum Rule:</strong>
+                $$\lim_{x \to c} [f(x) + g(x)] = \lim_{x \to c} f(x) + \lim_{x \to c} g(x)$$
+            </div>
+
+            <div class="math-display">
+                <strong>Difference Rule:</strong>
+                $$\lim_{x \to c} [f(x) - g(x)] = \lim_{x \to c} f(x) - \lim_{x \to c} g(x)$$
+            </div>
+
+            <div class="math-display">
+                <strong>Product Rule:</strong>
+                $$\lim_{x \to c} [f(x) \cdot g(x)] = \left[\lim_{x \to c} f(x)\right] \cdot \left[\lim_{x \to c}
+                g(x)\right]$$
+            </div>
+
+            <div class="math-display">
+                <strong>Quotient Rule:</strong>
+                $$\lim_{x \to c} \left[\frac{f(x)}{g(x)}\right] = \frac{\lim_{x \to c} f(x)}{\lim_{x \to c} g(x)} \quad
+                (\text{if denominator} \neq 0)$$
+            </div>
+        </div>
+
+        <div class="example-box">
+            <h3>Examples of Applying Laws</h3>
+            <p><strong>1. Breaking down a Polynomial:</strong></p>
+            <div class="math-display">
+                $$\lim_{x \to 2} (3x^2 + 5x)$$
+            </div>
+            <p>Using Sum and Constant laws:</p>
+            <div class="math-display">
+                $$3 \cdot [\lim_{x \to 2} x^2] + 5 \cdot [\lim_{x \to 2} x] = 3(4) + 5(2) = 12 + 10 = \mathbf{22}$$
+            </div>
+
+            <p><strong>2. Product Law:</strong></p>
+            <div class="math-display">
+                $$\lim_{x \to \pi} (x \cos x) = (\lim_{x \to \pi} x) \cdot (\lim_{x \to \pi} \cos x) = \pi \cdot (-1) =
+                \mathbf{-\pi}$$
+            </div>
+        </div>
+    </section>
+
+    <section id="substitution" class="note-section">
+        <h2>3. Strategy 1: Direct Substitution</h2>
+        <p>
+            The first step for <strong>any</strong> limit problem is to simply plug the number in.
+            This relies on the concept of <strong>Continuity</strong>. If a function has no breaks or holes at the
+            specific point, the Limit is equal to the Function Value.
+        </p>
+
+        <div class="formula-box">
+            <strong>The Substitution Rule</strong>
+            <div class="math-display">
+                \(\lim_{x \to a} f(x) = f(a)\)
+            </div>
+            <p>(Valid only if the function is continuous at \(a\))</p>
+        </div>
+
+        <div class="example-box">
+            <h3>Examples</h3>
+            <p><strong>1. Polynomials (Always Continuous):</strong></p>
+            <div class="math-display">
+                $$\lim_{x \to 3} (2x^2 - 4) = 2(3)^2 - 4 = 18 - 4 = 14$$
+            </div>
+
+            <p><strong>2. Transcendental (Continuous on domain):</strong></p>
+            <div class="math-display">
+                $$\lim_{x \to 0} \frac{\cos x}{e^x} = \frac{\cos(0)}{e^0} = \frac{1}{1} = 1$$
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <span class="tip-icon">⚠️</span>
+            <div>
+                <strong>When does this fail?</strong>
+                If plugging in the number gives you \(\frac{0}{0}\) (Indeterminate) or \(\frac{5}{0}\)
+                (Undefined/Infinity), substitution fails. You must use Strategy 2.
+            </div>
+        </div>
+    </section>
+
+    <section id="indeterminate" class="note-section">
+        <h2>4. Strategy 2: Indeterminate Forms (0/0)</h2>
+        <p>
+            If direct substitution results in \(\frac{0}{0}\), it implies there is a <strong>Removable
+                Discontinuity</strong> (a hole) in the graph.
+            The limit exists, but algebra is required to "fill the hole" (cancel the problematic term) before
+            substituting.
+        </p>
+
+
+
+        [Image of removable discontinuity graph vs infinite discontinuity]
+
+
+        <div class="formula-box">
+            <strong>Technique A: Factoring</strong>
+            <p>Used for Rational Functions (Polynomial fractions). Factor top and bottom to cancel the \((x-a)\) term.
+            </p>
+        </div>
+
+        <div class="example-box">
+            <h3>Example: Factoring</h3>
+            <div class="math-display">
+                $$\lim_{x \to 2} \frac{x^2 - 4}{x - 2}$$
+            </div>
+            <p>1. Try Substitution: \(\frac{2^2 - 4}{2 - 2} = \frac{0}{0}\) (Indeterminate).</p>
+            <p>2. Factor and Cancel:</p>
+            <div class="math-display">
+                $$\lim_{x \to 2} \frac{(x-2)(x+2)}{(x-2)} = \lim_{x \to 2} (x+2)$$
+            </div>
+            <p>3. Retry Substitution: \(2 + 2 = \mathbf{4}\)</p>
+        </div>
+
+        <div class="formula-box" style="margin-top: 20px;">
+            <strong>Technique B: Conjugates</strong>
+            <p>Used when Square Roots are involved. Multiply numerator and denominator by the conjugate \(\sqrt{A} +
+                B\).</p>
+        </div>
+
+        <div class="example-box">
+            <h3>Example: Conjugates</h3>
+            <div class="math-display">
+                $$\lim_{x \to 0} \frac{\sqrt{x+9} - 3}{x}$$
+            </div>
+            <p>Multiplying by \(\frac{\sqrt{x+9} + 3}{\sqrt{x+9} + 3}\) removes the root from the top, allowing you to
+                cancel the \(x\) on the bottom.</p>
+        </div>
+    </section>
+
+    <section id="infinity" class="note-section">
+        <h2>5. Limits at Infinity (End Behavior)</h2>
+        <p>
+            When \(x \to \infty\), we aren't looking for a specific point, but for the <strong>Horizontal
+                Asymptote</strong>.
+            For fractions, this turns into a battle of dominance between the numerator (top) and denominator (bottom).
+        </p>
+
+        <div class="formula-box">
+            <strong>The Degree Test</strong>
+            <ul>
+                <li><strong>Bottom Degree > Top:</strong> \(\lim_{x \to \infty} \frac{x^2}{x^5} = 0\) (Bottom wins)</li>
+                <li><strong>Degrees Equal:</strong> \(\lim_{x \to \infty} \frac{3x^2}{2x^2} = \frac{3}{2}\) (Tie: Ratio
+                    of coefficients)</li>
+                <li><strong>Top Degree > Bottom:</strong> \(\lim_{x \to \infty} \frac{x^5}{x^2} = \infty\) (Top wins, no
+                    limit)</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="special-trig" class="note-section">
+        <h2>6. Special Trigonometric Limits</h2>
+        <p>
+            These are specific cases where substitution gives \(\frac{0}{0}\), but standard factoring doesn't work.
+            These are proven using the Squeeze Theorem and should be recognized on sight.
+        </p>
+
+        <div class="formula-box">
+            <div class="math-display">
+                $$\lim_{x \to 0} \frac{\sin x}{x} = 1$$
+            </div>
+            <div class="math-display">
+                $$\lim_{x \to 0} \frac{1 - \cos x}{x} = 0$$
+            </div>
+        </div>
+
+        <div class="example-box">
+            <h3>Example: Adjusting the Argument</h3>
+            <div class="math-display">
+                $$\lim_{x \to 0} \frac{\sin(7x)}{x}$$
+            </div>
+            <p>Multiply by \(\frac{7}{7}\) to match the angle:</p>
+            <div class="math-display">
+                $$7 \cdot \lim_{x \to 0} \frac{\sin(7x)}{7x} = 7 \cdot 1 = \mathbf{7}$$
+            </div>
+        </div>
+    </section>
+
+    <section id="continuity" class="note-section">
+        <h2>7. Continuity</h2>
+        <p>
+            A function is continuous if you can draw its graph without lifting your pen.
+            Calculus defines this strictly: the road must lead to the bridge, and the bridge must be there.
+        </p>
+
+
+
+
+
+        <div class="formula-box">
+            <strong>The Continuity Checklist (3 Steps)</strong>
+            <p>A function \(f(x)\) is continuous at \(x=c\) if:</p>
+            <ol>
+                <li>\(f(c)\) is defined. (The point exists)</li>
+                <li>\(\lim_{x \to c} f(x)\) exists. (The approaches match)</li>
+                <li>\(\lim_{x \to c} f(x) = f(c)\). (The limit equals the point)</li>
+            </ol>
+        </div>
+
+        <div class="example-box">
+            <h3>Types of Discontinuities</h3>
+            <p>If the checklist fails, the function is Discontinuous. Here is how to diagnose which type:</p>
+
+            <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                <thead>
+                    <tr style="border-bottom: 2px solid #ccc;">
+                        <th style="text-align: left; padding: 5px;">Type</th>
+                        <th style="text-align: left; padding: 5px;">Math Characteristic</th>
+                        <th style="text-align: left; padding: 5px;">Real Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 5px; border-bottom: 1px solid #eee;"><strong>Removable (Hole)</strong></td>
+                        <td style="padding: 5px; border-bottom: 1px solid #eee;">Limit exists, but \(f(c)\) is missing.
+                        </td>
+                        <td style="padding: 5px; border-bottom: 1px solid #eee;">\(\frac{x^2-9}{x-3}\) at \(x=3\)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px; border-bottom: 1px solid #eee;"><strong>Jump</strong></td>
+                        <td style="padding: 5px; border-bottom: 1px solid #eee;">Left Limit \(\neq\) Right Limit.</td>
+                        <td style="padding: 5px; border-bottom: 1px solid #eee;">Piecewise functions (Steps)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px;"><strong>Infinite</strong></td>
+                        <td style="padding: 5px;">Limit explodes to \(\infty\).</td>
+                        <td style="padding: 5px;">\(\frac{1}{x}\) at \(x=0\)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</div>
+{% endblock %}
