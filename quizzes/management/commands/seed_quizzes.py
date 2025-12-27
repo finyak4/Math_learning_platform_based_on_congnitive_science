@@ -21,10 +21,9 @@ class Command(BaseCommand):
         )
 
         if not created:
-            self.stdout.write('Quiz already exists.')
-            return
-
-        self.stdout.write(f'Created Quiz: {quiz.title}')
+            self.stdout.write('Quiz 1 (Self-Eval) already exists.')
+        else:
+            self.stdout.write(f'Created Quiz: {quiz.title}')
 
         # Questions
         questions_data = [
@@ -55,7 +54,48 @@ class Command(BaseCommand):
                 quiz=quiz,
                 question_order=order,
                 question_text=text,
-                model_answer=answer
+                model_answer=answer,
+                accepted_answers=[]
             )
         
-        self.stdout.write(f'Successfully created {len(questions_data)} questions.')
+        # Create Second Quiz (Automated)
+        quiz2, created2 = Quiz.objects.get_or_create(
+            title='Limits: Theoretical Concepts',
+            defaults={
+                'subject': Quiz.Subject.CALCULUS_1,
+                'topic': 'Limits',
+                'quiz_type': Quiz.QuizType.THEORETICAL,
+                'evaluation_method': Quiz.EvaluationMethod.AUTOMATED,
+                'created_at': timezone.now()
+            }
+        )
+
+        if created2:
+             self.stdout.write(f'Created Quiz: {quiz2.title}')
+             
+             questions_data_2 = [
+                (1, 'To prove a function is continuous at x=c, we must show that the Limit as x approaches c equals ______.', 'f(c)', ["f(c)", "function value", "value of f", "f of c"]),
+                (2, 'If the limit as x approaches c exists, but f(c) is undefined, this specific type of discontinuity is called a ______ discontinuity.', 'removable', ["removable", "point", "hole"]),
+                (3, 'If the Limit from the Left is 3 and the Limit from the Right is 5, then the Limit as x approaches c ______.', 'does not exist', ["does not exist", "dne", "undefined", "no limit"]), 
+                (4, 'The theorem stating that if f(x) <= g(x) <= h(x) and the outer functions approach the same limit, then g(x) must also approach that limit, is called the ______ Theorem.', 'squeeze', ["squeeze", "sandwich", "pinching"]),
+                (5, 'When direct substitution results in 0/0, this result is known as an ______ form.', 'indeterminate', ["indeterminate"]),
+                (6, 'A Vertical Asymptote exists at x=c if the limit as x approaches c equals ______.', 'infinity', ["infinity", "infinite", "inf", "positive infinity"]),
+                (7, 'To find Horizontal Asymptotes, we must evaluate the limit as x approaches ______.', 'infinity', ["infinity", "infinite", "inf", "+-infinity"]),
+                (8, 'The Intermediate Value Theorem guarantees that if f(x) is continuous and changes signs between x=a and x=b, there must be at least one ______ between a and b.', 'root', ["root", "zero", "x-intercept", "solution"]),
+                (9, 'For the function f(x) = sin(1/x), the limit as x approaches 0 does not exist because the function ______ infinitely fast.', 'oscillates', ["oscillates", "fluctuates", "wiggles"]),
+                (10, 'True or False: If a function has a limit at x=c, it MUST be defined at x=c.', 'false', ["false", "no", "f"])
+             ]
+
+             for order, text, answer, accepted in questions_data_2:
+                Question.objects.create(
+                    quiz=quiz2,
+                    question_order=order,
+                    question_text=text,
+                    model_answer=answer,
+                    accepted_answers=accepted
+                )
+             self.stdout.write(f'Successfully created {len(questions_data_2)} questions for Quiz 2.')
+        else:
+             self.stdout.write('Quiz 2 already exists.')
+
+        self.stdout.write(f'Seeding complete.')

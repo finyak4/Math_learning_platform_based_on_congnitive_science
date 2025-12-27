@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load quiz_extras %}
+
+{% block title %}Self Evaluation: {{ quiz.title }}{% endblock %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 2rem auto; padding: 2rem;">
+    <h1 style="color: #1e293b; margin-bottom: 2rem;">Self-Evaluation</h1>
+    <div
+        style="background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1rem; margin-bottom: 2rem; color: #1e40af;">
+        <p>Compare your answers with the model answers below. Mark the checkbox if you believe your answer is correct.
+        </p>
+    </div>
+
+    <form method="post" action="{% url 'submit_quiz' quiz.quiz_id %}">
+        {% csrf_token %}
+        <input type="hidden" name="final_submit" value="true">
+
+        <div style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            {% for question in questions %}
+            {% if not forloop.last %}
+            <div style="margin-bottom: 2.5rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 2rem;">
+                {% else %}
+                <div style="margin-bottom: 2.5rem;">
+                    {% endif %}
+                    <p style="font-weight: 600; font-size: 1.1rem; color: #334155; margin-bottom: 1rem;">
+                        {{ question.question_text }}
+                    </p>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 6px; border: 1px solid #e2e8f0;">
+                            <span
+                                style="display: block; font-size: 0.75rem; text-transform: uppercase; color: #64748b; margin-bottom: 0.5rem; font-weight: 600;">Your
+                                Answer</span>
+                            {{ user_answers|get_item:question.question_id }}
+                        </div>
+                        <div style="background: #f0fdf4; padding: 1rem; border-radius: 6px; border: 1px solid #bbf7d0;">
+                            <span
+                                style="display: block; font-size: 0.75rem; text-transform: uppercase; color: #166534; margin-bottom: 0.5rem; font-weight: 600;">Model
+                                Answer</span>
+                            {{ question.model_answer }}
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; justify-content: flex-end;">
+                        <label
+                            style="display: flex; align-items: center; cursor: pointer; gap: 0.5rem; font-weight: 500; color: #0f172a;">
+                            <input type="checkbox" name="correct_{{ question.question_id }}"
+                                style="width: 1.25rem; height: 1.25rem; accent-color: #22c55e;">
+                            Mark as Correct
+                        </label>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div style="margin-top: 2rem; text-align: right;">
+                <button type="submit"
+                    style="background: #22c55e; color: white; border: none; padding: 1rem 2rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    Submit Grades
+                </button>
+            </div>
+    </form>
+</div>
+{% endblock %}

@@ -165,17 +165,67 @@
 <div class="quiz-container">
     <aside class="filter-sidebar">
         <h3>Filters</h3>
-        <div class="filter-group">
-            <label>Subject</label>
-            <div><input type="checkbox" checked> Calculus I</div>
-            <div><input type="checkbox"> Calculus II</div>
-            <div><input type="checkbox"> Calculus III</div>
-        </div>
-        <div class="filter-group">
-            <label>Type</label>
-            <div><input type="checkbox" checked> Theoretical</div>
-            <div><input type="checkbox" checked> Practical</div>
-        </div>
+        <form method="get">
+            <div class="filter-group">
+                <label>Subject</label>
+                <div>
+                    <label style="font-weight: normal; margin-bottom: 0.25rem;">
+                        <input type="radio" name="subject" value="" {% if not current_subject %}checked{% endif %}
+                            onchange="this.form.submit()">
+                        All Subjects
+                    </label>
+                </div>
+                {% for value, label in subjects %}
+                <div>
+                    <label style="font-weight: normal; margin-bottom: 0.25rem;">
+                        <input type="radio" name="subject" value="{{ value }}" {% if current_subject == value %}checked{% endif %} onchange="this.form.submit()">
+                        {{ label }}
+                    </label>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="filter-group">
+                <label>Type</label>
+                <div>
+                    <label style="font-weight: normal; margin-bottom: 0.25rem;">
+                        <input type="radio" name="quiz_type" value="" {% if not current_type %}checked{% endif %}
+                            onchange="this.form.submit()">
+                        All Types
+                    </label>
+                </div>
+                {% for value, label in quiz_types %}
+                <div>
+                    <label style="font-weight: normal; margin-bottom: 0.25rem;">
+                        <input type="radio" name="quiz_type" value="{{ value }}" {% if current_type == value %}checked{% endif %} onchange="this.form.submit()">
+                        {{ label }}
+                    </label>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="filter-group">
+                <label>Evaluation</label>
+                <div>
+                    <label style="font-weight: normal; margin-bottom: 0.25rem;">
+                        <input type="radio" name="evaluation_method" value="" {% if not current_eval %}checked{% endif %} onchange="this.form.submit()">
+                        All Methods
+                    </label>
+                </div>
+                {% for value, label in eval_methods %}
+                <div>
+                    <label style="font-weight: normal; margin-bottom: 0.25rem;">
+                        <input type="radio" name="evaluation_method" value="{{ value }}" {% if current_eval == value %}checked{% endif %} onchange="this.form.submit()">
+                        {{ label }}
+                    </label>
+                </div>
+                {% endfor %}
+            </div>
+
+            <a href="{% url 'quiz_list' %}"
+                style="display: block; text-align: center; font-size: 0.9rem; color: #64748b; margin-top: 1rem; text-decoration: none;">Clear
+                Filters</a>
+        </form>
     </aside>
 
     <div class="quiz-grid">
@@ -192,7 +242,7 @@
                 </div>
             </div>
             <div class="quiz-card-footer">
-                <a href="#" class="btn-start">Start Quiz</a>
+                <a href="{% url 'take_quiz' quiz.quiz_id %}" class="btn-start">Start Quiz</a>
             </div>
         </article>
         {% empty %}

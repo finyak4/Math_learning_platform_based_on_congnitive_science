@@ -6,7 +6,7 @@
             <li><a href="{% url 'notes_index' %}">Notes</a></li>
             <li><a href="{% url 'quiz_list' %}">Quizzes</a></li>
             {% if user.is_authenticated %}
-            <li><a href="#">Profile</a></li>
+            <li><a href="{% url 'profile' %}">Profile</a></li>
             <li>
                 <form action="{% url 'logout' %}" method="post" style="display: inline;">
                     {% csrf_token %}

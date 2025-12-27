@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Results: {{ quiz.title }}{% endblock %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 2rem auto; padding: 2rem;">
+    <div style="text-align: center; margin-bottom: 3rem;">
+        <h1 style="color: #1e293b; font-size: 2rem; margin-bottom: 1rem;">Quiz Results</h1>
+        {% if percentage >= 70 %}
+        <div
+            style="display: inline-block; padding: 2rem; border-radius: 50%; background: #dcfce7; width: 150px; height: 150px; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+            <span style="font-size: 2.5rem; font-weight: 800; color: #166534;">{{ percentage|floatformat:0 }}%</span>
+        </div>
+        {% else %}
+        <div
+            style="display: inline-block; padding: 2rem; border-radius: 50%; background: #fee2e2; width: 150px; height: 150px; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+            <span style="font-size: 2.5rem; font-weight: 800; color: #991b1b;">{{ percentage|floatformat:0 }}%</span>
+        </div>
+        {% endif %}
+        <p style="margin-top: 1rem; color: #64748b; font-size: 1.25rem;">
+            You scored <strong>{{ score }}</strong> out of <strong>{{ total_questions }}</strong>
+        </p>
+    </div>
+
+    {% if not is_self_eval %}
+    <div style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+        <h2 style="margin-bottom: 2rem; color: #334155; border-bottom: 2px solid #f1f5f9; padding-bottom: 1rem;">
+            Detailed Breakdown</h2>
+        {% for result in results %}
+        {% if result.is_correct %}
+        <div
+            style="margin-bottom: 2rem; padding: 1.5rem; border-radius: 8px; border-left: 5px solid #22c55e; background: #f0fdf4;">
+            {% else %}
+            <div
+                style="margin-bottom: 2rem; padding: 1.5rem; border-radius: 8px; border-left: 5px solid #ef4444; background: #fef2f2;">
+                {% endif %}
+                <p style="font-weight: 600; color: #1e293b; margin-bottom: 1rem;">
+                    {{ forloop.counter }}. {{ result.question.question_text }}
+                </p>
+                <div style="margin-top: 0.5rem; font-size: 0.95rem;">
+                    <p><strong>Your Answer:</strong> {{ result.user_answer }}</p>
+                    {% if not result.is_correct %}
+                    <p style="color: #166534; margin-top: 0.5rem;"><strong>Correct Answer:</strong>
+                        {{result.question.model_answer }}</p>
+                    {% endif %}
+                </div>
+                <div style="margin-top: 1rem; text-align: right;">
+                    {% if result.is_correct %}
+                    <span
+                        style="background: #22c55e; color: white; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 600;">CORRECT</span>
+                    {% else %}
+                    <span
+                        style="background: #ef4444; color: white; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 600;">INCORRECT</span>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="{% url 'quiz_list' %}"
+                style="display: inline-block; padding: 1rem 2rem; background: #334155; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background 0.2s;">Back
+                to Quizzes</a>
+        </div>
+    </div>
+    {% endblock %}

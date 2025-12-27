@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Taking: {{ quiz.title }}{% endblock %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 2rem auto; padding: 2rem;">
+    <h1 style="color: #1e293b; margin-bottom: 0.5rem;">{{ quiz.topic }}</h1>
+    <h2 style="color: #64748b; font-size: 1.25rem; margin-bottom: 2rem;">{{ quiz.title }}</h2>
+
+    <form method="post" action="{% url 'submit_quiz' quiz.quiz_id %}">
+        {% csrf_token %}
+
+        <div style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            {% for question in questions %}
+            {% if not forloop.last %}
+            <div style="margin-bottom: 2.5rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 2rem;">
+                {% else %}
+                <div style="margin-bottom: 2.5rem;">
+                    {% endif %}
+                    <p style="font-weight: 600; font-size: 1.1rem; color: #334155; margin-bottom: 1rem;">
+                        <span style="color: #94a3b8; margin-right: 0.5rem;">{{ question.question_order }}.</span>
+                        {{ question.question_text }}
+                    </p>
+                    <div style="margin-left: 2rem;">
+                        <input type="text" name="question_{{ question.question_id }}"
+                            placeholder="Type your answer here..."
+                            style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; transition: border-color 0.2s;"
+                            onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#cbd5e1'"
+                            required>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div style="margin-top: 2rem; text-align: right;">
+                <button type="submit"
+                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 1rem 2rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.1s;">
+                    Submit Quiz
+                </button>
+            </div>
+    </form>
+</div>
+{% endblock %}
