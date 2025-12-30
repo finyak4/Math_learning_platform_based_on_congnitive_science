@@ -10,9 +10,7 @@
             <li>
                 <form action="{% url 'logout' %}" method="post" style="display: inline;">
                     {% csrf_token %}
-                    <button type="submit"
-                        style="background: none; border: none; color: inherit; font: inherit; cursor: pointer; padding: 0;">Log
-                        Out</button>
+                    <button type="submit" class="logout-btn">Log Out</button>
                 </form>
             </li>
             {% else %}

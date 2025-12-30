@@ -154,8 +154,25 @@
         }
 
         .filter-sidebar {
-            display: none;
-            /* Hide filters on mobile for now */
+            order: -1; /* Move to top */
+            margin-bottom: 2rem;
+        }
+
+        .filter-group {
+            margin-bottom: 1rem;
+        }
+        
+        /* Make form content wrap if needed or use flex for filters on mobile */
+        .filter-sidebar form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+        
+        .filter-group {
+            flex: 1 1 200px;
+            margin-bottom: 0;
         }
     }
 </style>

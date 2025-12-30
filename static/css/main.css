@@ -8,6 +8,18 @@
     --footer-text: #f8fafc;
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+img,
+video,
+iframe {
+    max-width: 100%;
+}
+
 body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     background-color: var(--background-color);
@@ -24,6 +36,9 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    /* Allow wrapping for mobile */
+    gap: 1rem;
 }
 
 .logo {
@@ -38,6 +53,8 @@ nav ul {
     margin: 0;
     display: flex;
     gap: 2rem;
+    flex-wrap: wrap;
+    /* Allow items to wrap */
 }
 
 nav a {
@@ -51,11 +68,93 @@ nav a:hover {
     color: var(--primary-color);
 }
 
+nav button {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+nav button:hover {
+    color: var(--primary-color);
+}
+
 main {
     max-width: 1200px;
     margin: 2rem auto;
     padding: 0 2rem;
     min-height: calc(100vh - 160px);
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        justify-content: center;
+        padding: 1rem 0.5rem;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem;
+        width: 100%;
+    }
+
+    nav li {
+        flex: 1 1 auto;
+        /* Allow items to grow but also shrink */
+        text-align: center;
+    }
+
+    nav form {
+        display: block;
+        width: 100%;
+    }
+
+    nav a,
+    nav button {
+        display: block;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        background-color: #f1f5f9 !important;
+        /* Force override inline padding/bg */
+        border: none !important;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        font-family: inherit;
+        font-weight: 500;
+        /* Match nav a global weight */
+        color: inherit;
+        white-space: nowrap;
+        cursor: pointer;
+        margin: 0;
+    }
+
+    nav a:hover,
+    nav button:hover {
+        background-color: #e2e8f0 !important;
+    }
+
+    main {
+        padding: 0 1rem;
+        margin: 1.5rem auto;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
 }
 
 footer {

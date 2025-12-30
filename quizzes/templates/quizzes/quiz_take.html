@@ -2,42 +2,176 @@
 
 {% block title %}Taking: {{ quiz.title }}{% endblock %}
 
+{% block extra_css %}
+<style>
+    .quiz-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2rem;
+    }
+
+    .quiz-topic {
+        color: #1e293b;
+        margin-bottom: 0.5rem;
+    }
+
+    .quiz-title {
+        color: #64748b;
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+    }
+
+    .quiz-card {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    .question-item {
+        margin-bottom: 2.5rem;
+    }
+
+    .question-item.with-border {
+        border-bottom: 1px solid #e2e8f0;
+        padding-bottom: 2rem;
+    }
+
+    .question-text {
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: #334155;
+        margin-bottom: 1rem;
+    }
+
+    .question-number {
+        color: #94a3b8;
+        margin-right: 0.5rem;
+    }
+
+    .input-wrapper {
+        margin-left: 2rem;
+    }
+
+    .answer-input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        font-size: 1rem;
+        transition: border-color 0.2s;
+        box-sizing: border-box; /* Important for padding */
+    }
+
+    .answer-input:focus {
+        border-color: #3b82f6;
+        outline: none;
+    }
+
+    .form-actions {
+        margin-top: 2rem;
+        text-align: right;
+    }
+
+    .btn-submit {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transition: transform 0.1s;
+    }
+
+    .btn-submit:hover {
+        transform: translateY(-2px);
+    }
+
+    .quiz-description {
+        background-color: #f0fdf4; /* Light green background, distinct from potentially other alerts */
+        border-left: 4px solid #22c55e;
+        padding: 1.25rem;
+        margin-bottom: 2rem;
+        border-radius: 6px;
+        color: #166534;
+        font-size: 1.05rem;
+        line-height: 1.6;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+
+    @media (max-width: 640px) {
+        .quiz-container {
+            padding: 1rem;
+            margin: 1rem auto;
+        }
+
+        .quiz-card {
+            padding: 1.5rem;
+        }
+
+        .input-wrapper {
+            margin-left: 0; /* Align left on mobile */
+        }
+
+        .btn-submit {
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}
+
 {% block content %}
-<div style="max-width: 800px; margin: 2rem auto; padding: 2rem;">
-    <h1 style="color: #1e293b; margin-bottom: 0.5rem;">{{ quiz.topic }}</h1>
-    <h2 style="color: #64748b; font-size: 1.25rem; margin-bottom: 2rem;">{{ quiz.title }}</h2>
+<div class="quiz-container">
+    <h1 class="quiz-topic">{{ quiz.topic }}</h1>
+    <h2 class="quiz-title">{{ quiz.title }}</h2>
+
+    {% if quiz.description %}
+    <div class="quiz-description">
+        {{ quiz.description|linebreaks }}
+    </div>
+    {% endif %}
+
+    {% if quiz.quiz_type == 'Practical' %}
+    <div style="background: #eef2ff; border-left: 4px solid #6366f1; padding: 1.25rem; margin-bottom: 2rem; border-radius: 6px; color: #3730a3; font-weight: 500;">
+        <p style="margin: 0;">✍️ <strong>Instructions:</strong> Solve these problems on a piece of paper. When you are finished, click <strong>Submit Quiz</strong> to compare your answers with the detailed solutions.</p>
+    </div>
+    {% endif %}
 
     <form method="post" action="{% url 'submit_quiz' quiz.quiz_id %}">
         {% csrf_token %}
 
-        <div style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+        <div class="quiz-card">
             {% for question in questions %}
-            {% if not forloop.last %}
-            <div style="margin-bottom: 2.5rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 2rem;">
-                {% else %}
-                <div style="margin-bottom: 2.5rem;">
-                    {% endif %}
-                    <p style="font-weight: 600; font-size: 1.1rem; color: #334155; margin-bottom: 1rem;">
-                        <span style="color: #94a3b8; margin-right: 0.5rem;">{{ question.question_order }}.</span>
-                        {{ question.question_text }}
-                    </p>
-                    <div style="margin-left: 2rem;">
-                        <input type="text" name="question_{{ question.question_id }}"
-                            placeholder="Type your answer here..."
-                            style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; transition: border-color 0.2s;"
-                            onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#cbd5e1'"
-                            required>
-                    </div>
+            <div class="question-item {% if not forloop.last %}with-border{% endif %}">
+                <p class="question-text">
+                    <span class="question-number">{{ question.question_order }}.</span>
+                    {{ question.question_text }}
+                </p>
+                
+                {% if quiz.quiz_type != 'Practical' %}
+                <div class="input-wrapper">
+                    <input type="text" name="question_{{ question.question_id }}"
+                        class="answer-input"
+                        placeholder="Type your answer here..."
+                        required>
                 </div>
-                {% endfor %}
+                {% else %}
+                <!-- Hidden input not strictly necessary if view handles missing keys as empty, 
+                     but good for explicit structure if needed. 
+                     For now, we omit it as the view handles request.POST.get(..., '') default. -->
+                {% endif %}
             </div>
+            {% endfor %}
+        </div>
 
-            <div style="margin-top: 2rem; text-align: right;">
-                <button type="submit"
-                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 1rem 2rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.1s;">
-                    Submit Quiz
-                </button>
-            </div>
+        <div class="form-actions">
+            <button type="submit" class="btn-submit">
+                Submit Quiz
+            </button>
+        </div>
     </form>
 </div>
 {% endblock %}

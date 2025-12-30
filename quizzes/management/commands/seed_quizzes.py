@@ -8,24 +8,43 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         self.stdout.write('Seeding data...')
 
-        # Create Quiz
+        # Create Quiz 1 (Self-Eval)
+        description_1 = "Write your answer in your own words, then compare it to the model answer. Remember, this exercise is built on trust and personal responsibility. Marking incorrect answers as right mimics progress but hinders true understanding. Embrace the learning process—honesty here is the foundation of your growth."
+        
+        # Cleanup duplicates for Quiz 1
+        qs1 = Quiz.objects.filter(
+            title='Limits: Theoretical Concepts',
+            quiz_type=Quiz.QuizType.THEORETICAL,
+            evaluation_method=Quiz.EvaluationMethod.SELF_EVAL
+        )
+        if qs1.count() > 1:
+            qs1.exclude(pk=qs1.first().pk).delete()
+            self.stdout.write('Removed duplicate Quiz 1 entries.')
+
         quiz, created = Quiz.objects.get_or_create(
-            title='Limits: Theoretical Concepts (Self-Eval)',
+            title='Limits: Theoretical Concepts',
+            quiz_type=Quiz.QuizType.THEORETICAL,
+            evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
             defaults={
                 'subject': Quiz.Subject.CALCULUS_1,
                 'topic': 'Limits',
-                'quiz_type': Quiz.QuizType.THEORETICAL,
-                'evaluation_method': Quiz.EvaluationMethod.SELF_EVAL,
+                'description': description_1,
                 'created_at': timezone.now()
             }
         )
+
+        # Update description for existing quizzes
+        if not created and quiz.description != description_1:
+            quiz.description = description_1
+            quiz.save()
+            self.stdout.write('Updated description for Quiz 1.')
 
         if not created:
             self.stdout.write('Quiz 1 (Self-Eval) already exists.')
         else:
             self.stdout.write(f'Created Quiz: {quiz.title}')
 
-        # Questions
+        # Questions for Quiz 1
         questions_data = [
             (1, 'State the three conditions that must be met for a function to be **continuous** at x=c.', 
              '1. f(c) is defined. 2. The limit of f(x) as x approaches c exists. 3. The limit equals the function value.'),
@@ -49,26 +68,46 @@ class Command(BaseCommand):
              'The graph oscillates infinitely fast between -1 and 1 as it gets closer to 0. The limit does not exist because it never settles on a single value.')
         ]
 
-        for order, text, answer in questions_data:
-            Question.objects.create(
-                quiz=quiz,
-                question_order=order,
-                question_text=text,
-                model_answer=answer,
-                accepted_answers=[]
-            )
+        if created:
+            for order, text, answer in questions_data:
+                Question.objects.create(
+                    quiz=quiz,
+                    question_order=order,
+                    question_text=text,
+                    model_answer=answer,
+                    accepted_answers=[]
+                )
         
         # Create Second Quiz (Automated)
+        description_2 = "Type in the answer directly. These questions are automatically graded to test your precision and recall."
+        
+        # Cleanup duplicates for Quiz 2
+        qs2 = Quiz.objects.filter(
+            title='Limits: Theoretical Concepts',
+            quiz_type=Quiz.QuizType.THEORETICAL,
+            evaluation_method=Quiz.EvaluationMethod.AUTOMATED
+        )
+        if qs2.count() > 1:
+            qs2.exclude(pk=qs2.first().pk).delete()
+            self.stdout.write('Removed duplicate Quiz 2 entries.')
+
         quiz2, created2 = Quiz.objects.get_or_create(
             title='Limits: Theoretical Concepts',
+            quiz_type=Quiz.QuizType.THEORETICAL,
+            evaluation_method=Quiz.EvaluationMethod.AUTOMATED,
             defaults={
                 'subject': Quiz.Subject.CALCULUS_1,
                 'topic': 'Limits',
-                'quiz_type': Quiz.QuizType.THEORETICAL,
-                'evaluation_method': Quiz.EvaluationMethod.AUTOMATED,
+                'description': description_2,
                 'created_at': timezone.now()
             }
         )
+        
+        # Update description for existing quizzes
+        if not created2 and quiz2.description != description_2:
+            quiz2.description = description_2
+            quiz2.save()
+            self.stdout.write('Updated description for Quiz 2.')
 
         if created2:
              self.stdout.write(f'Created Quiz: {quiz2.title}')
@@ -97,5 +136,106 @@ class Command(BaseCommand):
              self.stdout.write(f'Successfully created {len(questions_data_2)} questions for Quiz 2.')
         else:
              self.stdout.write('Quiz 2 already exists.')
+
+        # Create Quiz 3 (Practical Skills)
+        description_3 = "Solve the problems below. For each question, type your final answer. After submitting, you will see the detailed step-by-step solution. Compare your work honestly and mark yourself correct only if your process and answer align."
+
+        # Cleanup duplicates for Quiz 3
+        qs3 = Quiz.objects.filter(
+            title='Limits: Practical Skills',
+            quiz_type=Quiz.QuizType.PRACTICAL,
+            evaluation_method=Quiz.EvaluationMethod.SELF_EVAL
+        )
+        if qs3.count() > 1:
+            qs3.exclude(pk=qs3.first().pk).delete()
+            self.stdout.write('Removed duplicate Quiz 3 entries.')
+
+        quiz3, created3 = Quiz.objects.get_or_create(
+            title='Limits: Practical Skills',
+            quiz_type=Quiz.QuizType.PRACTICAL,
+            evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
+            defaults={
+                'subject': Quiz.Subject.CALCULUS_1,
+                'topic': 'Limits',
+                'description': description_3,
+                'created_at': timezone.now()
+            }
+        )
+
+        if not created3 and quiz3.description != description_3:
+            quiz3.description = description_3
+            quiz3.save()
+            self.stdout.write('Updated description for Quiz 3.')
+
+        if created3:
+            self.stdout.write(f'Created Quiz: {quiz3.title}')
+        else:
+            self.stdout.write('Quiz 3 already exists.')
+            
+        # (Order, Text, Model Answer, Explanation)
+        questions_data_3 = [
+            (1, 
+                'Evaluate the limit using direct substitution: $\lim_{x \\to 5} (x^2 - 4x + 3)$', 
+                '8', 
+                'Direct Substitution is possible because the function is a polynomial, which is continuous everywhere.\n\nCalculation:\n1. Limit = $5^2 - 4(5) + 3$\n2. Limit = $25 - 20 + 3$\n3. Limit = $5 + 3 = 8$.'),
+            
+            (2, 
+                'Evaluate the limit: $\lim_{x \\to 3} \\frac{x^2 - 9}{x - 3}$', 
+                '6', 
+                'We have an indeterminate form $0/0$ if we plug in 3.\n\nSteps:\n1. Factor the numerator: $x^2 - 9 = (x - 3)(x + 3)$.\n2. Rewrite the limit: $\lim_{x \\to 3} \\frac{(x - 3)(x + 3)}{x - 3}$.\n3. Cancel the common factor $(x - 3)$.\n4. Evaluate the remaining part: $\lim_{x \\to 3} (x + 3) = 3 + 3 = 6$.'),
+            
+            (3, 
+                'Evaluate the limit: $\lim_{x \\to 0} \\frac{\\sqrt{x+4} - 2}{x}$', 
+                '1/4', 
+                'Plugging in 0 gives $0/0$. We use the conjugate method.\n\nSteps:\n1. Multiply numerator and denominator by the conjugate: $(\\sqrt{x+4} + 2)$.\n2. Numerator becomes: $(\\sqrt{x+4})^2 - 2^2 = (x + 4) - 4 = x$.\n3. Denominator becomes: $x(\\sqrt{x+4} + 2)$.\n4. The limit is now: $\lim_{x \\to 0} \\frac{x}{x(\\sqrt{x+4} + 2)}$.\n5. Cancel x: $\lim_{x \\to 0} \\frac{1}{\\sqrt{x+4} + 2}$.\n6. Substitute x=0: $\\frac{1}{\\sqrt{4} + 2} = \\frac{1}{2 + 2} = 1/4$.'),
+            
+            (4, 
+                'Evaluate the limit at infinity: $\lim_{x \\to \\infty} \\frac{3x^2 + 5x}{2x^2 - 1}$', 
+                '3/2 (or 1.5)', 
+                'For limits at infinity of rational functions, compare the highest powers of x.\n\nAnalysis:\n1. Numerator highest degree: 2 (from $3x^2$).\n2. Denominator highest degree: 2 (from $2x^2$).\n3. Since degrees are equal, the limit is the ratio of the leading coefficients.\n4. Ratio = $3/2$.'),
+            
+            (5, 
+                'Evaluate the trigonometric limit: $\lim_{x \\to 0} \\frac{\\sin(5x)}{x}$', 
+                '5', 
+                'We use the standard limit property: $\lim_{u \\to 0} \\frac{\\sin(u)}{u} = 1$.\n\nSteps:\n1. We need the denominator to match the argument of sine (5x).\n2. Multiply the expression by 5/5: $5 \\cdot \\frac{\\sin(5x)}{5x}$.\n3. Factor out the 5: $5 \\cdot \lim_{x \\to 0} \\frac{\\sin(5x)}{5x}$.\n4. Since $5x \\to 0$ as $x \\to 0$, the limit in brackets is 1.\n5. Result = $5 \\cdot 1 = 5$.'),
+            
+            (6, 
+                'Find the Left-Hand Limit: $\lim_{x \\to 2^-} \\frac{|x - 2|}{x - 2}$', 
+                '-1', 
+                'We are approaching 2 from the left ($x < 2$).\n\nAnalysis:\n1. If $x < 2$, then $(x - 2)$ is negative.\n2. By definition, $|u| = -u$ when u is negative. So, $|x - 2| = -(x - 2)$.\n3. The expression becomes: $\\frac{-(x - 2)}{x - 2}$.\n4. Canceling terms gives: -1.\n5. The limit of a constant is the constant itself: -1.'),
+            
+            (7, 
+                'Evaluate the complex fraction limit: $\lim_{x \\to 4} \\frac{\\frac{1}{x} - \\frac{1}{4}}{x - 4}$', 
+                '-1/16', 
+                'Plugging in 4 gives $0/0$.\n\nSteps:\n1. Simplify the numerator fraction: $\\frac{4 - x}{4x}$.\n2. Rewrite the expression: $\\frac{4 - x}{4x} \\cdot \\frac{1}{x - 4}$.\n3. Notice that $(4 - x) = -(x - 4)$.\n4. Rewrite top: $\\frac{-(x - 4)}{4x(x - 4)}$.\n5. Cancel $(x - 4)$: $\\frac{-1}{4x}$.\n6. Evaluate limit as $x \\to 4$: $\\frac{-1}{4(4)} = -1/16$.'),
+            
+            (8, 
+                'Evaluate the limit at infinity: $\lim_{x \\to \\infty} \\frac{x^3 + 1}{e^x}$', 
+                '0', 
+                'This is a competition between a polynomial ($x^3$) and an exponential function ($e^x$).\n\nConcept:\n1. Exponential functions grow significantly faster than polynomial functions as $x \\to \\infty$.\n2. Therefore, the denominator ($e^x$) will overwhelm the numerator ($x^3$).\n3. The fraction approaches 0.'),
+            
+            (9, 
+                'Evaluate the limit: $\lim_{h \\to 0} \\frac{(3+h)^2 - 9}{h}$', 
+                '6', 
+                'This limit represents the derivative of $x^2$ at $x=3$. Direct substitution gives $0/0$.\n\nSteps:\n1. Expand the numerator: $(3 + h)^2 = 9 + 6h + h^2$.\n2. Subtract 9: $(9 + 6h + h^2) - 9 = 6h + h^2$.\n3. Divide by h: $\\frac{6h + h^2}{h} = 6 + h$.\n4. Take limit as $h \\to 0$: $6 + 0 = 6$.'),
+            
+            (10, 
+                'Given $f(x) = \\begin{cases} 2x & x < 1 \\\\ 3x^2 & x \\ge 1 \\end{cases}$. Does the limit exist at $x=1$?', 
+                'No', 
+                'For the limit to exist, the Left-Hand Limit (LHL) must equal the Right-Hand Limit (RHL).\n\n1. LHL ($x \\to 1^-$): Use $f(x) = 2x$. Limit = $2(1) = 2$.\n2. RHL ($x \\to 1^+$): Use $f(x) = 3x^2$. Limit = $3(1)^2 = 3$.\n3. Since $2 \\neq 3$, the limit does NOT exist.')
+        ]
+
+        for order, text, answer, explanation in questions_data_3:
+            Question.objects.update_or_create(
+                quiz=quiz3,
+                question_order=order,
+                defaults={
+                    'question_text': text,
+                    'model_answer': answer,
+                    'explanation': explanation,
+                    'accepted_answers': []
+                }
+            )
+        self.stdout.write(f'Successfully updated/created {len(questions_data_3)} questions for Quiz 3.')
 
         self.stdout.write(f'Seeding complete.')

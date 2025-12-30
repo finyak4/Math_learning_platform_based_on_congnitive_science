@@ -4,9 +4,10 @@
 <style>
     .notes-container {
         display: grid;
-        grid-template-columns: 250px 1fr;
+        grid-template-columns: 280px 1fr;
         gap: 2rem;
         min-height: calc(100vh - 200px);
+        align-items: start;
     }
 
     .notes-sidebar {
@@ -151,6 +152,70 @@
     /* Scroll margin for anchors */
     :target {
         scroll-margin-top: 100px;
+    }
+
+    /* Responsive Table Styles */
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+        margin-top: 1rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+    .responsive-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 600px; /* Force scroll on small screens */
+    }
+
+    .responsive-table th,
+    .responsive-table td {
+        padding: 0.75rem 1rem;
+        text-align: left;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .responsive-table th {
+        background-color: #f8fafc;
+        font-weight: 600;
+        color: var(--secondary-color);
+        border-bottom: 2px solid #cbd5e1;
+        white-space: nowrap;
+    }
+
+    .responsive-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    .responsive-table tr:hover td {
+        background-color: #f8fafc;
+    }
+
+    /* Responsive Notes */
+    @media (max-width: 768px) {
+        .notes-container {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .notes-sidebar {
+            width: 100%;
+        }
+
+        /* Convert sidebar info horizontal scroll or wrap if needed, 
+           or keep as vertical stack (default) */
+        
+        .notes-content {
+            padding: 1.5rem;
+            width: 100%;
+            overflow-x: hidden; /* Prevent horizontal scroll from content */
+        }
+
+        .math-display {
+            font-size: 1rem;
+            padding: 0.75rem;
+        }
     }
 </style>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>

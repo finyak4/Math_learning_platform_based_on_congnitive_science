@@ -21,6 +21,7 @@ class Quiz(models.Model):
     topic = models.CharField(max_length=100)
     quiz_type = models.CharField(max_length=50, choices=QuizType.choices)
     evaluation_method = models.CharField(max_length=50, choices=EvaluationMethod.choices)
+    description = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -45,6 +46,7 @@ class Question(models.Model):
     question_text = models.TextField()
     model_answer = models.TextField()
     accepted_answers = models.JSONField(default=list, blank=True)
+    explanation = models.TextField(blank=True, null=True, help_text="Process/Explanation for the solution")
     question_order = models.IntegerField()
 
     class Meta:

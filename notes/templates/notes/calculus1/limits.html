@@ -3,8 +3,6 @@
 {% block title %}Calculus 1 - Limits{% endblock %}
 
 {% block note_content %}
-<div class="math-content">
-
     <section id="limit-definition" class="note-section">
         <h2>1. Intuitive Definition of a Limit</h2>
         <p>
@@ -253,35 +251,34 @@
             <h3>Types of Discontinuities</h3>
             <p>If the checklist fails, the function is Discontinuous. Here is how to diagnose which type:</p>
 
-            <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
-                <thead>
-                    <tr style="border-bottom: 2px solid #ccc;">
-                        <th style="text-align: left; padding: 5px;">Type</th>
-                        <th style="text-align: left; padding: 5px;">Math Characteristic</th>
-                        <th style="text-align: left; padding: 5px;">Real Example</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="padding: 5px; border-bottom: 1px solid #eee;"><strong>Removable (Hole)</strong></td>
-                        <td style="padding: 5px; border-bottom: 1px solid #eee;">Limit exists, but \(f(c)\) is missing.
-                        </td>
-                        <td style="padding: 5px; border-bottom: 1px solid #eee;">\(\frac{x^2-9}{x-3}\) at \(x=3\)</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 5px; border-bottom: 1px solid #eee;"><strong>Jump</strong></td>
-                        <td style="padding: 5px; border-bottom: 1px solid #eee;">Left Limit \(\neq\) Right Limit.</td>
-                        <td style="padding: 5px; border-bottom: 1px solid #eee;">Piecewise functions (Steps)</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 5px;"><strong>Infinite</strong></td>
-                        <td style="padding: 5px;">Limit explodes to \(\infty\).</td>
-                        <td style="padding: 5px;">\(\frac{1}{x}\) at \(x=0\)</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-container">
+                <table class="responsive-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Math Characteristic</th>
+                            <th>Real Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Removable (Hole)</strong></td>
+                            <td>Limit exists, but \(f(c)\) is missing.</td>
+                            <td>\(\frac{x^2-9}{x-3}\) at \(x=3\)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Jump</strong></td>
+                            <td>Left Limit \(\neq\) Right Limit.</td>
+                            <td>Piecewise functions (Steps)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Infinite</strong></td>
+                            <td>Limit explodes to \(\infty\).</td>
+                            <td>\(\frac{1}{x}\) at \(x=0\)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
-
-</div>
 {% endblock %}

@@ -27,13 +27,19 @@
                         {{ question.question_text }}
                     </p>
 
+                    {% if quiz.quiz_type == 'Practical' %}
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 1rem;">
+                    {% else %}
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                    {% endif %}
+                        {% if quiz.quiz_type != 'Practical' %}
                         <div style="background: #f8fafc; padding: 1rem; border-radius: 6px; border: 1px solid #e2e8f0;">
                             <span
                                 style="display: block; font-size: 0.75rem; text-transform: uppercase; color: #64748b; margin-bottom: 0.5rem; font-weight: 600;">Your
                                 Answer</span>
                             {{ user_answers|get_item:question.question_id }}
                         </div>
+                        {% endif %}
                         <div style="background: #f0fdf4; padding: 1rem; border-radius: 6px; border: 1px solid #bbf7d0;">
                             <span
                                 style="display: block; font-size: 0.75rem; text-transform: uppercase; color: #166534; margin-bottom: 0.5rem; font-weight: 600;">Model
@@ -41,6 +47,18 @@
                             {{ question.model_answer }}
                         </div>
                     </div>
+
+                    {% if question.explanation %}
+                    <div style="background: #fdf4ff; padding: 1rem; border-radius: 6px; border: 1px solid #f0abfc; margin-bottom: 1rem;">
+                        <span
+                            style="display: block; font-size: 0.75rem; text-transform: uppercase; color: #86198f; margin-bottom: 0.5rem; font-weight: 600;">
+                            Step-by-Step Solution
+                        </span>
+                        <div style="color: #4a044e; font-size: 0.95rem; line-height: 2.2;">
+                            {{ question.explanation|linebreaks }}
+                        </div>
+                    </div>
+                    {% endif %}
 
                     <div style="display: flex; align-items: center; justify-content: flex-end;">
                         <label
