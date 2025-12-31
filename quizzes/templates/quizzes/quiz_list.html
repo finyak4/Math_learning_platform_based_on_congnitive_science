@@ -82,6 +82,10 @@
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
+    .quiz-card:nth-child(even) .quiz-card-header {
+        background: linear-gradient(135deg, #8b5cf6 0%, #10b981 100%);
+    }
+
     .quiz-card-body {
         padding: 1.5rem;
         flex-grow: 1;
@@ -151,6 +155,7 @@
     @media (max-width: 768px) {
         .quiz-container {
             grid-template-columns: 1fr;
+            padding: 1rem;
         }
 
         .filter-sidebar {
@@ -175,11 +180,125 @@
             margin-bottom: 0;
         }
     }
+
+    /* SRS Styles */
+    .srs-section {
+        grid-column: 1 / -1; /* Span full width */
+        margin-bottom: 2rem;
+        background: #fff;
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        border-left: 5px solid #f59e0b; /* Amber/Gold accent */
+    }
+
+    .srs-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .srs-header h2 {
+        margin: 0;
+        color: #b45309;
+        font-size: 1.5rem;
+    }
+
+    .srs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+
+    /* Revision Card */
+    .rev-card {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.2s;
+    }
+
+    .rev-card.unlocked {
+        border-color: #f59e0b;
+        box-shadow: 0 4px 6px -1px rgba(245, 158, 11, 0.1);
+    }
+
+    .rev-card.locked {
+        opacity: 0.7;
+        background-color: #f8fafc;
+        border-style: dashed;
+    }
+
+    .rev-header {
+        background: #fffbeb; /* Amber-50 */
+        padding: 1rem;
+        color: #92400e;
+        font-weight: 700;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .rev-card.locked .rev-header {
+        background: #f1f5f9;
+        color: #64748b;
+    }
+
+    .rev-body {
+        padding: 1rem;
+    }
+    
+    .rev-timer {
+        font-size: 0.85rem;
+        color: #64748b;
+        margin-top: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="quiz-container">
+    
+    <!-- SRS Section -->
+    {% if user.is_authenticated and srs_cards %}
+    <section class="srs-section">
+        <div class="srs-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 21h5v-5"/></svg>
+            <h2>Review (Spaced Repetition)</h2>
+        </div>
+        <div class="srs-grid">
+            {% for card in srs_cards %}
+            <article class="rev-card {% if card.is_locked %}locked{% else %}unlocked{% endif %}">
+                <div class="rev-header">
+                    <span>{{ card.topic }}</span>
+                    {% if card.is_locked %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    {% else %}
+                        <span style="font-size:0.8em; background:#fcd34d; padding:2px 8px; border-radius:10px; color:#78350f;">Ready</span>
+                    {% endif %}
+                </div>
+                <div class="rev-body">
+                    <h4 style="margin:0 0 0.5rem 0;">{{ card.quiz.title }}</h4>
+                    {% if card.is_locked %}
+                        <div class="rev-timer">
+                            <span>Available on: {{ card.unlock_date|date:"M d, g:i A" }}</span>
+                        </div>
+                        <button disabled class="btn-start" style="opacity:0.5; background:#94a3b8; cursor:not-allowed; margin-top:1rem;">Locked</button>
+                    {% else %}
+                        <a href="{% url 'take_quiz' card.quiz.quiz_id %}" class="btn-start" style="background:#d97706; margin-top:1rem;">Review Now</a>
+                    {% endif %}
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
     <aside class="filter-sidebar">
         <h3>Filters</h3>
         <form method="get">

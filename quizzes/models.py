@@ -10,6 +10,7 @@ class Quiz(models.Model):
     class QuizType(models.TextChoices):
         PRACTICAL = 'Practical', 'Practical'
         THEORETICAL = 'Theoretical', 'Theoretical'
+        REVISION = 'Revision', 'Revision'
 
     class EvaluationMethod(models.TextChoices):
         SELF_EVAL = 'Self-Eval', 'Self-Eval'
@@ -51,3 +52,13 @@ class Question(models.Model):
 
     class Meta:
         db_table = 'questions'
+
+class TopicState(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    topic = models.CharField(max_length=100)
+    current_level = models.IntegerField(default=0)  # 0=Ready for Rev1, 1=Rev1 Done/Ready for Rev2, etc.
+    last_reviewed_at = models.DateTimeField(null=True, blank=True)
+    next_review_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        unique_together = ['user', 'topic']

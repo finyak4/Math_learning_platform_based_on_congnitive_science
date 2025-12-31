@@ -1,0 +1,97 @@
+{% extends 'notes/base_notes.html' %}
+
+{% block title %}Notes Index - Calculus Platform{% endblock %}
+
+{% block note_content %}
+<style>
+    .notes-hero {
+        text-align: center;
+        padding: 3rem 1rem;
+        background: linear-gradient(to bottom, #f8fafc, #ffffff);
+        border-radius: 8px;
+        margin-bottom: 2rem;
+    }
+
+    .notes-hero h1 {
+        font-size: 2.25rem;
+        color: #1e293b;
+        margin-bottom: 1rem;
+    }
+
+    .notes-hero p {
+        font-size: 1.1rem;
+        color: #64748b;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .info-box {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s;
+    }
+
+    .info-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 12px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-box h3 {
+        color: #0f172a;
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .info-icon {
+        background: #e0f2fe;
+        color: #0284c7;
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+    }
+
+    .warning-icon {
+        background: #fef3c7;
+        color: #d97706;
+    }
+</style>
+
+<div class="notes-hero">
+    <h1>Mathematical Notes</h1>
+    <p>A concise reference library for Calculus rules, theorems, and definitions.</p>
+</div>
+
+<div class="info-box">
+    <h3>
+        <span class="info-icon warning-icon">⚠️</span>
+        Rules & Definitions Only
+    </h3>
+    <p>
+        These notes are strictly a <strong>reference guide</strong>. They contain pure mathematical rules, formulas, and definitions. You will <em>not</em> find detailed explanations, intuitive walkthroughs, or basics here. They are designed for quick lookup and revision, not for initial learning.
+    </p>
+</div>
+
+<div class="info-box">
+    <h3>
+        <span class="info-icon">📚</span>
+        External Resources Required
+    </h3>
+    <p>
+        Users are expected to learn the core material from <strong>textbooks, lectures, or other comprehensive resources</strong>. Use this platform to test your knowledge and quickly verify specific formulas. If you don't understand <em>why</em> a rule works, please consult your primary learning materials.
+    </p>
+</div>
+
+<p style="text-align: center; color: #94a3b8; font-style: italic; margin-top: 3rem;">
+    Select a topic from the sidebar to begin revising.
+</p>
+{% endblock %}

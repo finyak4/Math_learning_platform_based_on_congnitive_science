@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Quiz, Question, QuizAttempt
+from .models import Quiz, Question, QuizAttempt, TopicState
+from django.utils import timezone
+from datetime import timedelta
 import difflib
 
 def is_similar(user_input, accepted_strings):
@@ -36,13 +38,18 @@ def is_similar(user_input, accepted_strings):
     return False
 
 def quiz_list(request):
-    quizzes = Quiz.objects.all().order_by('-created_at')
+    # Separate standard quizzes and revision quizzes based on title
+    # (Assuming Revision quizzes have "Revision" in title as per seed)
+    all_quizzes = Quiz.objects.all().order_by('created_at')
+    
+    # 1. Standard Quizzes
+    quizzes = all_quizzes.exclude(title__icontains='Revision')
 
     # Exclude quizzes the user has already taken if they are authenticated
     if request.user.is_authenticated:
         quizzes = quizzes.exclude(quizattempt__user=request.user)
     
-    # Filters
+    # Filters (Subject, Type, Eval)
     subject_filter = request.GET.get('subject')
     type_filter = request.GET.get('quiz_type')
     eval_filter = request.GET.get('evaluation_method')
@@ -54,8 +61,45 @@ def quiz_list(request):
     if eval_filter:
         quizzes = quizzes.filter(evaluation_method=eval_filter)
 
+    # 2. SRS / Revision Quizzes Logic
+    srs_cards = []
+    if request.user.is_authenticated:
+        # Get all TopicStates for the user
+        topic_states = TopicState.objects.filter(user=request.user)
+        
+        for state in topic_states:
+            # Determine which revision is next based on current_level
+            # current_level 0 -> Needs "Revision 1"
+            # current_level 1 -> Needs "Revision 2"
+            target_level = state.current_level + 1
+            if target_level > 4:
+                continue # All done for this proof of concept
+
+            # Find the specific revision quiz
+            # Format: "{Topic}: Revision {Level}..."
+            rev_quiz = all_quizzes.filter(
+                topic=state.topic, 
+                title__icontains=f'Revision {target_level}'
+            ).first()
+
+            if rev_quiz:
+                is_locked = True
+                unlock_date = state.next_review_at
+                
+                # Check if it's time to review
+                if unlock_date and timezone.now() >= unlock_date:
+                    is_locked = False
+                
+                srs_cards.append({
+                    'quiz': rev_quiz,
+                    'is_locked': is_locked,
+                    'unlock_date': unlock_date,
+                    'topic': state.topic
+                })
+
     context = {
         'quizzes': quizzes,
+        'srs_cards': srs_cards, # Pass SRS data
         'subjects': Quiz.Subject.choices,
         'quiz_types': Quiz.QuizType.choices,
         'eval_methods': Quiz.EvaluationMethod.choices,
@@ -147,6 +191,45 @@ def submit_quiz(request, quiz_id):
                     score=measured_score,
                     percentage=percentage
                  )
+
+                 # SRS Logic Hook
+                 if 'Revision' in quiz.title:
+                     # e.g. "Limits: Revision 1 (1 Day)"
+                     # Extract level check
+                     try:
+                         # Update SRS State
+                         state, _ = TopicState.objects.get_or_create(user=request.user, topic=quiz.topic)
+                         
+                         # Determine level from title
+                         if 'Revision 1' in quiz.title: level = 1
+                         elif 'Revision 2' in quiz.title: level = 2
+                         elif 'Revision 3' in quiz.title: level = 3
+                         elif 'Revision 4' in quiz.title: level = 4
+                         else: level = 0
+
+                         if level > state.current_level:
+                            state.current_level = level
+                            state.last_reviewed_at = timezone.now()
+                            
+                            # Set next review time
+                            days_delay = 1
+                            if level == 1: days_delay = 3
+                            elif level == 2: days_delay = 7
+                            elif level == 3: days_delay = 20
+                            
+                            state.next_review_at = timezone.now() + timedelta(days=days_delay)
+                            state.save()
+                     except Exception as e:
+                         print(f"SRS Update Error: {e}")
+
+                 else:
+                     # Normal Quiz - Initialize SRS if needed
+                     state, created = TopicState.objects.get_or_create(user=request.user, topic=quiz.topic)
+                     if created or state.current_level == 0:
+                         # Init: Next review in 1 day
+                         if not state.next_review_at:
+                            state.next_review_at = timezone.now() + timedelta(days=1)
+                            state.save()
 
                  return render(request, 'quizzes/quiz_result.html', {
                     'quiz': quiz,

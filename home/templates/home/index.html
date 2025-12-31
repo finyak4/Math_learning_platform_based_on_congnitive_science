@@ -1,6 +1,125 @@
 {% extends 'base.html' %}
 
+{% block extra_css %}
+<style>
+    .hero-section {
+        text-align: center;
+        padding: 4rem 1rem;
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        border-radius: 16px;
+        margin-bottom: 3rem;
+    }
+
+    .hero-section h1 {
+        font-size: 2.5rem;
+        color: #1e293b;
+        margin-bottom: 1rem;
+        font-weight: 800;
+    }
+
+    .hero-section p {
+        font-size: 1.25rem;
+        color: #64748b;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+    }
+
+    .info-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 16px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        border: 1px solid #f1f5f9;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .info-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-card h3 {
+        color: #0f172a;
+        font-size: 1.25rem;
+        margin-top: 0;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .info-card p {
+        color: #475569;
+        line-height: 1.6;
+        margin-bottom: 0;
+    }
+
+    .icon-box {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        font-size: 1.25rem;
+    }
+
+    .icon-blue { background: #eff6ff; color: #3b82f6; }
+    .icon-purple { background: #f3e8ff; color: #a855f7; }
+    .icon-rose { background: #ffe4e6; color: #f43f5e; }
+
+    .highlight {
+        font-weight: 600;
+        color: #1e293b;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
-<h1>Welcome to Calculus Platform</h1>
-<p>Your journey to mastering calculus starts here.</p>
+<div class="hero-section">
+    <h1>Master Calculus with Science</h1>
+    <p>A learning platform built on cognitive science principles to help you truly understand and retain mathematical concepts.</p>
+</div>
+
+<div class="info-grid">
+    <!-- Guide Box -->
+    <article class="info-card">
+        <h3>
+            <div class="icon-box icon-blue">🚀</div>
+            How to Use
+        </h3>
+        <p>
+            Follow the progression for best results: start with <span class="highlight">Automated Quizzes</span> as a warm-up to test basic recall. Move on to <span class="highlight">Self-Evaluated</span> quizzes for deeper conceptual checks (these are harder!), and finish with <span class="highlight">Practical</span> problems. The system uses <span class="highlight">Spaced Repetition</span> to schedule reviews exactly when you need them.
+        </p>
+    </article>
+
+    <!-- Methodology Box -->
+    <article class="info-card">
+        <h3>
+            <div class="icon-box icon-purple">🧠</div>
+            The Science
+        </h3>
+        <p>
+            This platform is built on concepts from the book <em>Make It Stick</em>. We use <span class="highlight">Active Recall</span> (retrieving info from memory), <span class="highlight">Interleaving</span> (mixing different problem types), and <span class="highlight">Calibration</span> (checking your actual knowledge vs. perceived knowledge) to ensure lasting mastery.
+        </p>
+    </article>
+
+    <!-- Responsibility Box -->
+    <article class="info-card">
+        <h3>
+            <div class="icon-box icon-rose">🛡️</div>
+            Self-Evaluation
+        </h3>
+        <p>
+            Many quizzes rely on <span class="highlight">Self-Evaluation</span>. This builds intellectual honesty and metacognition. Marking an incorrect answer as "Correct" mimics progress but hinders true understanding. <span class="highlight">You are responsible for your own learning</span>—use this feature honestly for your own good.
+        </p>
+    </article>
+</div>
 {% endblock %}
