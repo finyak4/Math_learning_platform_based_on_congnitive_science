@@ -5,7 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Calculus Platform{% endblock %}</title>
+    <title>{% block title %}Calculus Platform - Master Mathematics{% endblock %}</title>
+    <meta name="description" content="A cognitive science-based platform for mastering Calculus through Spaced Repetition, Active Recall, and Interleaving.">
+    <meta name="keywords" content="Calculus, Math, Learning, Spaced Repetition, Quiz, Derivative, Limit">
+    <meta name="author" content="Finiak">
+    <link rel="icon" type="image/svg+xml" href="{% static 'img/logo.svg' %}">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script>
@@ -26,6 +30,19 @@
     {% include 'partials/header.html' %}
 
     <main>
+        {% if messages %}
+        <div style="max-width: 800px; margin: 0 auto 2rem auto;">
+            {% for message in messages %}
+            <div class="alert {{ message.tags }}" style="padding: 1rem; margin-bottom: 0.5rem; border-radius: 8px; 
+                {% if message.tags == 'error' %}background: #fee2e2; color: #991b1b; border: 1px solid #fecaca;{% endif %}
+                {% if message.tags == 'success' %}background: #dcfce7; color: #166534; border: 1px solid #bbf7d0;{% endif %}
+                {% if message.tags == 'warning' %}background: #fef9c3; color: #854d0e; border: 1px solid #fde047;{% endif %}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
         {% block content %}{% endblock %}
     </main>
 

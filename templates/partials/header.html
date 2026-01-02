@@ -1,5 +1,12 @@
+
+{% load static %}
 <header>
-    <div class="logo">Logo</div>
+    <div class="logo">
+        <a href="{% url 'index' %}" style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: inherit;">
+            <img src="{% static 'img/logo.svg' %}" alt="Calculus Platform Logo" width="32" height="32">
+            <span>Calculus Platform</span>
+        </a>
+    </div>
     <nav>
         <ul>
             <li><a href="{% url 'index' %}">Home</a></li>
