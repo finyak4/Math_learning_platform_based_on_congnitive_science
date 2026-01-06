@@ -14,6 +14,37 @@ class Command(BaseCommand):
             (2, 'Limits: Revision 2', 'Limits'),
             (3, 'Limits: Revision 3', 'Limits'),
             (4, 'Limits: Revision 4', 'Limits'),
+            
+            # Derivatives Revisions
+            (1, 'Derivatives: Revision 1', 'Derivatives'),
+            (2, 'Derivatives: Revision 2', 'Derivatives'),
+            (3, 'Derivatives: Revision 3', 'Derivatives'),
+            (4, 'Derivatives: Revision 4', 'Derivatives'),
+
+            # Applications Revisions
+            (1, 'Applications of Derivatives: Revision 1', 'Applications of Derivatives'),
+            (2, 'Applications of Derivatives: Revision 2', 'Applications of Derivatives'),
+            (3, 'Applications of Derivatives: Revision 3', 'Applications of Derivatives'),
+            (4, 'Applications of Derivatives: Revision 4', 'Applications of Derivatives'),
+            
+            # Calculus 2 Revisions
+            # Integrals
+            (1, 'Integrals: Revision 1', 'Integrals'),
+            (2, 'Integrals: Revision 2', 'Integrals'),
+            (3, 'Integrals: Revision 3', 'Integrals'),
+            (4, 'Integrals: Revision 4', 'Integrals'),
+            
+            # Techniques
+            (1, 'Techniques: Revision 1', 'Techniques'),
+            (2, 'Techniques: Revision 2', 'Techniques'),
+            (3, 'Techniques: Revision 3', 'Techniques'),
+            (4, 'Techniques: Revision 4', 'Techniques'),
+            
+            # Sequences
+            (1, 'Sequences & Series: Revision 1', 'Sequences & Series'),
+            (2, 'Sequences & Series: Revision 2', 'Sequences & Series'),
+            (3, 'Sequences & Series: Revision 3', 'Sequences & Series'),
+            (4, 'Sequences & Series: Revision 4', 'Sequences & Series'),
         ]
 
         # Common description for all revision quizzes
@@ -24,7 +55,7 @@ class Command(BaseCommand):
             quiz, created = Quiz.objects.get_or_create(
                 title=title,
                 defaults={
-                    'subject': Quiz.Subject.CALCULUS_1,
+                    'subject': Quiz.Subject.CALCULUS_2 if topic in ['Integrals', 'Techniques', 'Sequences & Series'] else Quiz.Subject.CALCULUS_1,
                     'topic': topic,
                     'quiz_type': Quiz.QuizType.REVISION,
                     'evaluation_method': Quiz.EvaluationMethod.SELF_EVAL,
@@ -44,50 +75,245 @@ class Command(BaseCommand):
             # Clear old questions to ensure fresh seed
             quiz.question_set.all().delete()
 
-            # Define Questions based on Level Difficulty
-            # Structure: 3 Easy, 2 Hard, 1 Practical
-            
+            # Define Questions based on Topic and Level
             questions_data = []
 
-            if level == 1: # 1 Day Later - Mostly Basic Recall
-                questions_data = [
-                    (1, 'State the definition of continuity at a point x=c.', 'Limit exists, Function is defined, Limit equals Function value.', None), # Easy
-                    (2, 'What is the limit of sin(x)/x as x approaches 0?', '1', None), # Easy
-                    (3, 'If left limit != right limit, does the limit exist?', 'No', None), # Easy
-                    (4, 'Explain the Squeeze Theorem.', 'If f <= g <= h and limits of f and h match, limit of g is the same.', None), # Harder
-                    (5, 'Describe an Infinite Discontinuity.', 'The function goes to + or - infinity at the point.', None), # Harder
-                    (6, 'Evaluate limit as x->2 of (x^2-4)/(x-2).', '4', 'Factor (x-2)(x+2), cancel x-2, plug in 2.'), # Practical
-                ]
-            
-            elif level == 2: # 3 Days Later - Slightly harder
-                questions_data = [
-                     (1, 'What is an indeterminate form?', '0/0 or infinity/infinity (and others). Requires more work.', None), # Easy
-                     (2, 'Value of limit x->inf of 1/x?', '0', None), # Easy
-                     (3, 'Does a limit at x=c depend on f(c)?', 'No.', None), # Easy
-                     (4, 'How to prove limit x->0 of (1-cos x)/x = 0?', 'Multiply by conjugate (1+cos x).', None), # Harder
-                     (5, 'Explain IVT.', 'Continuous function on [a,b] takes all values between f(a) and f(b).', None), # Harder
-                     (6, 'Find horizontal asymptote of (3x^2+1)/(x^2-5).', 'y = 3', 'Ratio of leading coefficients.'), # Practical
-                ]
+            # ================= LIMITS =================
+            if topic == 'Limits':
+                if level == 1: # 1 Day Later - Mostly Basic Recall
+                    questions_data = [
+                        (1, 'State the definition of continuity at a point x=c.', 'Limit exists, Function is defined, Limit equals Function value.', None), # Easy
+                        (2, 'What is the limit of sin(x)/x as x approaches 0?', '1', None), # Easy
+                        (3, 'If left limit != right limit, does the limit exist?', 'No', None), # Easy
+                        (4, 'Explain the Squeeze Theorem.', 'If f <= g <= h and limits of f and h match, limit of g is the same.', None), # Harder
+                        (5, 'Describe an Infinite Discontinuity.', 'The function goes to + or - infinity at the point.', None), # Harder
+                        (6, 'Evaluate limit as x->2 of (x^2-4)/(x-2).', '4', 'Factor (x-2)(x+2), cancel x-2, plug in 2.'), # Practical
+                    ]
+                
+                elif level == 2: # 3 Days Later - Slightly harder
+                    questions_data = [
+                            (1, 'What is an indeterminate form?', '0/0 or infinity/infinity (and others). Requires more work.', None), # Easy
+                            (2, 'Value of limit x->inf of 1/x?', '0', None), # Easy
+                            (3, 'Does a limit at x=c depend on f(c)?', 'No.', None), # Easy
+                            (4, 'How to prove limit x->0 of (1-cos x)/x = 0?', 'Multiply by conjugate (1+cos x).', None), # Harder
+                            (5, 'Explain IVT.', 'Continuous function on [a,b] takes all values between f(a) and f(b).', None), # Harder
+                            (6, 'Find horizontal asymptote of (3x^2+1)/(x^2-5).', 'y = 3', 'Ratio of leading coefficients.'), # Practical
+                    ]
 
-            elif level == 3: # 7 Days Later - Mix
-                questions_data = [
-                     (1, 'Limit of constant c as x->a?', 'c', None), # Easy
-                     (2, 'Can a function cross its horizontal asymptote?', 'Yes, horizontal asymptotes describe end behavior, not local behavior.', None), # Easy
-                     (3, 'Limit of e^x as x-> -infinity?', '0', None), # Easy
-                     (4, 'Why is |x|/x not continuous at 0?', 'Jump discontinuity (Left limit -1, Right limit 1).', None), # Harder
-                     (5, 'Precise definition of limit (epsilon-delta) - conceptual summary?', 'For every error tolerance epsilon, there is a vicinity delta such that points within delta land within epsilon.', None), # Harder
-                     (6, 'Evaluate limit x->0 of (sqrt(1+x)-1)/x.', '1/2', 'Conjugate method.'), # Practical
-                ]
+                elif level == 3: # 7 Days Later - Mix
+                    questions_data = [
+                            (1, 'Limit of constant c as x->a?', 'c', None), # Easy
+                            (2, 'Can a function cross its horizontal asymptote?', 'Yes, horizontal asymptotes describe end behavior, not local behavior.', None), # Easy
+                            (3, 'Limit of e^x as x-> -infinity?', '0', None), # Easy
+                            (4, 'Why is |x|/x not continuous at 0?', 'Jump discontinuity (Left limit -1, Right limit 1).', None), # Harder
+                            (5, 'Precise definition of limit (epsilon-delta) - conceptual summary?', 'For every error tolerance epsilon, there is a vicinity delta such that points within delta land within epsilon.', None), # Harder
+                            (6, 'Evaluate limit x->0 of (sqrt(1+x)-1)/x.', '1/2', 'Conjugate method.'), # Practical
+                    ]
 
-            elif level == 4: # 20 Days Later - Mastery
-                questions_data = [
-                     (1, 'What is a removable discontinuity?', 'Hole. Limit exists but function is undefined or different.', None), # Easy 
-                     (2, 'Limit x->0+ of ln(x)?', '-Infinity', None), # Easy
-                     (3, 'Limit x->inf of sin(x)?', 'DNE (Oscillates).', None), # Easy
-                     (4, 'Explain why polynomial functions are continuous everywhere.', 'Because they are built from x and constants using + and *, which preserve continuity.', None), # Harder
-                     (5, 'Relationship between differentiable and continuous?', 'Differentiable implies Continuous. Continuous does NOT imply Differentiable.', None), # Harder
-                     (6, 'Find c such that f(x) is continuous: 2x+1 (x<1), c*x^2 (x>=1).', 'c = 3', 'Left limit 3, Right limit c(1)^2 -> c=3.'), # Practical
-                ]
+                elif level == 4: # 20 Days Later - Mastery
+                    questions_data = [
+                            (1, 'What is a removable discontinuity?', 'Hole. Limit exists but function is undefined or different.', None), # Easy 
+                            (2, 'Limit x->0+ of ln(x)?', '-Infinity', None), # Easy
+                            (3, 'Limit x->inf of sin(x)?', 'DNE (Oscillates).', None), # Easy
+                            (4, 'Explain why polynomial functions are continuous everywhere.', 'Because they are built from x and constants using + and *, which preserve continuity.', None), # Harder
+                            (5, 'Relationship between differentiable and continuous?', 'Differentiable implies Continuous. Continuous does NOT imply Differentiable.', None), # Harder
+                            (6, 'Find c such that f(x) is continuous: 2x+1 (x<1), c*x^2 (x>=1).', 'c = 3', 'Left limit 3, Right limit c(1)^2 -> c=3.'), # Practical
+                    ]
+
+            # ================= DERIVATIVES =================
+            elif topic == 'Derivatives':
+                if level == 1:
+                    questions_data = [
+                        (1, 'Power Rule: Derivative of x^5?', '5x^4', None),
+                        (2, 'Derivative of sin(x)?', 'cos(x)', None),
+                        (3, 'Derivative of a constant?', '0', None),
+                        (4, 'State Product Rule for u*v.', "u'v + uv'", None),
+                        (5, 'Geometric meaning of derivative at a point?', 'Slope of the tangent line.', None),
+                        (6, 'Find f\'(x) for f(x) = 2x + 1.', '2', 'Slope of line 2x+1 is 2.'),
+                    ]
+                elif level == 2:
+                    questions_data = [
+                        (1, 'Derivative of e^x?', 'e^x', None),
+                        (2, 'Derivative of ln(x)?', '1/x', None),
+                        (3, 'Chain Rule for f(g(x))?', "f'(g(x)) * g'(x)", None),
+                        (4, 'Quotient rule rhyme (or formula).', "Lo d-Hi minus Hi d-Lo, over Lo Lo.", None),
+                        (5, 'Derivative of cos(x)?', '-sin(x)', None),
+                        (6, 'Differentiate y = (2x+1)^2.', '4(2x+1) or 8x+4', 'Chain: 2(2x+1)*2 = 4(2x+1).'),
+                    ]
+                elif level == 3:
+                    questions_data = [
+                        (1, 'Derivative of tan(x)?', 'sec^2(x)', None),
+                        (2, 'Implicit differentiation: derivative of y^2 w.r.t x?', "2y * y'", None),
+                        (3, 'Derivative of position is ______?', 'Velocity', None),
+                        (4, 'Derivative of velocity is ______?', 'Acceleration', None),
+                        (5, 'Meaning of f\'(x) > 0?', 'Function is increasing.', None),
+                        (6, 'Find slope of tangent to y=x^2 at x=3.', '6', "f'(x)=2x, f'(3)=6."),
+                    ]
+                elif level == 4:
+                    questions_data = [
+                        (1, 'Derivative of sec(x)?', 'sec(x)tan(x)', None),
+                        (2, 'Derivative of arcsin(x)?', '1/sqrt(1-x^2)', None),
+                        (3, 'If f is differentiable at c, is it continuous at c?', 'Yes.', None),
+                        (4, 'Give an example of a function continuous but not differentiable at x=0.', '|x|', None),
+                        (5, 'Derivative of a^x?', "a^x * ln(a)", None),
+                        (6, 'Differentiate y = x * e^x.', 'e^x(x+1)', "Product rule: 1*e^x + x*e^x."),
+                    ]
+
+            # ================= APPLICATIONS OF DERIVATIVES =================
+            elif topic == 'Applications of Derivatives':
+                if level == 1:
+                    questions_data = [
+                        (1, 'Definition of a Critical Point?', "f'(x) = 0 or Undefined", None),
+                        (2, 'If f\'(x) goes from + to - at c, what is c?', 'Local Maximum', None),
+                        (3, 'If f\'\'(x) > 0, the graph is Concave ______.', 'Up', None),
+                        (4, 'Rolle\'s Theorem condition: f(a) must equal ______.', 'f(b)', None),
+                        (5, 'MVT guarantees a point where instantaneous rate equals ______ rate.', 'Average', None),
+                        (6, 'Find critical points of f(x) = x^2 - 4x.', 'x = 2', "2x - 4 = 0 -> x=2"),
+                    ]
+                elif level == 2:
+                    questions_data = [
+                        (1, 'Indeterminate forms for L\'Hopital?', '0/0 or inf/inf', None),
+                        (2, 'Point where concavity changes is called ______.', 'Inflection Point', None),
+                        (3, 'General antiderivative of x?', 'x^2/2 + C', None),
+                        (4, 'If f\'(x) < 0, f is ______.', 'Decreasing', None),
+                        (5, 'Second derivative test: If f\'\'(c) < 0 at critical pt, it\'s a ______.', 'Local Max', None),
+                        (6, 'Find inflection pt of f(x) = x^3.', 'x = 0', "f'' = 6x, 6x=0 -> x=0."),
+                    ]
+                elif level == 3:
+                    questions_data = [
+                        (1, 'L\'Hopital: Derivative of top divided by derivative of ______.', 'Bottom', None),
+                        (2, 'Optimization on closed interval [a,b]: Check critical pts and ______.', 'Endpoints', None),
+                        (3, 'Linear Approximation formula L(x)?', "f(a) + f'(a)(x-a)", None),
+                        (4, 'Antiderivative of 1/x?', 'ln(|x|) + C', None),
+                        (5, 'If velocity > 0 and acceleration < 0, speed is ______.', 'Decreasing', None),
+                        (6, 'Max of y = -x^2 on [-1, 1]?', '0', 'Vertex at 0 is max.'),
+                    ]
+                elif level == 4:
+                    questions_data = [
+                        (1, 'Derivative of integral from a to x of f(t)dt?', 'f(x)  (FTC 1)', None),
+                        (2, 'Newton\'s Method formula: x_{n+1} = x_n - ______?', "f(x_n)/f'(x_n)", None),
+                        (3, 'Related Rates: If x^2+y^2=r^2, derivative w.r.t time?', "2x(dx/dt) + 2y(dy/dt) = 2r(dr/dt)", None),
+                        (4, 'Antiderivative of sec^2(x)?', 'tan(x) + C', None),
+                        (5, 'Explain why f\'(x)=0 is not enough for an extrema.', 'Could be an inflection point (like x^3 at 0).', None),
+                        (6, 'Evaluate lim x->inf (ln x / x).', '0', 'L\'Hopital -> (1/x)/1 -> 0.'),
+                    ]
+
+            # ================= CALCULUS 2: INTEGRALS =================
+            elif topic == 'Integrals':
+                if level == 1:
+                    questions_data = [
+                        (1, 'Antiderivative of x^n where n != -1?', 'x^(n+1)/(n+1) + C', None),
+                        (2, 'Integral of 1/x dx?', 'ln|x| + C', None),
+                        (3, 'Integral of sin(x) dx?', '-cos(x) + C', None),
+                        (4, 'FTC Part 1 says d/dx of Integral from a to x of f(t) is?', 'f(x)', None),
+                        (5, 'FTC Part 2 says Integral from a to b is F(b) - F(?)', 'F(a)', None),
+                        (6, 'Integral of e^x?', 'e^x + C', None),
+                    ]
+                elif level == 2:
+                    questions_data = [
+                        (1, 'Integral of sec^2(x)?', 'tan(x) + C', None),
+                        (2, 'Net Change Theorem: Integral of rate of change gives ______.', 'Net Change', None),
+                        (3, 'If velocity is positive, displacement equals ______.', 'Distance Traveled', None),
+                        (4, 'Integral of 1/(1+x^2)?', 'arctan(x) + C', None),
+                        (5, 'Evaluate Integral from 0 to 1 of 2x.', '1', '[x^2] from 0 to 1 = 1-0 = 1.'),
+                        (6, 'True or False: Integral of product is product of integrals.', 'False', None),
+                    ]
+                elif level == 3:
+                    questions_data = [
+                        (1, 'Integral of tan(x)?', 'ln|sec x| or -ln|cos x|', None),
+                        (2, 'Geometric meaning of Integral from a to b?', 'Net signed area under curve.', None),
+                        (3, 'Average value of f on [a,b] formula?', '1/(b-a) * Integral(a to b) f(x) dx', None),
+                        (4, 'If f is odd, Integral from -a to a is?', '0', None),
+                        (5, 'If f is even, Integral from -a to a is?', '2 * Integral from 0 to a', None),
+                        (6, 'Evaluate Integral 0 to pi of sin(x).', '2', '-cos(pi) - (-cos(0)) = 1 - (-1) = 2.'),
+                    ]
+                elif level == 4:
+                    questions_data = [
+                        (1, 'Integral of sec(x)?', 'ln|sec x + tan x|', None),
+                        (2, 'Integral of 1/sqrt(1-x^2)?', 'arcsin(x)', None),
+                        (3, 'Explain substitution rule in reverse.', 'Chain rule reversed.', None),
+                        (4, 'Displacement vs Distance? Integral of v vs Integral of |v|.', 'Displacement vs Distance', None),
+                        (5, 'Evaluate d/dx Integral from 1 to x^2 of sin(t)dt.', '2x sin(x^2)', 'Chain rule extension of FTC 1.'),
+                        (6, 'Find area between y=x and y=x^2 from 0 to 1.', '1/6', 'Int(x - x^2) = 1/2 - 1/3 = 1/6.'),
+                    ]
+
+            # ================= CALCULUS 2: TECHNIQUES =================
+            elif topic == 'Techniques':
+                if level == 1:
+                    questions_data = [
+                        (1, 'Integration by Parts formula.', 'uv - Int v du', None),
+                        (2, 'LIATE - L stands for?', 'Logarithmic', None),
+                        (3, 'Type of substitution for sqrt(a^2 - x^2)?', 'x = a sin(theta)', None),
+                        (4, 'Partial Fractions: Break down (2x+1)/((x-1)(x+2)).', 'A/(x-1) + B/(x+2)', None),
+                        (5, 'If integral limit is infinity, it is called ______.', 'Improper', None),
+                        (6, 'Identity for sin^2(x)?', '(1-cos(2x))/2', None),
+                    ]
+                elif level == 2:
+                    questions_data = [
+                        (1, 'Integral of ln(x)?', 'x ln(x) - x + C', 'By parts.'),
+                        (2, 'Substitution for sqrt(x^2 + a^2)?', 'x = a tan(theta)', None),
+                        (3, 'Partial Fractions: Term for repeated factor (x-1)^2?', 'A/(x-1) + B/(x-1)^2', None),
+                        (4, 'Strategy for Integral sin^3(x)?', 'Save one sin(x), convert rest to cos.', None),
+                        (5, 'Evaluate Integral 1 to infinity of 1/x^2.', '1', 'Converges.'),
+                        (6, 'Trapezoidal Rule approximates curve with ______.', 'Trapezoids (straight lines).', None),
+                    ]
+                elif level == 3:
+                    questions_data = [
+                        (1, 'Integral of arctan(x)?', 'x arctan(x) - 1/2 ln(1+x^2)', 'By parts.'),
+                        (2, 'Substitution for sqrt(x^2 - a^2)?', 'x = a sec(theta)', None),
+                        (3, 'Partial fractions for irreducible quadratic?', 'Ax + B', None),
+                        (4, 'Evaluate Integral 1 to infinity of 1/x.', 'Diverges', 'Limit is ln(inf).'),
+                        (5, 'Identity for cos^2(x)?', '(1+cos(2x))/2', None),
+                        (6, 'Simpson\'s Rule uses what shape?', 'Parabolas', None),
+                    ]
+                elif level == 4:
+                    questions_data = [
+                        (1, 'Integral of e^x sin(x)?', 'Boomerang / Phoenix method (Parts twice).', None),
+                        (2, 'P-test: Integral 1 to inf of 1/x^p converges if?', 'p > 1', None),
+                        (3, 'Comparison Test: If f < g and Integral g converges, then?', 'Integral f converges.', None),
+                        (4, 'What if limit of Improper Integral oscillates?', 'Diverges.', None),
+                        (5, 'Weierstrass Substitution (half-angle) is for?', 'Rational trig functions.', None),
+                        (6, 'Evaluate Integral 0 to 1 of 1/sqrt(x).', '2', 'Converges (p=1/2 < 1).'),
+                    ]
+
+            # ================= CALCULUS 2: SEQUENCES & SERIES =================
+            elif topic == 'Sequences & Series':
+                if level == 1:
+                    questions_data = [
+                        (1, 'Definition of a Sequence.', 'Ordered list of numbers.', None),
+                        (2, 'Definition of a Series.', 'Sum of sequence terms.', None),
+                        (3, 'Limit of 1/n?', '0', None),
+                        (4, 'Geometric Series converges if |r| < ?', '1', None),
+                        (5, 'Harmonic Series converges or diverges?', 'Diverges', None),
+                        (6, 'Test for Divergence: If limit a_n is not 0, series ______.', 'Diverges', None),
+                    ]
+                elif level == 2:
+                    questions_data = [
+                        (1, 'Sum of geometric series a + ar + ...?', 'a / (1-r)', None),
+                        (2, 'P-series: Sum 1/n^p converges if?', 'p > 1', None),
+                        (3, 'Integral Test conditions?', 'Positive, Continuous, Decreasing.', None),
+                        (4, 'Ratio Test: Limit < 1 implies?', 'Convergence', None),
+                        (5, 'Ratio Test: Limit > 1 implies?', 'Divergence', None),
+                        (6, 'Alternating Series Test conditions?', 'Alternates, Decreases, Limit is 0.', None),
+                    ]
+                elif level == 3:
+                    questions_data = [
+                        (1, 'What is Absolute Convergence?', 'Sum of |a_n| converges.', None),
+                        (2, 'What is Conditional Convergence?', 'Converges, but Sum of |a_n| diverges.', None),
+                        (3, 'Maclaurin Series for e^x?', '1 + x + x^2/2! + ...', None),
+                        (4, 'Radius of Convergence definition.', 'Distance from center where series converges.', None),
+                        (5, 'Power series for 1/(1-x)?', '1 + x + x^2 + ...', None),
+                        (6, 'Limit Comparison Test: If limit of ratio is finite positive?', 'Both behave same.', None),
+                    ]
+                elif level == 4:
+                    questions_data = [
+                        (1, 'Maclaurin Series for sin(x)?', 'x - x^3/3! + x^5/5! ...', None),
+                        (2, 'Maclaurin Series for cos(x)?', '1 - x^2/2! + x^4/4! ...', None),
+                        (3, 'Taylor Series formula.', 'Sum f^(n)(a)/n! * (x-a)^n', None),
+                        (4, 'Interval of convergence check endpoints?', 'Yes, manually.', None),
+                        (5, 'Binomial Series for (1+x)^k start?', '1 + kx + ...', None),
+                        (6, 'Sum of Alternating Harmonic Series?', 'ln(2)', None),
+                    ]
 
             # Create Questions
             for order, text, answer, explanation in questions_data:

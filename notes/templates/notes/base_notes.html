@@ -59,12 +59,13 @@
 
     /* Dropdown Logic (Simple CSS for now) */
     .dropdown-content {
-        display: none;
-        padding-left: 2rem;
+        display: block;
     }
+
 
     .dropdown-content li {
         margin-bottom: 0.2rem;
+        padding-left: 1rem;
     }
 
     .dropdown-content a {
@@ -72,10 +73,10 @@
         font-size: 0.95em;
     }
 
-    .dropdown:hover .dropdown-content {
+    /* .dropdown:hover .dropdown-content {
         display: block;
         padding-left: 1rem;
-    }
+    } */
 
     .dropdown-btn {
         cursor: pointer;
@@ -194,6 +195,15 @@
 
     /* Responsive Notes */
     @media (max-width: 768px) {
+        .dropdown-content {
+            display: none;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            padding-left: 1rem;
+        }
+
         .notes-container {
             grid-template-columns: 1fr;
             gap: 1.5rem;
@@ -207,9 +217,27 @@
            or keep as vertical stack (default) */
         
         .notes-content {
-            padding: 1.5rem;
+            padding: 0.5rem;
             width: 100%;
             overflow-x: hidden; /* Prevent horizontal scroll from content */
+        }
+
+        /* Remove box styling on mobile for more space */
+        .note-section {
+            background: transparent;
+            padding: 1rem 0.75rem;
+            border-radius: 0;
+            box-shadow: none;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Keep formula boxes but reduce padding */
+        .formula-box,
+        .example-box,
+        .tip-box {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 6px;
         }
 
         .notes-content ul,
@@ -219,7 +247,16 @@
 
         .math-display {
             font-size: 1rem;
-            padding: 0.75rem;
+            padding: 0.75rem 0.5rem;
+        }
+
+        .note-section h2 {
+            font-size: 1.3rem;
+        }
+
+        .table-container {
+            margin-left: -0.5rem;
+            margin-right: -0.5rem;
         }
     }
 </style>
@@ -242,7 +279,9 @@
         <div class="dropdown">
             <div class="dropdown-btn">Calculus 2</div>
             <ul class="dropdown-content">
-                <li><a href="#">(Coming Soon)</a></li>
+                <li><a href="{% url 'notes_calc2_integrals' %}">Integrals & FTC</a></li>
+                <li><a href="{% url 'notes_calc2_integration_techniques' %}">Techniques of Integration</a></li>
+                <li><a href="{% url 'notes_calc2_sequences_series' %}">Sequences & Series</a></li>
             </ul>
         </div>
 

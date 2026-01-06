@@ -27,6 +27,27 @@ class Command(BaseCommand):
             ('Applications of Derivatives: Fundamental Properties', 'Theoretical'),
             ('Applications of Derivatives: Advanced Practice', 'Practical'),
             ('Derivatives: Chain Rule Mixed Practice', 'Practical'),
+            # Calculus 2: Integrals
+            ('Integrals: Basic Forms & Rules', 'Theoretical'),
+            ('Integrals: FTC Mechanics', 'Theoretical'),
+            ('Integrals: Conceptual Understanding', 'Theoretical'),
+            ('Integrals: The Net Change Theorem', 'Theoretical'),
+            ('Integrals: Antiderivative Skills', 'Practical'),
+            ('Integrals: Definite Integral Practice', 'Practical'),
+            # Calculus 2: Techniques
+            ('Techniques: Substitution & Parts Rules', 'Theoretical'),
+            ('Techniques: Trig & Partial Fractions Setup', 'Theoretical'),
+            ('Techniques: Strategy & Recognition', 'Theoretical'),
+            ('Techniques: Improper Integrals Concepts', 'Theoretical'),
+            ('Techniques: Solving Integrals', 'Practical'),
+            ('Techniques: Advanced Integration', 'Practical'),
+            # Calculus 2: Sequences & Series
+            ('Sequences: Definitions & Basic Limits', 'Theoretical'),
+            ('Series: Convergence Test Rules', 'Theoretical'),
+            ('Sequences: Conceptual Convergence', 'Theoretical'),
+            ('Series: Theory of Power Series', 'Theoretical'),
+            ('Sequences: Limit Calculations', 'Practical'),
+            ('Series: Convergence Testing', 'Practical'),
         ]
         
         # Delete quizzes not in the seed file
@@ -318,25 +339,25 @@ class Command(BaseCommand):
         # Questions for Quiz 4
         # Note: Using LaTeX for math terms
         questions_data_4 = [
-            (1, 'Define what it means for a function to be **differentiable** at $x=c$ in relation to continuity.', 'Differentiability is a stronger condition than continuity. If a function is differentiable at $x=c$, it MUST be continuous there. However, a function can be continuous but NOT differentiable (for example, at a sharp corner like $|x|$ at 0).', None),
+            (1, 'Define what it means for a function to be **differentiable** at $x=c$ in relation to continuity.', 'Differentiability is a stronger condition than continuity. If a function is differentiable at $x=c$, it MUST be continuous there. However, a function can be continuous but NOT differentiable (for example, at a sharp corner like $|x|$ at 0).', []),
 
-            (2, 'Explain why the limit of a constant function, like $f(x) = 7$, is always the constant itself as $x$ approaches any value.', 'Because the function value never changes regardless of what $x$ is doing. The "gap" between $f(x)$ and 7 is always zero, so the limit is 7.', None),
+            (2, 'Explain why the limit of a constant function, like $f(x) = 7$, is always the constant itself as $x$ approaches any value.', 'Because the function value never changes regardless of what $x$ is doing. The "gap" between $f(x)$ and 7 is always zero, so the limit is 7.', []),
 
-            (3, 'If $\lim_{x \\to c} f(x) = 5$ and $\lim_{x \\to c} g(x) = -2$, what is the limit of $[f(x) \cdot g(x)]$? Which Limit Law applies?', '-10. The Product Law applies: The limit of a product is the product of the limits, provided both individual limits exist.', None),
+            (3, 'If $\lim_{x \\to c} f(x) = 5$ and $\lim_{x \\to c} g(x) = -2$, what is the limit of $[f(x) \cdot g(x)]$? Which Limit Law applies?', '-10. The Product Law applies: The limit of a product is the product of the limits, provided both individual limits exist.', []),
 
-            (4, 'Describe the "Infinite Limit" behavior. If $\lim_{x \\to c} f(x) = \infty$, is the limit considered to "exist" in the strict sense?', 'Strictly speaking, the limit does not exist (DNE) because it does not settle on a single real number. However, we describe it as "infinity" to be specific about the way in which it fails to exist (unbounded growth).', None),
+            (4, 'Describe the "Infinite Limit" behavior. If $\lim_{x \\to c} f(x) = \infty$, is the limit considered to "exist" in the strict sense?', 'Strictly speaking, the limit does not exist (DNE) because it does not settle on a single real number. However, we describe it as "infinity" to be specific about the way in which it fails to exist (unbounded growth).', []),
 
-            (5, 'What is the specific geometric interpretation of the limit: $\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$?', 'This limit represents the slope of the tangent line to the graph of $f$ at the point $x$. It is the definition of the derivative.', None),
+            (5, 'What is the specific geometric interpretation of the limit: $\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$?', 'This limit represents the slope of the tangent line to the graph of $f$ at the point $x$. It is the definition of the derivative.', []),
 
-            (6, 'Explain how to determine horizontal asymptotes for a rational function where the degree of the numerator is LARGER than the denominator.', 'If the numerator degree > denominator degree, there is no horizontal asymptote. The function goes to positive or negative infinity (or follows a slant asymptote).', None),
+            (6, 'Explain how to determine horizontal asymptotes for a rational function where the degree of the numerator is LARGER than the denominator.', 'If the numerator degree > denominator degree, there is no horizontal asymptote. The function goes to positive or negative infinity (or follows a slant asymptote).', []),
             
-            (7, 'If $f(x)$ is squeezed between $y = -|x|$ and $y = |x|$, what is the limit of $f(x)$ as $x \\to 0$?', 'The limit is 0. Both $-|x|$ and $|x|$ approach 0 as $x \\to 0$. By the Squeeze Theorem, $f(x)$ must also approach 0.', None),
+            (7, 'If $f(x)$ is squeezed between $y = -|x|$ and $y = |x|$, what is the limit of $f(x)$ as $x \\to 0$?', 'The limit is 0. Both $-|x|$ and $|x|$ approach 0 as $x \\to 0$. By the Squeeze Theorem, $f(x)$ must also approach 0.', []),
 
-            (8, 'Why can we not just plug in $x=0$ to evaluate $\lim_{x \\to 0} (\\frac{\\sin x}{x})$?', 'Because $\\sin(0)$ is 0 and $x$ is 0, leading to the indeterminate form $0/0$. Direct substitution fails to give a valid result, requiring geometric proof or L\'Hopital\'s Rule.', None),
+            (8, 'Why can we not just plug in $x=0$ to evaluate $\lim_{x \\to 0} (\\frac{\\sin x}{x})$?', 'Because $\\sin(0)$ is 0 and $x$ is 0, leading to the indeterminate form $0/0$. Direct substitution fails to give a valid result, requiring geometric proof or L\'Hopital\'s Rule.', []),
 
-            (9, 'Does the Intermediate Value Theorem apply to the function $f(x) = 1/x$ on the interval $[-1, 1]$? Why or why not?', 'No. The IVT requires the function to be continuous on the entire closed interval. $f(x) = 1/x$ has an infinite discontinuity at $x=0$, which is inside $[-1, 1]$, so the theorem fails.', None),
+            (9, 'Does the Intermediate Value Theorem apply to the function $f(x) = 1/x$ on the interval $[-1, 1]$? Why or why not?', 'No. The IVT requires the function to be continuous on the entire closed interval. $f(x) = 1/x$ has an infinite discontinuity at $x=0$, which is inside $[-1, 1]$, so the theorem fails.', []),
 
-            (10, 'Describe a "Jump Discontinuity".', 'A jump discontinuity occurs when the Left-Hand Limit and Right-Hand Limit both exist as finite numbers, but they are not equal to each other (the graph physically breaks and jumps to a new height).', None)
+            (10, 'Describe a "Jump Discontinuity".', 'A jump discontinuity occurs when the Left-Hand Limit and Right-Hand Limit both exist as finite numbers, but they are not equal to each other (the graph physically breaks and jumps to a new height).', [])
         ]
 
         # Delete all existing questions to ensure database matches seed file
@@ -577,42 +598,42 @@ class Command(BaseCommand):
 
         questions_data_7 = [
             (1, 'State the formal **Limit Definition of the Derivative** of a function $f(x)$.', 
-             '$f\'(x) = \lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$. (Alternatively, the alternate form using $x \\to a$ is also acceptable).', None),
+             '$f\'(x) = \lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$. (Alternatively, the alternate form using $x \\to a$ is also acceptable).', []),
 
             (2, 'Explain the geometric relationship between a **Secant Line** and a **Tangent Line**.', 
-             'A secant line connects two distinct points on a curve. A tangent line is the limiting position of the secant line as the two points get infinitely close to each other. The slope of the secant approaches the slope of the tangent.', None),
+             'A secant line connects two distinct points on a curve. A tangent line is the limiting position of the secant line as the two points get infinitely close to each other. The slope of the secant approaches the slope of the tangent.', []),
 
             (3, 'If a function is **Differentiable** at a point, must it be **Continuous** at that point? Explain why.', 
-             'Yes. For the derivative to exist, the graph must be smooth and connected. If there were a break (discontinuity), the "rise" would be non-zero while the "run" approaches zero, or the limits wouldn\'t match, making the derivative undefined.', None),
+             'Yes. For the derivative to exist, the graph must be smooth and connected. If there were a break (discontinuity), the "rise" would be non-zero while the "run" approaches zero, or the limits wouldn\'t match, making the derivative undefined.', []),
 
             (4, 'Give two examples of visual features on a graph where a function is **Continuous but NOT Differentiable**.', 
-             '1. A sharp corner or "cusp" (like $|x|$ at 0).\n2. A vertical tangent line (where the slope is infinite).', None),
+             '1. A sharp corner or "cusp" (like $|x|$ at 0).\n2. A vertical tangent line (where the slope is infinite).', []),
             
             # Interleaving: Limits
-            (5, 'Explain why the limit $\lim_{x \to 0} \frac{1}{x}$ does not exist.', 
-             'As $x$ approaches 0 from the right, the value goes to positive infinity. As $x$ approaches 0 from the left, it goes to negative infinity. Since the left and right behaviors do not match (and are unbounded), the limit DNE.', None),
+            (5, r'Explain why the limit $\lim_{x \to 0} \frac{1}{x}$ does not exist.', 
+             'As $x$ approaches 0 from the right, the value goes to positive infinity. As $x$ approaches 0 from the left, it goes to negative infinity. Since the left and right behaviors do not match (and are unbounded), the limit DNE.', []),
 
             (6, 'If the derivative $f\'(x)$ is **positive** over an interval, what does this tell you about the behavior of the original function $f(x)$?', 
-             'It means the function $f(x)$ is increasing (going up from left to right) over that interval.', None),
+             'It means the function $f(x)$ is increasing (going up from left to right) over that interval.', []),
 
             (7, 'What does the **Second Derivative** $f\'\'(x)$ tell us about the shape of the graph of $f(x)$?', 
-             'It describes the concavity. If $f\'\' > 0$, the graph is concave up (like a cup). If $f\'\' < 0$, the graph is concave down (like a frown).', None),
+             'It describes the concavity. If $f\'\' > 0$, the graph is concave up (like a cup). If $f\'\' < 0$, the graph is concave down (like a frown).', []),
 
             (8, 'Explain the difference between **Average Rate of Change** and **Instantaneous Rate of Change**.', 
-             'Average Rate of Change is calculated over a time interval (slope of secant). Instantaneous Rate of Change is calculated at a single specific moment (slope of tangent, using a limit).', None),
+             'Average Rate of Change is calculated over a time interval (slope of secant). Instantaneous Rate of Change is calculated at a single specific moment (slope of tangent, using a limit).', []),
 
             # INTERLEAVING: LIMITS
             (9, 'What is the primary difference between evaluating a limit and evaluating a function value?', 
-             'The function value $f(c)$ depends on what happens exactly AT $x=c$. The limit depends on what happens NEAR $x=c$. They can be completely different (e.g., if there is a hole).', None),
+             'The function value $f(c)$ depends on what happens exactly AT $x=c$. The limit depends on what happens NEAR $x=c$. They can be completely different (e.g., if there is a hole).', []),
 
             (10, 'In the Leibniz notation $\\frac{dy}{dx}$, is this symbol literally a fraction? Explain.', 
-             'Not literally. It represents the limit of the fraction $\\frac{\\Delta y}{\\Delta x}$ as $\\Delta x$ approaches zero. However, in methods like separation of variables or differentials, we often treat it algebraically *like* a fraction.', None),
+             'Not literally. It represents the limit of the fraction $\\frac{\\Delta y}{\\Delta x}$ as $\\Delta x$ approaches zero. However, in methods like separation of variables or differentials, we often treat it algebraically *like* a fraction.', []),
 
             (11, 'Conceptually, why is the derivative of a **Constant Function** equal to zero?', 
-             'Geometrically, a constant function is a horizontal line. Horizontal lines have a slope of 0 everywhere, so the rate of change is always 0.', None),
+             'Geometrically, a constant function is a horizontal line. Horizontal lines have a slope of 0 everywhere, so the rate of change is always 0.', []),
 
             (12, 'Why do we need the **Chain Rule**? What specific type of functions does it apply to?', 
-             'We need it to differentiate **composite functions** (functions inside other functions, like $f(g(x))$). It allows us to multiply the rate of change of the outer function by the rate of change of the inner function.', None),
+             'We need it to differentiate **composite functions** (functions inside other functions, like $f(g(x))$). It allows us to multiply the rate of change of the outer function by the rate of change of the inner function.', []),
         ]
 
         # Delete all existing questions to ensure database matches seed file
@@ -864,53 +885,53 @@ class Command(BaseCommand):
         questions_data_10 = [
             (1, 
              'Explain the intuitive logic behind the Chain Rule using a "rates of change" analogy (e.g., gears or conversion rates).', 
-             'If y changes 3 times as fast as u, and u changes 2 times as fast as x, then y changes 3 * 2 = 6 times as fast as x. We multiply the rates because the effects compound.', None),
+             'If y changes 3 times as fast as u, and u changes 2 times as fast as x, then y changes 3 * 2 = 6 times as fast as x. We multiply the rates because the effects compound.', []),
 
             (2, 
              'In the Chain Rule formula $\\frac{dy}{dx} = \\frac{dy}{du} \\cdot \\frac{du}{dx}$, what does the variable $u$ represent?', 
-             'The variable $u$ represents the "inner" function. It acts as the output of the first function and the input for the second function.', None),
+             'The variable $u$ represents the "inner" function. It acts as the output of the first function and the input for the second function.', []),
 
             (3, 
              'Why is $\\sin(x^2)$ structurally different from $\\sin^2(x)$? How does this change the differentiation process?', 
-             'In $\\sin(x^2)$, the squaring happens *inside* to the angle (Outer: sin, Inner: x^2). In $\\sin^2(x)$, the squaring happens *outside* to the whole result (Outer: x^2, Inner: sin). You must peel the layers in the correct order.', None),
+             'In $\\sin(x^2)$, the squaring happens *inside* to the angle (Outer: sin, Inner: x^2). In $\\sin^2(x)$, the squaring happens *outside* to the whole result (Outer: x^2, Inner: sin). You must peel the layers in the correct order.', []),
 
             (4, 
              'When applying the Chain Rule to $f(g(h(x)))$, how many derivatives will you end up multiplying together?', 
-             'Three. You differentiate the outer layer f, multiply by the derivative of the middle layer g, and multiply by the derivative of the inner layer h.', None),
+             'Three. You differentiate the outer layer f, multiply by the derivative of the middle layer g, and multiply by the derivative of the inner layer h.', []),
 
             (5, 
              'What is the difference between "Implicit Differentiation" and the "Chain Rule"?', 
-             'They are actually the same thing. Implicit differentiation is just applying the Chain Rule to the variable y (treating y as an unknown function y(x)) whenever we differentiate a term containing y.', None),
+             'They are actually the same thing. Implicit differentiation is just applying the Chain Rule to the variable y (treating y as an unknown function y(x)) whenever we differentiate a term containing y.', []),
 
             # Interleaving
             (6, 
              'If $f(x)$ is continuous at $x=c$, does that guarantee that $\\lim_{x \\to c} f(x)$ exists? Why?', 
-             'Yes. By definition of continuity, the limit must exist and it must equal the function value f(c).', None),
+             'Yes. By definition of continuity, the limit must exist and it must equal the function value f(c).', []),
 
             (7, 
              'If you know the derivative of $f(x)$ is $f\'(x)$, how do you find the derivative of the inverse function $f^{-1}(x)$ using the Chain Rule?', 
-             'You differentiate the identity $f(f^{-1}(x)) = x$. Applying the Chain Rule gives $f\'(f^{-1}(x)) \\cdot (f^{-1})\'(x) = 1$. Then solve for the inverse derivative.', None),
+             'You differentiate the identity $f(f^{-1}(x)) = x$. Applying the Chain Rule gives $f\'(f^{-1}(x)) \\cdot (f^{-1})\'(x) = 1$. Then solve for the inverse derivative.', []),
 
             (8, 
              'In Machine Learning, gradients are calculated "backwards". How does this relate to the Chain Rule?', 
-             'The Chain Rule calculates the total rate of change by multiplying local derivatives. Backpropagation computes these products from the last layer (output) back to the first layer (input) to update weights.', None),
+             'The Chain Rule calculates the total rate of change by multiplying local derivatives. Backpropagation computes these products from the last layer (output) back to the first layer (input) to update weights.', []),
 
             (9, 
              'Why does the derivative of $e^{kx}$ equal $k \\cdot e^{kx}$ instead of just $e^{kx}$?', 
-             'Because of the Chain Rule. The outer function is $e^u$ (deriv is $e^u$) and the inner function is $u=kx$ (deriv is k). Multiplying them gives $k e^{kx}$.', None),
+             'Because of the Chain Rule. The outer function is $e^u$ (deriv is $e^u$) and the inner function is $u=kx$ (deriv is k). Multiplying them gives $k e^{kx}$.', []),
 
             (10, 
              'Describe a "cusp" on a graph. Why does the derivative fail to exist there?', 
-             'A cusp is a sharp point where the tangent line becomes vertical or the left-hand slope and right-hand slope are not equal. The limit of the difference quotient does not exist.', None),
+             'A cusp is a sharp point where the tangent line becomes vertical or the left-hand slope and right-hand slope are not equal. The limit of the difference quotient does not exist.', []),
 
             (11, 
              'What is the "Linear Approximation" of a function $f(x)$ at a point $a$?', 
-             'It is the equation of the tangent line: $L(x) = f(a) + f\'(a)(x-a)$. It estimates the function values near $x=a$ using the derivative.', None),
+             'It is the equation of the tangent line: $L(x) = f(a) + f\'(a)(x-a)$. It estimates the function values near $x=a$ using the derivative.', []),
 
             # Interleaving
             (12, 
              'Evaluate the limit of a composite function $\\lim_{x \\to c} f(g(x))$ if both are continuous.', 
-             'You can move the limit inside. The result is simply $f(\\lim_{x \\to c} g(x))$, which equals $f(g(c))$.', None)
+             'You can move the limit inside. The result is simply $f(\\lim_{x \\to c} g(x))$, which equals $f(g(c))$.', [])
         ]
 
         quiz10.question_set.all().delete()
@@ -1041,54 +1062,54 @@ class Command(BaseCommand):
         questions_data_12 = [
             (1, 
              'Explain why a **Critical Point** (where f\'(c)=0) is a *candidate* for a local maximum or minimum, but not a guarantee. Give a counter-example.', 
-             'A derivative of zero means the tangent is horizontal, but the function could flatten out and then continue going up (like y = x^3 at x=0). This is called a "saddle point" or inflection point, not a max/min.', None),
+             'A derivative of zero means the tangent is horizontal, but the function could flatten out and then continue going up (like y = x^3 at x=0). This is called a "saddle point" or inflection point, not a max/min.', []),
 
             (2, 
              'State **Rolle\'s Theorem**. How is it a special case of the Mean Value Theorem?', 
-             'Rolle\'s Theorem states that if f(a) = f(b), there must be a point between them where f\'(c) = 0. This is just the MVT where the average rate of change is zero (the secant line is horizontal).', None),
+             'Rolle\'s Theorem states that if f(a) = f(b), there must be a point between them where f\'(c) = 0. This is just the MVT where the average rate of change is zero (the secant line is horizontal).', []),
 
             # Interleaved 3 -> Position 3
             (3, 
-             'Interleaving: Explain why the derivative of ln(x) cannot exist for x < 0.', 
-             'Because the natural logarithm ln(x) is not defined for negative numbers (domain restriction). You cannot have a slope where the graph does not exist.', None),
+             'Explain why the derivative of ln(x) cannot exist for x < 0.', 
+             'Because the natural logarithm ln(x) is not defined for negative numbers (domain restriction). You cannot have a slope where the graph does not exist.', []),
 
             (4, 
              'Explain the **First Derivative Test**. How do you use the *signs* of f\'(x) to classify a critical point?', 
-             'You check the sign of f\'(x) on both sides of the critical point. If f\' changes from Positive to Negative, it\'s a Peak (Max). If it changes from Negative to Positive, it\'s a Valley (Min).', None),
+             'You check the sign of f\'(x) on both sides of the critical point. If f\' changes from Positive to Negative, it\'s a Peak (Max). If it changes from Negative to Positive, it\'s a Valley (Min).', []),
 
             (5, 
              'Geometrically, what does it mean for a function to be **Concave Up**? Relate this to the tangent lines.', 
-             'Concave Up means the graph opens upward (like a cup). Geometrically, the graph lies *above* its tangent lines, and the slopes of the tangent lines are increasing.', None),
+             'Concave Up means the graph opens upward (like a cup). Geometrically, the graph lies *above* its tangent lines, and the slopes of the tangent lines are increasing.', []),
 
             # Interleaved 6 -> Position 6
             (6, 
-             'Interleaving: Differentiate y = sin(x) * cos(x) using two different methods (Product Rule vs. Identity).', 
-             'Method 1 (Product): cos(x)cos(x) - sin(x)sin(x) = cos(2x). Method 2 (Identity): Rewrite as 0.5sin(2x). Deriv is 0.5 * cos(2x) * 2 = cos(2x).', None),
+             'Differentiate y = sin(x) * cos(x) using two different methods (Product Rule vs. Identity).', 
+             'Method 1 (Product): cos(x)cos(x) - sin(x)sin(x) = cos(2x). Method 2 (Identity): Rewrite as 0.5sin(2x). Deriv is 0.5 * cos(2x) * 2 = cos(2x).', []),
 
             (7, 
              'Why does the **Second Derivative Test** work? (i.e., Why does f\'\'(c) < 0 imply a Maximum?)', 
-             'If f\'\'(c) < 0, the function is Concave Down (frowning). A horizontal tangent (f\'=0) at the top of a frown must be a Peak (Maximum).', None),
+             'If f\'\'(c) < 0, the function is Concave Down (frowning). A horizontal tangent (f\'=0) at the top of a frown must be a Peak (Maximum).', []),
 
             (8, 
              'What is an **Inflection Point**? strictly in terms of the second derivative.', 
-             'An inflection point is a point where the second derivative f\'\'(x) *changes sign* (from positive to negative or vice versa). It is not enough for f\'\' to just be zero.', None),
+             'An inflection point is a point where the second derivative f\'\'(x) *changes sign* (from positive to negative or vice versa). It is not enough for f\'\' to just be zero.', []),
 
             # Interleaved 9 -> Position 9
             (9, 
-             'Interleaving: If lim_{x->inf} f(x) = 5, what does this tell us about the graph of f\'(x) (the derivative) as x approaches infinity?', 
-             'If the function flattens out to a horizontal asymptote y=5, the slope (derivative) must approach 0.', None),
+             'If lim_{x->inf} f(x) = 5, what does this tell us about the graph of f\'(x) (the derivative) as x approaches infinity?', 
+             'If the function flattens out to a horizontal asymptote y=5, the slope (derivative) must approach 0.', []),
 
             (10, 
              'When applying **L\'Hôpital\'s Rule**, why must we check that the limit is an "Indeterminate Form" first?', 
-             'Because if the limit is determinate (like 5/0 or 0/5), L\'Hôpital\'s Rule gives the wrong answer. It only works when there is a "struggle" between numerator and denominator (0/0 or inf/inf).', None),
+             'Because if the limit is determinate (like 5/0 or 0/5), L\'Hôpital\'s Rule gives the wrong answer. It only works when there is a "struggle" between numerator and denominator (0/0 or inf/inf).', []),
 
             (11, 
              'What does the "+ C" represent when finding the **General Antiderivative**? Why is it geometrically necessary?', 
-             'It represents the "Constant of Integration." Geometrically, it means a family of vertically shifted curves. Since the derivative (slope) is the same regardless of vertical height, we must account for all possible vertical starting positions.', None),
+             'It represents the "Constant of Integration." Geometrically, it means a family of vertically shifted curves. Since the derivative (slope) is the same regardless of vertical height, we must account for all possible vertical starting positions.', []),
 
             (12, 
              'How does **Optimization** (finding global max/min) on a *closed* interval [a, b] differ from an *open* interval?', 
-             'On a closed interval, you MUST check the endpoints (f(a) and f(b)) in addition to the critical points. The absolute max/min could occur at the very edge of the domain.', None)
+             'On a closed interval, you MUST check the endpoints (f(a) and f(b)) in addition to the critical points. The absolute max/min could occur at the very edge of the domain.', [])
         ]
 
         quiz12.question_set.all().delete()
@@ -1144,23 +1165,23 @@ class Command(BaseCommand):
 
             (2, 'According to the Mean Value Theorem, there is a point c where the instantaneous rate of change equals the ______ rate of change.', 'average', ["average"]),
 
-            (3, 'Interleaving: Implicit differentiation is required when y is not explicitly defined as a function of ______.', 'x', ["x"]),
+            (3, 'Implicit differentiation is required when y is not explicitly defined as a function of ______.', 'x', ["x"]),
 
             (4, 'If f\'(x) > 0 on an interval, then f(x) is strictly ______ on that interval.', 'increasing', ["increasing"]),
 
             (5, 'The graph of f is Concave Down on intervals where the second derivative f\'\'(x) is ______.', 'negative', ["negative", "less than zero", "< 0"]),
 
-            (6, 'Interleaving: The derivative of arcsin(x) involves a square ______ in the denominator.', 'root', ["root", "radical"]),
+            (6, 'The derivative of arcsin(x) involves a square ______ in the denominator.', 'root', ["root", "radical"]),
 
             (7, 'A point where the concavity of a function changes is called a point of ______.', 'inflection', ["inflection"]),
 
             (8, 'To apply L\'Hôpital\'s Rule to a limit of the form 0 * infinity, you must first rewrite it as a ______.', 'fraction', ["fraction", "ratio", "quotient"]),
 
-            (9, 'Interleaving: A vertical asymptote at x=c implies that the limit as x approaches c is ______.', 'infinity', ["infinity", "infinite", "inf"]),
+            (9, 'A vertical asymptote at x=c implies that the limit as x approaches c is ______.', 'infinity', ["infinity", "infinite", "inf"]),
 
             (10, 'If f\'(c) = 0 and f\'\'(c) > 0, then f(c) is a local ______.', 'minimum', ["minimum", "min"]),
 
-            (11, 'The family of all functions F(x) such that F\'(x) = f(x) is called the ______ integral of f.', 'indefinite', ["indefinite"]),
+            (11, 'Any function F such that F\'(x) = f(x) is called an ______ of f.', 'antiderivative', ["antiderivative"]),
 
             (12, 'A function that is continuous on a closed interval [a, b] is guaranteed to have an absolute maximum and minimum by the ______ Value Theorem.', 'extreme', ["extreme", "evt"])
         ]
@@ -1225,7 +1246,7 @@ class Command(BaseCommand):
              '1. $f\'(x) = 3x^2 - 12$.\n2. Critical points: $3(x^2 - 4) = 0 \\to x = \\pm 2$.\n3. Test intervals: For $x=0$ (between -2 and 2), $f\'(0) = -12$ (Negative).\n4. Since $f\' < 0$, it is decreasing on $(-2, 2)$.'),
 
             (3, 
-             'Interleaving: Find the slope of the tangent line to $x^2 + y^2 = 25$ at $(3, 4)$ using Implicit Differentiation.', 
+             'Find the slope of the tangent line to $x^2 + y^2 = 25$ at $(3, 4)$ using Implicit Differentiation.', 
              '-3/4', 
              '1. Differentiate: $2x + 2y y\' = 0$.\n2. Solve for $y\': y\' = -x/y$.\n3. Plug in $(3,4): -3/4$.'),
 
@@ -1240,7 +1261,7 @@ class Command(BaseCommand):
              '1. $f\'(x) = -2x$. Critical point at $x=0$.\n2. $f\'\'(x) = -2$.\n3. Evaluate: $f\'\'(0) = -2$ (Negative).\n4. Negative concavity means a frown, so it is a Maximum.'),
 
             (6, 
-             'Interleaving: Differentiate $y = x^x$ (Hint: Use Logarithmic Differentiation).', 
+             'Differentiate $y = x^x$ (Hint: Use Logarithmic Differentiation).', 
              'x^x (1 + ln(x))', 
              '1. $\\ln y = x \\ln x$.\n2. $y\'/y = 1 \\cdot \\ln x + x(1/x) = \\ln x + 1$.\n3. $y\' = y(\\ln x + 1) = x^x(1 + \\ln x)$.'),
 
@@ -1255,7 +1276,7 @@ class Command(BaseCommand):
              '1. Power rule reversed for $3x^2$: $\\frac{3x^3}{3} = x^3$.\n2. Trig rule reversed for $\\sin x$: The deriv of $-\\cos x$ is $\\sin x$, so antideriv is $-\\cos x$.\n3. Add + C.'),
 
             (9, 
-             'Interleaving: Evaluate $\\lim_{x \\to \\infty} \\frac{\\ln x}{x}$ using L\'Hôpital\'s Rule concepts.', 
+             'Evaluate $\\lim_{x \\to \\infty} \\frac{\\ln x}{x}$ using L\'Hôpital\'s Rule concepts.', 
              '0', 
              'Logarithms grow much slower than polynomials. Using L\'Hopital: Deriv top is $1/x$, Deriv bottom is 1. Limit $(1/x)/1$ as $x \\to \\infty$ is 0.'),
 
@@ -1327,51 +1348,51 @@ class Command(BaseCommand):
         questions_data_15 = [
             (1, 
              'Can a function have an Absolute Maximum but NO Local Maximums? Explain.', 
-             'Yes. Consider a straight line $y=x$ on the closed interval $[0, 1]$. The Absolute Max is at $x=1$ (an endpoint). Endpoints are not typically considered "local" extrema because the function doesn\'t exist on both sides.', None),
+             'Yes. Consider a straight line $y=x$ on the closed interval $[0, 1]$. The Absolute Max is at $x=1$ (an endpoint). Endpoints are not typically considered "local" extrema because the function doesn\'t exist on both sides.', []),
 
             (2, 
              'What is the difference between a function being "strictly increasing" and "non-decreasing"?', 
-             'Strictly increasing means $f(b) > f(a)$ always. Non-decreasing allows for flat spots (f(b) >= f(a)), meaning the slope can be zero for a while, but never negative.', None),
+             'Strictly increasing means $f(b) > f(a)$ always. Non-decreasing allows for flat spots (f(b) >= f(a)), meaning the slope can be zero for a while, but never negative.', []),
 
             (3, 
-             'Interleaving: Differentiate the inverse trig function $y = \\arctan(x)$.', 
-             '$1 / (1 + x^2)$', None),
+             'Differentiate the inverse trig function $y = \\arctan(x)$.', 
+             '$1 / (1 + x^2)$', []),
 
             (4, 
              'Why does L\'Hôpital\'s Rule **fail** for the limit $\\lim_{x \\to \\infty} \\frac{x + \\sin x}{x}$? Explain structurally.', 
-             'Because the derivative of the top is $1 + \\cos x$. As $x \\to \\infty$, this oscillates and has no limit. L\'Hôpital requires the limit of the derivatives to exist. (You must solve this by dividing by x instead).', None),
+             'Because the derivative of the top is $1 + \\cos x$. As $x \\to \\infty$, this oscillates and has no limit. L\'Hôpital requires the limit of the derivatives to exist. (You must solve this by dividing by x instead).', []),
 
             (5, 
              'If $f\'(x)$ represents velocity, what physical concept corresponds to an **Inflection Point** on the position graph?', 
-             'An inflection point on position is where Concavity changes. Concavity corresponds to Acceleration. So, it is the moment where acceleration changes from positive to negative (jerk), or maximum speed.', None),
+             'An inflection point on position is where Concavity changes. Concavity corresponds to Acceleration. So, it is the moment where acceleration changes from positive to negative (jerk), or maximum speed.', []),
 
             (6, 
-             'Interleaving: State the derivative of $a^x$ (where a is a constant, $a>0$).', 
-             '$a^x \\ln(a)$. (Common mistake is forgetting the ln(a)).', None),
+             'State the derivative of $a^x$ (where a is a constant, $a>0$).', 
+             '$a^x \\ln(a)$. (Common mistake is forgetting the ln(a)).', []),
 
             (7, 
-             'Connection: How is the Mean Value Theorem used to prove that a function with a zero derivative everywhere ($f\'(x)=0$) must be a Constant function?', 
-             'If $f\'(x)=0$ always, then for any two points $a, b$, the MVT says $(f(b)-f(a))/(b-a) = 0$. This implies $f(b)-f(a) = 0$, or $f(b)=f(a)$ for all points. Thus, constant.', None),
+             'How is the Mean Value Theorem used to prove that a function with a zero derivative everywhere ($f\'(x)=0$) must be a Constant function?', 
+             'If $f\'(x)=0$ always, then for any two points $a, b$, the MVT says $(f(b)-f(a))/(b-a) = 0$. This implies $f(b)-f(a) = 0$, or $f(b)=f(a)$ for all points. Thus, constant.', []),
 
             (8, 
              'Explain why we cannot simplify the antiderivative of $x \\cdot \\cos(x)$ into the antiderivative of $x$ times the antiderivative of $\\cos(x)$.', 
-             'There is no "Product Rule for Integration" that simple. The integral of a product is NOT the product of integrals. You would need "Integration by Parts" (the reverse of the product rule).', None),
+             'There is no "Product Rule for Integration" that simple. The integral of a product is NOT the product of integrals. You would need "Integration by Parts" (the reverse of the product rule).', []),
 
             (9, 
-             'Interleaving: Explain the behavior of $e^{-x}$ as $x \\to \\infty$.', 
-             'It approaches 0. Negative exponents mean "1 over e^x". As denominator gets huge, fraction goes to 0.', None),
+             'Explain the behavior of $e^{-x}$ as $x \\to \\infty$.', 
+             'It approaches 0. Negative exponents mean "1 over e^x". As denominator gets huge, fraction goes to 0.', []),
 
             (10, 
              'Visually, if f\'(x) is an **Odd Function** (symmetric origin), what symmetry does the graph of f(x) likely have?', 
-             'If the slopes are symmetric odd (like $x^2$ slopes are linear), the function is often Even (symmetric Y-axis). (e.g., antideriv of $x$ is $x^2/2$).', None),
+             'If the slopes are symmetric odd (like $x^2$ slopes are linear), the function is often Even (symmetric Y-axis). (e.g., antideriv of $x$ is $x^2/2$).', []),
 
             (11, 
              'If we use Linear Approximation to estimate $\\sqrt{4.1}$ using the tangent at $x=4$, will our estimate be an Overestimate or Underestimate? Why?', 
-             'Overestimate. The graph of $\\sqrt{x}$ is Concave Down. Tangent lines to concave down curves sit *above* the actual curve.', None),
+             'Overestimate. The graph of $\\sqrt{x}$ is Concave Down. Tangent lines to concave down curves sit *above* the actual curve.', []),
 
             (12, 
              'In Optimization, if you find a single critical point in an open interval, how can you confirm it is the Absolute Max without checking endpoints?', 
-             'If it is the *only* critical point and it is a Local Max (by 1st/2nd deriv test), and the function is continuous, it must be the Absolute Max because the graph can never turn around to go higher.', None)
+             'If it is the *only* critical point and it is a Local Max (by 1st/2nd deriv test), and the function is continuous, it must be the Absolute Max because the graph can never turn around to go higher.', [])
         ]
 
         quiz15.question_set.all().delete()
@@ -1427,19 +1448,19 @@ class Command(BaseCommand):
 
             (2, 'A "Corner" or "Cusp" on a graph produces a critical point where the derivative is ______.', 'undefined', ["undefined", "dne"]),
 
-            (3, 'Interleaving: The derivative of ln(u) is u\' divided by ______.', 'u', ["u"]),
+            (3, 'The derivative of ln(u) is u\' divided by ______.', 'u', ["u"]),
 
             (4, 'L\'Hôpital\'s rule can be used if the limit approaches zero divided by ______.', 'zero', ["zero", "0"]),
 
             (5, 'If the velocity of an object is increasing, its acceleration must be ______.', 'positive', ["positive"]),
 
-            (6, 'Interleaving: The Chain Rule is used to differentiate ______ functions.', 'composite', ["composite", "nested"]),
+            (6, 'The Chain Rule is used to differentiate ______ functions.', 'composite', ["composite", "nested"]),
 
             (7, 'The process of finding the maximum or minimum values of a function in a real-world context is called ______.', 'optimization', ["optimization"]),
 
             (8, 'If f\'(x) changes from negative to positive at c, then f(c) is a Local ______.', 'minimum', ["minimum", "min"]),
 
-            (9, 'Interleaving: If a function is continuous, the limit as x approaches c can be found by ______ substitution.', 'direct', ["direct"]),
+            (9, 'If a function is continuous, the limit as x approaches c can be found by ______ substitution.', 'direct', ["direct"]),
 
             (10, 'The antiderivative of f(x) = 1/x is ln(|x|) + ______.', 'c', ["c", "constant"]),
 
@@ -1509,7 +1530,7 @@ class Command(BaseCommand):
              '1. Form $\\infty/\\infty$. Apply L\'H.\n2. Deriv top: $1/x$. Deriv bot: $0.5x^{-0.5}$.\n3. Simplify: $(1/x) / (0.5/\\sqrt{x}) = \\frac{\\sqrt{x}}{0.5x} = \\frac{2}{\\sqrt{x}}$.\n4. As $x \\to \\infty$, $2/\\sqrt{x} \\to 0$.'),
 
             (3, 
-             'Interleaving: Find the derivative of $y = 5^{x^2}$.', 
+             'Find the derivative of $y = 5^{x^2}$.', 
              '5^{x^2} * ln(5) * 2x', 
              '1. Rule for $a^u$: $a^u \\ln(a) u\'$.\n2. $u=x^2, u\'=2x$.\n3. Combine: $5^{x^2} \\ln(5) 2x$.'),
 
@@ -1524,7 +1545,7 @@ class Command(BaseCommand):
              '1. Let width = x. Let length = y.\n2. Constraint: $2x + y = 100 \\to y = 100 - 2x$.\n3. Area = $x \\cdot y = x(100 - 2x) = 100x - 2x^2$.'),
 
             (6, 
-             'Interleaving: If $x^2 + y^2 = 1$, show that $y\'\' = -1/y^3$. (Harder)', 
+             'If $x^2 + y^2 = 1$, show that $y\'\' = -1/y^3$. (Harder)', 
              'See Steps.', 
              '1. $y\' = -x/y$.\n2. Quotient Rule for $y\'\'$: $\\frac{y(-1) - (-x)y\'}{y^2}$.\n3. Sub $y\'$: $\\frac{-y + x(-x/y)}{y^2} = \\frac{-y^2 - x^2}{y^3}$.\n4. Since $x^2+y^2=1$, numerator is $-1$. Result: $-1/y^3$.'),
 
@@ -1539,7 +1560,7 @@ class Command(BaseCommand):
              '1. Let $y = (1+2x)^{1/x}$. $\\ln y = \\frac{1}{x} \\ln(1+2x)$.\n2. Limit is $\\frac{\\ln(1+2x)}{x}$ (0/0 form).\n3. L\'Hopital: $\\frac{2/(1+2x)}{1}$.\n4. Evaluate at 0: $2/1 = 2$.\n5. $\\ln y = 2 \\to y = e^2$.'),
 
             (9, 
-             'Interleaving: Determine the horizontal asymptote of $y = \\frac{5x^3 - 2}{10 - x^3}$.', 
+             'Determine the horizontal asymptote of $y = \\frac{5x^3 - 2}{10 - x^3}$.', 
              'y = -5', 
              '1. Highest powers are both $x^3$.\n2. Ratio of coefficients: $5 / (-1) = -5$.\n3. Asymptote is $y = -5$.'),
 
@@ -1661,12 +1682,12 @@ class Command(BaseCommand):
              'Know your trig rules.\n1. Deriv of $\\tan(u)$ is $\\sec^2(u)$.\n2. Inner deriv of $5x$ is 5.\n3. Result: $5\\sec^2(5x)$.'),
 
             (11, 
-             'Interleaving Limits: Evaluate $\\lim_{x \\to 0} \\frac{\\sin(2x)}{3x}$', 
+             'Limits: Evaluate $\\lim_{x \\to 0} \\frac{\\sin(2x)}{3x}$', 
              '2/3', 
              'Adjust the fraction to match $\\sin(u)/u$.\n1. Rewrite as $\\frac{\\sin(2x)}{2x} \\cdot \\frac{2x}{3x}$.\n2. Limit of $\\sin(2x)/2x$ is 1.\n3. Limit of $2x/3x$ is $2/3$.'),
 
             (12, 
-             'Interleaving Limits: Evaluate $\\lim_{x \\to \\infty} \\frac{e^x}{x^2}$', 
+             'Evaluate $\\lim_{x \\to \\infty} \\frac{e^x}{x^2}$', 
              'Infinity', 
              'Hierarchy of Growth.\n1. Exponentials ($e^x$) grow much faster than polynomials ($x^2$).\n2. The numerator overwhelms the denominator.\n3. The limit is positive infinity.')
         ]
@@ -1683,4 +1704,520 @@ class Command(BaseCommand):
             )
         self.stdout.write(f'Successfully created {len(questions_data_18)} questions for Quiz 18.')
 
+        # ==============================================================================
+        # CALCULUS 2: INTEGRALS
+        # ==============================================================================
+
+        # --- Quiz 19: Integrals: Basic Forms & Rules (Theoretical / Automated) ---
+        desc_19 = "Test your memory of the basic anti-derivative formulas. These are the building blocks for all integration."
+        quiz19, _ = Quiz.objects.get_or_create(
+            title='Integrals: Basic Forms & Rules',
+            quiz_type=Quiz.QuizType.THEORETICAL,
+            evaluation_method=Quiz.EvaluationMethod.AUTOMATED,
+            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Integrals', 'description': desc_19}
+        )
+        if quiz19.description != desc_19: quiz19.description = desc_19; quiz19.save()
+        
+        q_data_19 = [
+            (1, 'The indefinite integral of $x^n$ (for $n \\neq -1$) is $\\frac{x^{n+1}}{n+1} + C$. This is known as the ______ Rule for Integration.', 'power', ['power', 'power rule']),
+            (2, 'The indefinite integral $\\int \\frac{1}{x} dx$ is equal to ______.', 'ln|x|+C', ['ln|x|+c', 'ln|x|', 'natural log', 'ln(x)']),
+            (3, 'The indefinite integral of $e^x$ is ______.', 'e^x+C', ['e^x+c', 'e^x']),
+            (4, 'The indefinite integral of $\\cos(x)$ is ______.', 'sin(x)+C', ['sin(x)+c', 'sin(x)', 'sine']),
+            (5, 'The derivative of $\\sin(x)$ is ______.', 'cos(x)', ['cos(x)', 'cosine']),
+            (6, 'The indefinite integral of $\\sin(x)$ is ______.', '-cos(x)+C', ['-cos(x)+c', '-cos(x)', 'negative cosine']),
+            (7, 'The indefinite integral of $\\sec^2(x)$ is ______.', 'tan(x)+C', ['tan(x)+c', 'tan(x)', 'tangent']),
+            (8, 'True or False: $\\int [f(x) + g(x)] dx = \\int f(x) dx + \\int g(x) dx$.', 'true', ['true', 't']),
+            (9, '$\\frac{d}{dx}(x^3) = $ ______.', '3x^2', ['3x^2']),
+            (10, 'True or False: $\\int f(x)g(x) dx = \\int f(x) dx \\cdot \\int g(x) dx$.', 'false', ['false', 'f']),
+            (11, 'The arbitrary constant added to an indefinite integral is usually denoted by the letter ______.', 'C', ['c', 'k']),
+            (12, 'Integration is the ______ process of differentiation.', 'reverse', ['reverse', 'inverse', 'opposite'])
+        ]
+        quiz19.question_set.all().delete()
+        for o, t, a, acc in q_data_19: Question.objects.create(quiz=quiz19, question_order=o, question_text=t, model_answer=a, accepted_answers=acc)
+        self.stdout.write(f'Created Quiz: {quiz19.title}')
+
+        # --- Quiz 20: Integrals: FTC Mechanics (Theoretical / Automated) ---
+        desc_20 = "Focused review of the Fundamental Theorem of Calculus equations and immediate consequences."
+        quiz20, _ = Quiz.objects.get_or_create(
+            title='Integrals: FTC Mechanics',
+            quiz_type=Quiz.QuizType.THEORETICAL,
+            evaluation_method=Quiz.EvaluationMethod.AUTOMATED,
+            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Integrals', 'description': desc_20}
+        )
+        if quiz20.description != desc_20: quiz20.description = desc_20; quiz20.save()
+
+        q_data_20 = [
+            (1, 'FTC Part 1 states that if $g(x) = \\int_a^x f(t) dt$, then $g\'(x) = $ ______.', 'f(x)', ['f(x)']),
+            (2, 'FTC Part 2 states that $\\int_a^b f(x) dx = F(b) - $ ______.', 'F(a)', ['f(a)']),
+            (3, 'The limit of $\\frac{\\sin x}{x}$ as $x \\to 0$ is ______.', '1', ['1', 'one']),
+            (4, 'To use the Fundamental Theorem of Calculus on $[a, b]$, the function $f$ must be ______ on that interval.', 'continuous', ['continuous']),
+            (5, 'If we differentiate an integral with the upper limit $x$, we get the integrand back. This shows diff and int are ______ processes.', 'inverse', ['inverse', 'reverse']),
+            (6, 'Evaluate $\\frac{d}{dx} \\int_1^x t^3 dt$.', 'x^3', ['x^3']),
+            (7, 'The integral from $a$ to $a$ of any functions is always ______.', '0', ['0', 'zero']),
+            (8, 'If $f\'(c)=0$ and $f\'\'(c)>0$, then $f$ has a local ______ at c.', 'minimum', ['minimum', 'min']),
+            (9, 'If you switch the limits of integration (from $a$ to $b$ -> $b$ to $a$), the sign of the integral ______.', 'changes', ['changes', 'flips', 'reverses', 'becomes negative']),
+            (10, '$\\int_a^b f(x) dx + \\int_b^c f(x) dx = \\int_a^c f(x) dx$. This is the ______ Property of intervals.', 'additive', ['additive', 'additivity', 'addition']),
+            (11, 'If $F(x)$ is an antiderivative of $f(x)$, then $F\'(x)$ must equal ______.', 'f(x)', ['f(x)']),
+            (12, 'In the definite integral notation, $a$ and $b$ are called the ______ of integration.', 'limits', ['limits', 'bounds'])
+        ]
+        quiz20.question_set.all().delete()
+        for o, t, a, acc in q_data_20: Question.objects.create(quiz=quiz20, question_order=o, question_text=t, model_answer=a, accepted_answers=acc)
+        self.stdout.write(f'Created Quiz: {quiz20.title}')
+
+        # --- Quiz 21: Integrals: Conceptual Understanding (Theoretical / Self-Eval) ---
+        desc_21 = "Deep dive into the 'why' of integration. Focus on the area interpretation and the connection between rate limits and sums."
+        quiz21, _ = Quiz.objects.get_or_create(
+            title='Integrals: Conceptual Understanding',
+            quiz_type=Quiz.QuizType.THEORETICAL,
+            evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
+            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Integrals', 'description': desc_21}
+        )
+        if quiz21.description != desc_21: quiz21.description = desc_21; quiz21.save()
+
+        q_data_21 = [
+            (1, 'Explain the geometric meaning of the definite integral $\\int_a^b f(x) dx$ if $f(x)$ takes on both positive and negative values.', 'It applies to the "Net Signed Area". Area above the x-axis is positive, and area below is negative. The integral sums these signed values.', []),
+            (2, 'Why do we add a "+ C" to indefinite integrals but not definite integrals?', 'An indefinite integral represents a FAMILY of functions (all vertical shifts). A definite integral represents a specific number (area/accumulation), and the C\'s cancel out during the subtraction $F(b) - F(a)$.', []),
+            (3, 'If $\\lim_{x \\to a} f(x)$ exists but does not equal $f(a)$, what type of discontinuity is this?', 'Removable (Hole).', []),
+            (4, 'If $v(t)$ is velocity, what does the area under the curve from $t=a$ to $t=b$ represent?', 'It represents the Displacement (change in position) of the object between time $a$ and $b$.', []),
+            (5, 'Explain why $\\int_{-a}^a f(x) dx = 0$ if $f(x)$ is an Odd function.', 'An odd function has rotational symmetry about the origin. The area from $-a$ to $0$ is the exact negative of the area from $0$ to $a$, so they cancel each other out perfectly.', []),
+            (6, 'What does the Mean Value Theorem for Integrals say geometrically?', 'It says there is at least one rectangle with height $f(c)$ and width $b-a$ that has the exact same area as the area under the curve.', []),
+            (7, 'True or False: If $f$ is continuous on $[a,b]$, it must have a max and min.', 'True (Extreme Value Theorem).', []),
+            (8, 'Visualize $\\int_0^1 \\sqrt{1-x^2} dx$. What geometric shape is this, and what is its value?', 'This is the upper right quarter of the unit circle. The area is $\\frac{1}{4}(\\pi r^2) = \\frac{\\pi}{4}$.', []),
+            (9, 'Why CAN\'T we use the Power Rule for $\\int x^{-1} dx$?', 'Because the Power Rule $\\frac{x^{n+1}}{n+1}$ would result in division by zero ($n+1 = 0$). That\'s why we have the special $\\ln|x|$ rule.', []),
+            (10, 'Explain the relationship between the units of $f(x)$, $x$, and $\\int f(x) dx$.', 'The unit of the integral is the product of the unit of $f(x)$ and the unit of $x$. (e.g., Velocity (m/s) * Time (s) = Distance (m)).', []),
+            (11, 'Conceptually, what happens to the Riemann Sum as the number of rectangles ($n$) goes to infinity?', 'The width of each rectangle ($\Delta x$) approaches zero, and the approximation error vanishes. The sum converges to the exact area under the curve.', []),
+            (12, 'If $\\int_a^b f(x) dx > 0$, does this mean $f(x)$ is always positive on $[a,b]$?', 'No. It just means the area above the x-axis is greater than the area below the x-axis. $f(x)$ could be negative for parts of the interval.', []),
+        ]
+        quiz21.question_set.all().delete()
+        for o, t, a, acc in q_data_21: Question.objects.create(quiz=quiz21, question_order=o, question_text=t, model_answer=a, accepted_answers=acc)
+        self.stdout.write(f'Created Quiz: {quiz21.title}')
+
+        # --- Quiz 22: Integrals: The Net Change Theorem (Theoretical / Self-Eval) ---
+        desc_22 = "Applying integration to real-world rates of change."
+        quiz22, _ = Quiz.objects.get_or_create(
+            title='Integrals: The Net Change Theorem',
+            quiz_type=Quiz.QuizType.THEORETICAL,
+            evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
+            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Integrals', 'description': desc_22}
+        )
+        if quiz22.description != desc_22: quiz22.description = desc_22; quiz22.save()
+
+        q_data_22 = [
+            (1, 'State the Net Change Theorem in words.', 'The integral of a rate of change is the net change in the collected quantity over that interval.', []),
+            (2, 'Explain the difference between $\\int_a^b v(t) dt$ and $\\int_a^b |v(t)| dt$.', 'The first is Displacement (net change in position, can be 0 if you return to start). The second is Total Distance Traveled (adds up all movement regardless of direction).', []),
+            (3, 'If $C\'(x)$ is the marginal cost of producing $x$ units, what does $\\int_{100}^{200} C\'(x) dx$ represent?', 'It represents the increase in Total Cost required to increase production from 100 units to 200 units.', []),
+            (4, 'The derivative of slope is ______.', 'Concavity (or second derivative).', []),
+            (5, 'If a population growth rate is negative for a time period, what does that mean for the net change integral?', 'It means the integral will be negative, indicating a decrease in total population size.', []),
+            (6, 'Why is the integral of acceleration $\\int v\'(t) dt$ equal to the change in velocity?', 'Because acceleration is the rate of change of velocity. Summing the changes in velocity gives the total net change in velocity.', []),
+            (7, 'If $P(t)$ is power (rate of energy use), what does $\\int P(t) dt$ represent?', 'It represents the total Energy consumed over that time period.', []),
+            (8, 'How do you calculate the final position of a particle if you know its initial position $s(0)$ and velocity $v(t)$?', '$s(t) = s(0) + \\int_0^t v(x) dx$. Final = Initial + Net Change.', []),
+            (9, 'If velocity is constant, what does the position graph look like?', 'A straight line with slope equal to that constant velocity.', []),
+            (10, 'In the context of Net Change, why is it important to distinguish between "rate of flow into" and "rate of flow out" of a tank?', 'Often the Net Rate = (Rate In) - (Rate Out). You must integrate this Net Rate to find the change in volume inside the tank.', []),
+            (11, 'If water flows into a tank at rate $r(t)$, what does $\\int_{0}^{60} r(t) dt$ represent?', 'The total volume of water that entered the tank in the first 60 minutes (or seconds, depending on unit).', []),
+            (12, 'What rule helps find limits of indeterminate forms 0/0?', 'L\'Hopital\'s Rule.', [])
+        ]
+        quiz22.question_set.all().delete()
+        for o, t, a, acc in q_data_22: Question.objects.create(quiz=quiz22, question_order=o, question_text=t, model_answer=a, accepted_answers=acc)
+        self.stdout.write(f'Created Quiz: {quiz22.title}')
+
+        # --- Quiz 23: Integrals: Antiderivative Skills (Practical / Self-Eval) ---
+        desc_23 = "Practice finding indefinite integrals. Do the work on paper, then check."
+        quiz23, _ = Quiz.objects.get_or_create(
+            title='Integrals: Antiderivative Skills',
+            quiz_type=Quiz.QuizType.PRACTICAL,
+            evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
+            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Integrals', 'description': desc_23}
+        )
+        if quiz23.description != desc_23: quiz23.description = desc_23; quiz23.save()
+
+        q_data_23 = [
+            (1, 'Find $\\int (3x^2 + 4x - 5) dx$', '$x^3 + 2x^2 - 5x + C$', 'Power Rule: Integrals are $x^3$, $2x^2$, and $-5x$. Add C.'),
+            (2, 'Find $\\int (\\sqrt{x} + \\frac{1}{\\sqrt{x}}) dx$', '$\\frac{2}{3}x^{3/2} + 2\\sqrt{x} + C$', 'Rewrite as $x^{1/2} + x^{-1/2}$. Power rule: Add 1 to exponents and divide.'),
+            (3, 'Find $\\int (\\sin x - 2\\cos x) dx$', '$-\\cos x - 2\\sin x + C$', 'Integral of sin is -cos. Integral of cos is sin.'),
+            (4, 'Find $\\int e^{3x} dx$', '$\\frac{1}{3}e^{3x} + C$', 'Reverse chain rule (or u-sub). Divide by the constant derivative of the exponent.'),
+            (5, 'Solve the Differential Equation: $f\'(x) = 6x$, $f(0) = 4$.', '$f(x) = 3x^2 + 4$', '1. Integrate $6x$ to get $3x^2 + C$. 2. Plug in $x=0, y=4$. 3. $3(0)^2 + C = 4 \\implies C=4$.'),
+            (6, 'Differentiate $y = \\sqrt{x}$.', '$1/(2\\sqrt{x})$', 'Power rule x^(1/2).'),
+            (7, 'Find $\\int (2 + \\tan^2 x) dx$', '2x + (\\tan x - x) + C = x + \\tan x + C$', 'Recall $\\tan^2 x = \\sec^2 x - 1$. Integral becomes $\\int (2 + \\sec^2 x - 1) dx = \\int (1 + \\sec^2 x) dx$.'),
+            (8, 'Find $\\int \\frac{1}{\\cos^2 x} dx$', '$\\tan x + C$', 'Rewrite $1/\\cos^2 x$ as $\\sec^2 x$. The antiderivative is $\\tan x$.'),
+            (9, 'Find $\\int 2^x dx$', '$\\frac{2^x}{\\ln 2} + C$', 'General Exponential Rule: $\\int a^x dx = \\frac{a^x}{\\ln a}$.'),
+            (10, 'Find $\\int (x^2 - 1)^2 dx$', '$\\frac{x^5}{5} - \\frac{2x^3}{3} + x + C$', 'Expand first: $(x^2-1)^2 = x^4 - 2x^2 + 1$. Then integrate.'),
+            (11, 'Find $\\int \\frac{3x^2 + 2}{x} dx$', '$\\frac{3}{2}x^2 + 2\\ln|x| + C$', 'Divide first: $3x + \\frac{2}{x}$. Then integrate term by term.'),
+            (12, 'Differentiate $y = e^{5x}$.', '$5e^{5x}$', 'Chain rule.')
+        ]
+        quiz23.question_set.all().delete()
+        for o, t, a, exp in q_data_23: Question.objects.create(quiz=quiz23, question_order=o, question_text=t, model_answer=a, explanation=exp, accepted_answers=[])
+        self.stdout.write(f'Created Quiz: {quiz23.title}')
+
+        # --- Quiz 24: Integrals: Definite Integral Practice (Practical / Self-Eval) ---
+        desc_24 = "Practice evaluating definite integrals using FTC Part 2."
+        quiz24, _ = Quiz.objects.get_or_create(
+            title='Integrals: Definite Integral Practice',
+            quiz_type=Quiz.QuizType.PRACTICAL,
+            evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
+            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Integrals', 'description': desc_24}
+        )
+        if quiz24.description != desc_24: quiz24.description = desc_24; quiz24.save()
+
+        q_data_24 = [
+            (1, 'Evaluate $\\int_0^3 (2x) dx$', '9', 'Antiderivative is $x^2$. $[x^2]_0^3 = 3^2 - 0^2 = 9$.'),
+            (2, 'Differentiate sin(x^2).', '2x cos(x^2)', 'Chain rule.'),
+            (3, 'Evaluate $\\int_0^{\\pi} \\sin x dx$', '2', 'Antiderivative is $-\\cos x$. $[-\\cos(\\pi)] - [-\\cos(0)] = -(-1) - (-1) = 1 + 1 = 2$.'),
+            (4, 'Evaluate $\\int_0^1 e^x dx$', '$e - 1$', 'Antiderivative is $e^x$. $e^1 - e^0 = e - 1$.'),
+            (5, 'Evaluate $\\int_{-1}^1 x^3 dx$', '0', 'Odd function on symmetric interval is 0. Or calc: $[x^4/4]_{-1}^1 = 1/4 - 1/4 = 0$.'),
+            (6, 'Find the area under $y=x^2$ from $x=0$ to $x=2$.', '8/3', 'Evaluate $\\int_0^2 x^2 dx = [\\frac{x^3}{3}]_0^2 = \\frac{8}{3} - 0 = 8/3$.'),
+            (7, 'Evaluate $\\int_1^4 \\sqrt{x} dx$', '14/3', '$x^{1/2} \\to \\frac{2}{3}x^{3/2}$. Limits 1 to 4. $\\frac{2}{3}(4^{3/2} - 1^{3/2}) = \\frac{2}{3}(8 - 1) = 14/3$.'),
+            (8, 'Evaluate $\\int_0^{\\pi/4} \\sec^2 x dx$', '1', 'Antiderivative is $\\tan x$. $\\tan(\\pi/4) - \\tan(0) = 1 - 0 = 1$.'),
+            (9, 'Evaluate $\\int_0^1 (e^x + x) dx$', '$e - 0.5$', '$[e^x + x^2/2]_0^1 = (e + 1/2) - (1 + 0) = e - 0.5$.'),
+            (10, 'Find the average value of $f(x) = x$ on $[0, 5]$.', '2.5', 'Avg = $\\frac{1}{b-a}\\int_a^b f(x)dx$. $\\frac{1}{5}\\int_0^5 x dx = \\frac{1}{5}[12.5] = 2.5$.'),
+            (11, 'Limit x->3 of (x-3)/(x^2-9).', '1/6', 'Factor: 1/(x+3) -> 1/6.'),
+            (12, 'Evaluate $\\int_1^2 \\frac{1}{x} dx$', '$\\ln 2$ (approx 0.693)', 'Antiderivative is $\\ln|x|$. $\\ln(2) - \\ln(1) = \\ln 2 - 0 = \\ln 2$.'),
+        ]
+        quiz24.question_set.all().delete()
+        for o, t, a, exp in q_data_24: Question.objects.create(quiz=quiz24, question_order=o, question_text=t, model_answer=a, explanation=exp, accepted_answers=[])
+        self.stdout.write(f'Created Quiz: {quiz24.title}')
+
+        # ==============================================================================
+        # CALCULUS 2: TECHNIQUES OF INTEGRATION
+        # ==============================================================================
+
+        # --- Quiz 25: Techniques: Substitution & Parts Rules (Theoretical / Automated) ---
+        desc_25 = "Tests the core rules behind substitution and integration by parts."
+        quiz25, _ = Quiz.objects.get_or_create(
+            title='Techniques: Substitution & Parts Rules',
+            quiz_type=Quiz.QuizType.THEORETICAL,
+            evaluation_method=Quiz.EvaluationMethod.AUTOMATED,
+            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Techniques', 'description': desc_25}
+        )
+        if quiz25.description != desc_25: quiz25.description = desc_25; quiz25.save()
+
+        q_data_25 = [
+            (1, 'Integration by Substitution is the reverse of the ______ Rule for differentiation.', 'chain', ['chain']),
+            (2, 'Integration by Parts is the reverse of the ______ Rule for differentiation.', 'product', ['product']),
+            (3, 'The formula for Integration by Parts is $\\int u dv = uv - $ ______.', 'int v du', ['int v du', 'integral v du']),
+            (4, 'The derivative of $\\ln(x)$ is ______.', '1/x', ['1/x']),
+            (5, 'In the LIATE rule for choosing u, the L stands for ______.', 'logarithmic', ['logarithmic', 'log', 'logs']),
+            (6, 'In the LIATE rule, the E stands for ______.', 'exponential', ['exponential']),
+            (7, 'For $\\sqrt{a^2 - x^2}$, the recommended trig substitution is $x = $ ______.', 'a sin(theta)', ['a sin(theta)', 'asin(theta)', 'sine']),
+            (8, 'If $f\'\'(x) > 0$, the graph of $f$ is concave ______.', 'up', ['up']),
+            (9, 'For $\\sqrt{a^2 + x^2}$, the recommended trig substitution is $x = $ ______.', 'a tan(theta)', ['a tan(theta)', 'atan(theta)', 'tangent']),
+            (10, 'Partial Fraction Decomposition is used to integrate ______ functions.', 'rational', ['rational']),
+            (11, 'An Improper Integral of Type 1 has an ______ interval of integration.', 'infinite', ['infinite']),
+            (12, 'An Improper Integral of Type 2 has a ______ integrand at some point in the interval.', 'discontinuous', ['discontinuous', 'undefined'])
+        ]
+        quiz25.question_set.all().delete()
+        for o, t, a, acc in q_data_25: Question.objects.create(quiz=quiz25, question_order=o, question_text=t, model_answer=a, accepted_answers=acc)
+        self.stdout.write(f'Created Quiz: {quiz25.title}')
+
+        # --- Quiz 26: Techniques: Trig & Partial Fractions Setup (Theoretical / Automated) ---
+        desc_26 = "Test your ability to set up complex integrals for solving."
+        quiz26, _ = Quiz.objects.get_or_create(
+            title='Techniques: Trig & Partial Fractions Setup',
+            quiz_type=Quiz.QuizType.THEORETICAL,
+            evaluation_method=Quiz.EvaluationMethod.AUTOMATED,
+            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Techniques', 'description': desc_26}
+        )
+        if quiz26.description != desc_26: quiz26.description = desc_26; quiz26.save()
+
+        q_data_26 = [
+            (1, 'The partial fraction decomposition of $\\frac{1}{(x-1)(x+2)}$ is $\\frac{A}{x-1} + $ ______.', 'B/(x+2)', ['b/(x+2)']),
+            (2, 'For a repeated linear factor $(x-1)^2$, you need terms $\\frac{A}{x-1}$ and ______.', 'B/(x-1)^2', ['b/(x-1)^2']),
+            (3, 'The limit at infinity for a rational function with equal degree numerator and denominator is the ratio of their ______ coefficients.', 'leading', ['leading']),
+            (4, 'For an irreducible quadratic factor $x^2+1$, the numerator should be ______.', 'Ax+B', ['ax+b']),
+            (5, 'The half-angle identity for $\\cos^2(x)$ is $\\frac{1 + \\cos(2x)}{2}$. What is the identity for $\\sin^2(x)$?', '(1-cos(2x))/2', ['(1-cos(2x))/2', '1-cos(2x)/2']),
+            (6, 'To integrate $\\sin^3(x)$, you should save one factor of $\\sin(x)$ and convert the rest to ______.', 'cosines', ['cosines', 'cos', 'cos(x)']),
+            (7, 'To integrate $\\tan(x)$, rewrite it as ______.', 'sin(x)/cos(x)', ['sin(x)/cos(x)']),
+            (8, 'The derivative of $e^{2x}$ is ______.', '2e^{2x}', ['2e^{2x}']),
+            (9, 'The integral $\\int \\frac{1}{x^2+1} dx$ is ______.', 'arctan(x)', ['arctan(x)', 'tan^-1(x)', 'inverse tan']),
+            (10, 'The integral $\\int \\tan(x) dx$ involves the natural log of absolute ______.', 'sec(x)', ['sec(x)', 'secant']),
+            (11, 'Simpson\'s Rule for approximation requires the number of subintervals $n$ to be ______.', 'even', ['even']),
+            (12, 'When using the Trapezoidal Rule, we approximate the area using ______.', 'trapezoids', ['trapezoids'])
+        ]
+        quiz26.question_set.all().delete()
+        for o, t, a, acc in q_data_26: Question.objects.create(quiz=quiz26, question_order=o, question_text=t, model_answer=a, accepted_answers=acc)
+        self.stdout.write(f'Created Quiz: {quiz26.title}')
+
+        # --- Quiz 27: Techniques: Strategy & Recognition (Theoretical / Self-Eval) ---
+        desc_27 = "Develop the instinct for choosing the right method."
+        quiz27, _ = Quiz.objects.get_or_create(
+            title='Techniques: Strategy & Recognition',
+            quiz_type=Quiz.QuizType.THEORETICAL,
+            evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
+            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Techniques', 'description': desc_27}
+        )
+        if quiz27.description != desc_27: quiz27.description = desc_27; quiz27.save()
+
+        q_data_27 = [
+            (1, 'How do you decide between using U-Substitution and Integration by Parts?', 'Use U-Sub if you see a composite function and its derivative (chain rule pattern). Use Parts if you see a product of unrelated functions (like x*e^x) that doesn\'t fit the chain rule.', []),
+            (2, 'What is the visual indicator that you should use Trigonometric Substitution?', 'The presence of terms like $\\sqrt{a^2-x^2}$, $\\sqrt{x^2-a^2}$, or $\\sqrt{x^2+a^2}$ inside an integral that cannot be solved by simple u-sub.', []),
+            (3, 'Why does integrating $\\sin^2(x)$ require a half-angle formula while $\\sin^3(x)$ does not?', '$\\sin^3(x)$ has an odd power, so we can peal off one sine and convert the rest to cosine to use u-sub. $\\sin^2(x)$ has no "spare" sine to be the derivative, so we must reduce the power using the identity.', []),
+            (4, 'Explain why proper rational functions are easier to integrate than improper ones.', 'Proper rational functions can be directly decomposed into partial fractions. Improper ones require polynomial long division first to separate the polynomial part from the proper rational part.', []),
+            (5, 'Why do we need to split an integral like $\\int_{-1}^{1} \\frac{1}{x} dx$ at zero?', 'Because there is an infinite discontinuity at $x=0$. The integral is improper, and we must define it as the sum of limits approaching 0 from left and right. (In this case, it diverges).', []),
+            (6, 'What creates an "Indeterminate Form" in an improper integral?', 'When evaluating the limit (e.g., at infinity), if you get $\\infty - \\infty$ or $0 \\cdot \\infty$, you have to use L\'Hopital\'s Rule or algebra to resolve the true value.', []),
+            (7, 'If you see $\\int x^2e^{x^3} dx$, what method should you use?', 'U-Substitution. Let $u=x^3$. Then $du=3x^2 dx$, which matches the factor outside.', []),
+            (8, 'If you see $\\int x^2e^x dx$, what method should you use?', 'Integration by Parts (twice). You need to reduce the power of $x$ until it disappears.', []),
+            (9, 'How do you find the critical numbers of a function $f$?', 'Find all $x$ in the domain where $f\'(x) = 0$ or $f\'(x)$ is undefined.', []),
+            (10, 'What is the first step for integrating $\\int \\frac{x^3 + x}{x-1} dx$?', 'Polynomial Long Division. The numerator degree (3) is higher than denominator degree (1), so it is improper.', []),
+            (11, 'If $f\'(x) < 0$ and $f\'\'(x) < 0$, describe the shape.', 'Decreasing and Concave Down.', []),
+            (12, 'Differentiate $\\ln(x^2)$.', '$2/x$', '2ln(x) -> 2/x.')
+        ]
+        quiz27.question_set.all().delete()
+        for o, t, a, acc in q_data_27: Question.objects.create(quiz=quiz27, question_order=o, question_text=t, model_answer=a, accepted_answers=acc)
+        self.stdout.write(f'Created Quiz: {quiz27.title}')
+
+        # --- Quiz 28: Techniques: Improper Integrals Concepts (Theoretical / Self-Eval) ---
+        desc_28 = "Understanding infinity in integration."
+        quiz28, _ = Quiz.objects.get_or_create(
+            title='Techniques: Improper Integrals Concepts',
+            quiz_type=Quiz.QuizType.THEORETICAL,
+            evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
+            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Techniques', 'description': desc_28}
+        )
+        if quiz28.description != desc_28: quiz28.description = desc_28; quiz28.save()
+
+        q_data_28 = [
+            (1, 'What does it mean for an improper integral to "Diverge"?', 'It means the limit of the partial integral does not exist as a finite number (it goes to infinity or oscillates).', []),
+            (2, 'Explain the P-Test for integrals of type $\\int_1^\\infty \\frac{1}{x^p} dx$.', 'The integral converges if $p > 1$ and diverges if $p \\le 1$.', []),
+            (3, 'How does the Comparison Test help determine determining convergence without solving?', 'If you find a larger function that converges, your function must converge. If you find a smaller function that diverges, your function must diverge.', []),
+            (4, 'True or False: If a limit is $0/0$, it does not exist.', 'False. It is indeterminate.', []),
+            (5, 'Why is $\\int_1^\\infty \\frac{1}{x} dx$ (Harmonic area) divergent even though the curve goes to zero?', 'Although the height goes to zero, it doesn\'t go to zero "fast enough." The area accumulates slowly but endlessly without bound.', []),
+            (6, 'Does $\\int_{-\\infty}^{\\infty} x dx$ equal zero? Why or why not?', 'No, strictly speaking, it diverges. You must evaluate $\\int_{-\\infty}^0$ and $\\int_0^{\\infty}$ separately. Both diverge to infinity, so you cannot cancel them out (unless using Principal Value, but standard calc says diverges).', []),
+            (7, 'What condition must be met for a function to be differentiable at a point?', 'The limit of the difference quotient must exist (and be the same from both sides). It implies the function must be continuous and "smooth" (no sharp corners).', []),
+            (8, 'Evaluating $\\int_0^1 \\frac{1}{x^2} dx$: What happens?', 'It diverges. The antiderivative is $-1/x$. Limit as $x \\to 0$ is infinity.', []),
+            (9, 'Can an improper integral be negative?', 'Yes. If the function is below the x-axis, the "area" will be negative.', []),
+            (10, 'Why is $\\int_{-\\infty}^\infty \\frac{1}{1+x^2} dx$ a famous convergent integral?', 'Because the antiderivative is $\\arctan(x)$. $\\arctan(\infty) - \\arctan(-\\infty) = \\pi/2 - (-\\pi/2) = \\pi$.', []),
+            (11, 'Is $\\int_1^\\infty e^{-x} dx$ convergent? Explain geometrically.', 'Yes, it is convergent. The graph of $e^{-x}$ decays very quickly, so the "infinite tail" encloses a finite amount of area (specifically, area = 1).', []),
+            (12, 'The derivative of constant c is?', '0', [])
+        ]
+        quiz28.question_set.all().delete()
+        for o, t, a, acc in q_data_28: Question.objects.create(quiz=quiz28, question_order=o, question_text=t, model_answer=a, accepted_answers=acc)
+        self.stdout.write(f'Created Quiz: {quiz28.title}')
+
+        # --- Quiz 29: Techniques: Solving Integrals (Practical / Self-Eval) ---
+        desc_29 = "Practice standard integration techniques."
+        quiz29, _ = Quiz.objects.get_or_create(
+            title='Techniques: Solving Integrals',
+            quiz_type=Quiz.QuizType.PRACTICAL,
+            evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
+            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Techniques', 'description': desc_29}
+        )
+        if quiz29.description != desc_29: quiz29.description = desc_29; quiz29.save()
+
+        q_data_29 = [
+            (1, 'Solve $\\int x e^x dx$', '$x e^x - e^x + C$', 'Integration by Parts. $u=x, dv=e^x dx$.'),
+            (2, 'Solve $\\int \\sin^3(x) dx$', '$-\\cos x + \\frac{\\cos^3 x}{3} + C$', 'Save $\\sin x$. Change $\\sin^2 x$ to $1-\\cos^2 x$. Let $u=\\cos x$.'),
+            (3, 'Solve $\\int \\frac{1}{x^2 - 1} dx$', '$\\frac{1}{2}\\ln|x-1| - \\frac{1}{2}\\ln|x+1| + C$', 'Partial Fractions. $\\frac{1}{(x-1)(x+1)} = \\frac{1/2}{x-1} - \\frac{1/2}{x+1}$.'),
+            (4, 'Solve $\\int x \\sqrt{x^2+1} dx$', '$\\frac{1}{3}(x^2+1)^{3/2} + C$', 'U-Sub. $u=x^2+1, du=2x dx$. Integral becomes $\\frac{1}{2} \\int u^{1/2} du$.'),
+            (5, 'Differentiate $\\frac{1}{x^2}$.', '$-2x^{-3}$ or $-2/x^3$', 'Power rule.'),
+            (6, 'Solve $\\int_0^{\\pi/2} \\cos^3 x dx$', '2/3', 'Rewrite $(1-\\sin^2 x)\\cos x$. U-sub $u=\\sin x$. $\\int_0^1 (1-u^2) du = [u - u^3/3]_0^1 = 1 - 1/3 = 2/3$.'),
+            (7, 'Solve $\\int x^2 \\ln x dx$', '$\\frac{x^3}{3}\\ln x - \\frac{x^3}{9} + C$', 'Parts. $u=\\ln x, dv=x^2 dx$.'),
+            (8, 'Solve $\\int \\frac{2x}{x^2+1} dx$', '$\\ln(x^2+1) + C$', 'Simple U-Sub. $u=x^2+1, du=2x dx$.'),
+            (9, 'Solve $\\int \\cos^2 x dx$', '$\\frac{x}{2} + \\frac{\\sin(2x)}{4} + C$', 'Use half-angle identity: $\\frac{1+\\cos(2x)}{2}$.'),
+            (10, 'Solve $\\int \\frac{1}{x^2+4} dx$', '$\\frac{1}{2}\\arctan(x/2) + C$', 'Standard formula $\\int \\frac{1}{x^2+a^2} = \\frac{1}{a}\\arctan(x/a)$.'),
+            (11, 'Differentiate $x \\sin x$.', '$x\\cos x + \\sin x$', 'Product rule.'),
+            (12, 'Solve $\\int \\ln(x) dx$', '$x\\ln(x) - x + C$', 'Integration by Parts. $u=\\ln x, dv=1dx$.'),
+        ]
+        quiz29.question_set.all().delete()
+        for o, t, a, exp in q_data_29: Question.objects.create(quiz=quiz29, question_order=o, question_text=t, model_answer=a, explanation=exp, accepted_answers=[])
+        self.stdout.write(f'Created Quiz: {quiz29.title}')
+
+        # --- Quiz 30: Techniques: Advanced Integration (Practical / Self-Eval) ---
+        desc_30 = "Advanced problems involving trig substitution and improper integrals."
+        quiz30, _ = Quiz.objects.get_or_create(
+            title='Techniques: Advanced Integration',
+            quiz_type=Quiz.QuizType.PRACTICAL,
+            evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
+            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Techniques', 'description': desc_30}
+        )
+        if quiz30.description != desc_30: quiz30.description = desc_30; quiz30.save()
+
+        q_data_30 = [
+            (1, 'Use Trig Sub to find $\\int \\frac{1}{x^2\\sqrt{9-x^2}} dx$', '$-\\frac{\\sqrt{9-x^2}}{9x} + C$', 'Let $x=3\\sin\\theta$. Reduces to $\\int \\frac{1}{9}\\csc^2\\theta d\\theta$.'),
+            (2, 'Evaluate Improper Integral: $\\int_1^\\infty \\frac{1}{x^2} dx$', '1', 'Limit as $t\\to\\infty$ of $[-1/x]_1^t = 0 - (-1) = 1$. Converges.'),
+            (3, 'Evaluate $\\int e^x \\sin x dx$', '$\\frac{e^x(\\sin x - \\cos x)}{2} + C$', 'Use Integration by Parts twice and solve for the integral ("Boomerang" or "Phoenix" method).'),
+            (4, 'Evaluate $\\int_0^1 \\frac{1}{\\sqrt{x}} dx$', '2', 'Improper at 0. Limit $t\\to0^+$ of $[2\\sqrt{x}]_t^1 = 2 - 0 = 2$. Converges.'),
+            (5, 'Solve $\\int \\arctan(x) dx$', '$x\\arctan(x) - \\frac{1}{2}\\ln(1+x^2) + C$', 'Parts. $u=\\arctan x, dv=dx$. Then simple u-sub.'),
+            (6, 'Approximate $\\int_0^4 x^2 dx$ using Trapezoidal Rule with $n=2$.', '24', 'Points: 0, 2, 4. $\\Delta x=2$. $T = \\frac{2}{2} [0^2 + 2(2^2) + 4^2] = 1 [0 + 8 + 16] = 24$. (Exact is 21.33).'),
+            (7, 'Solve $\\int \\frac{x+1}{(x-1)^2} dx$', '$\\ln|x-1| - \\frac{2}{x-1} + C$', 'Partial Fractions. $\\frac{A}{x-1} + \\frac{B}{(x-1)^2}$. $A=1, B=2$.'),
+            (8, 'Differentiate $\\cos^3(x)$.', '$-3\\cos^2(x)\\sin(x)$', 'Chain rule.'),
+            (9, 'Evaluate $\\int_2^\\infty \\frac{1}{x \\ln x} dx$', 'Diverges', 'U-Sub $u=\\ln x$. Integral becomes $\\int \\frac{1}{u} du = \\ln|u|$. Limit is $\\ln(\\infty)$.'),
+            (10, 'Find extrema of $y=x^2$.', 'Min at x=0', 'Deriv 2x=0.'),
+            (11, 'Solve $\\int \\cot^3 x dx$', '$-\\frac{\\cot^2 x}{2} - \\ln|\\sin x| + C$', 'Rewrite $\\cot x (\\csc^2 x - 1)$. Split into two integrals.'),
+            (12, 'Find $\\int \\sin(\\sqrt{x}) dx$', '$-2\\sqrt{x}\\cos\\sqrt{x} + 2\\sin\\sqrt{x} + C$', 'Sub $w=\\sqrt{x \\implies} w^2=x, 2w dw = dx$. Then use Integration by Parts on $2w \\sin w dw$.'),
+        ]
+        quiz30.question_set.all().delete()
+        for o, t, a, exp in q_data_30: Question.objects.create(quiz=quiz30, question_order=o, question_text=t, model_answer=a, explanation=exp, accepted_answers=[])
+        self.stdout.write(f'Created Quiz: {quiz30.title}')
+
+        # ==============================================================================
+        # CALCULUS 2: SEQUENCES & SERIES
+        # ==============================================================================
+
+        # --- Quiz 31: Sequences: Definitions & Basic Limits (Theoretical / Automated) ---
+        desc_31 = "Foundational definitions for sequences and simple series behavior."
+        quiz31, _ = Quiz.objects.get_or_create(
+            title='Sequences: Definitions & Basic Limits',
+            quiz_type=Quiz.QuizType.THEORETICAL,
+            evaluation_method=Quiz.EvaluationMethod.AUTOMATED,
+            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Sequences & Series', 'description': desc_31}
+        )
+        if quiz31.description != desc_31: quiz31.description = desc_31; quiz31.save()
+
+        q_data_31 = [
+            (1, 'A ______ is an ordered list of numbers.', 'sequence', ['sequence']),
+            (2, 'A ______ is the sum of the terms of a sequence.', 'series', ['series', 'infinite series']),
+            (3, 'The limit of the sequence $a_n = \\frac{1}{n}$ as $n \\to \\infty$ is ______.', '0', ['0', 'zero']),
+            (4, 'The limit of the sequence $a_n = (-1)^n$ ______.', 'does not exist', ['does not exist', 'dne']),
+            (5, 'A sequence is called ______ if it is either always increasing or always decreasing.', 'monotonic', ['monotonic', 'monotone']),
+            (6, 'If $f\'(x) > 0$ for all x, then f is ______.', 'increasing', ['increasing']),
+            (7, 'A Geometric Series with ratio $r$ converges if $|r| < $ ______.', '1', ['1', 'one']),
+            (8, 'The sum of a convergent geometric series starting at $a$ is given by the formula ______.', 'a/(1-r)', ['a/(1-r)', 'a/1-r']),
+            (9, 'The derivative of $\\tan(x)$ is ______.', 'sec^2(x)', ['sec^2(x)', 'secant squared']),
+            (10, 'The P-series $\\sum \\frac{1}{n^p}$ converges if $p > $ ______.', '1', ['1', 'one']),
+            (11, 'The Harmonic Series $\\sum \\frac{1}{n}$ is known to ______.', 'diverge', ['diverge']),
+            (12, 'The Alternating Harmonic Series $\\sum \\frac{(-1)^{n+1}}{n}$ is known to ______.', 'converge', ['converge'])
+        ]
+        quiz31.question_set.all().delete()
+        for o, t, a, acc in q_data_31: Question.objects.create(quiz=quiz31, question_order=o, question_text=t, model_answer=a, accepted_answers=acc)
+        self.stdout.write(f'Created Quiz: {quiz31.title}')
+
+        # --- Quiz 32: Series: Convergence Test Rules (Theoretical / Automated) ---
+        desc_32 = "Test your memory of the conditions for various convergence tests."
+        quiz32, _ = Quiz.objects.get_or_create(
+            title='Series: Convergence Test Rules',
+            quiz_type=Quiz.QuizType.THEORETICAL,
+            evaluation_method=Quiz.EvaluationMethod.AUTOMATED,
+            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Sequences & Series', 'description': desc_32}
+        )
+        if quiz32.description != desc_32: quiz32.description = desc_32; quiz32.save()
+
+        q_data_32 = [
+            (1, 'The Divergence Test states: If $\\lim a_n \\neq 0$, then the series ______.', 'diverges', ['diverges', 'must diverge']),
+            (2, 'For the Integral Test, the function $f(x)$ must be continuous, positive, and ______.', 'decreasing', ['decreasing']),
+            (3, 'In the Ratio Test, if the limit $L < 1$, the series ______.', 'converges', ['converges', 'converges absolutely']),
+            (4, 'At a vertical asymptote $x=a$, the limit as $x \\to a$ is usually plus or minus ______.', 'infinity', ['infinity']),
+            (5, 'In the Ratio Test, if the limit $L > 1$, the series ______.', 'diverges', ['diverges']),
+            (6, 'In the Ratio Test, if the limit $L = 1$, the test is ______.', 'inconclusive', ['inconclusive', 'unknown']),
+            (7, 'The Limit Comparison Test requires the limit of the ratio of terms to be a positive ______ number.', 'finite', ['finite', 'real']),
+            (8, 'The set of all input values for which a function is defined is called its ______.', 'domain', ['domain']),
+            (9, 'If a series converges locally but the series of absolute values diverges, it is called ______ convergence.', 'conditional', ['conditional']),
+            (10, 'If $\\sum |a_n|$ converges, then $\\sum a_n$ is said to be ______ convergent.', 'absolutely', ['absolutely', 'absolute']),
+            (11, 'A Taylor Series centered at $a=0$ is specifically called a ______ Series.', 'maclaurin', ['maclaurin']),
+            (12, 'The Root Test is most useful when terms involve ______ powers of $n$.', 'nth', ['nth', 'n', 'n-th'])
+        ]
+        quiz32.question_set.all().delete()
+        for o, t, a, acc in q_data_32: Question.objects.create(quiz=quiz32, question_order=o, question_text=t, model_answer=a, accepted_answers=acc)
+        self.stdout.write(f'Created Quiz: {quiz32.title}')
+
+        # --- Quiz 33: Sequences: Conceptual Convergence (Theoretical / Self-Eval) ---
+        desc_33 = "Understand the subtle difference between sequences and series convergence."
+        quiz33, _ = Quiz.objects.get_or_create(
+            title='Sequences: Conceptual Convergence',
+            quiz_type=Quiz.QuizType.THEORETICAL,
+            evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
+            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Sequences & Series', 'description': desc_33}
+        )
+        if quiz33.description != desc_33: quiz33.description = desc_33; quiz33.save()
+
+        q_data_33 = [
+            (1, 'Explain the difference between $\{a_n\}$ converging and $\\sum a_n$ converging.', '$\{a_n\}$ converges if the terms approach a single number. $\\sum a_n$ converges if the SUM of the terms approaches a single number. (e.g., $1, 1, 1...$ converges as a sequence, but the sum diverges).', []),
+            (2, 'Why does the Harmonic Series diverge even though the terms get smaller?', 'The terms $1/n$ approach zero, but they do so very slowly. The sum "piles up" effectively infinite area (like calculating $\\int 1/x$).', []),
+            (3, 'Interpret the Ratio Test logic: Why does $L<1$ imply convergence?', 'If the ratio of successive terms is less than 1, the series eventually behaves like a Geometric Series with $r < 1$, which is known to converge.', []),
+            (4, 'What is the "Radius of Convergence"?', 'It is the distance R from the center $a$ such that the power series converges for all $|x-a| < R$.', []),
+            (5, 'Explain "Conditional Convergence" using the Alternating Harmonic Series.', 'The series $1 - 1/2 + 1/3 - ...$ converges (sums to ln 2). However, if you make all signs positive ($1 + 1/2 + ...$), it diverges. Thus, it only converges "on the condition" that the signs alternate.', []),
+            (6, 'If $\\lim_{n \\to \\infty} a_n = 0$, does the series $\\sum a_n$ automatically converge? Give a counter-example.', 'No. The Harmonic Series ($1/n$) has terms going to 0, but the sum is infinite.', []),
+            (7, 'Can a series sum to a negative number?', 'Yes. If the terms are negative, or if it is an alternating series dominated by negative terms.', []),
+            (8, 'Why is the Integral Test valid?', 'Because the sum $\\sum f(n)$ can be bounded by the integral $\\int f(x) dx$ (using left and right Riemann sums methodology). If the area is finite, the sum is finite.', []),
+            (9, 'What is the definition of a horizontal asymptote?', 'The line $y=L$ is a horizontal asymptote if $\\lim_{x \\to \\infty} f(x) = L$ or $\\lim_{x \\to -\\infty} f(x) = L$.', []),
+            (10, 'True or False: If $\\sum a_n$ converges, then $\\lim_{n \\to \\infty} a_n$ must be 0.', 'True. This is the logic behind the Divergence Test (contrapositive).', []),
+            (11, 'Does $f(x)=|x|$ have a derivative at 0?', 'No', 'Corner point.')
+        ]
+        quiz33.question_set.all().delete()
+        for o, t, a, acc in q_data_33: Question.objects.create(quiz=quiz33, question_order=o, question_text=t, model_answer=a, accepted_answers=acc)
+        self.stdout.write(f'Created Quiz: {quiz33.title}')
+
+        # --- Quiz 34: Series: Theory of Power Series (Theoretical / Self-Eval) ---
+        desc_34 = "Deep dive into power series representation of functions."
+        quiz34, _ = Quiz.objects.get_or_create(
+            title='Series: Theory of Power Series',
+            quiz_type=Quiz.QuizType.THEORETICAL,
+            evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
+            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Sequences & Series', 'description': desc_34}
+        )
+        if quiz34.description != desc_34: quiz34.description = desc_34; quiz34.save()
+
+        q_data_34 = [
+            (1, 'Does a Power Series always converge at its center $x=a$?', 'Yes. At $x=a$, all terms involving $(x-a)$ become 0. The sum is just the first constant term, so it trivially converges.', []),
+            (2, 'What do we check at the "endpoints" of the Interval of Convergence?', 'We must manually plug in the endpoint values ($x = a-R$ and $x = a+R$) into the original series to see if it converges at those specific points, because the Ratio Test is inconclusive there.', []),
+            (3, 'What is the Taylor Series formula for $f(x)$ centered at $a$?', '$f(x) = \\sum_{n=0}^\\infty \\frac{f^{(n)}(a)}{n!} (x-a)^n$.', []),
+            (4, 'Write the Maclaurin Series for $e^x$.', '$1 + x + \\frac{x^2}{2!} + \\frac{x^3}{3!} + ... = \\sum \\frac{x^n}{n!}$.', []),
+            (5, 'Write the Maclaurin Series for $\\sin(x)$.', '$x - \\frac{x^3}{3!} + \\frac{x^5}{5!} - ... = \\sum (-1)^n \\frac{x^{2n+1}}{(2n+1)!}$.', []),
+            (6, 'How can you find the power series deriviative of a function?', 'You can differentiate the power series term-by-term. The radius of convergence remains the same.', []),
+            (7, 'Derivative of $\\arctan(x)$.', '$1/(1+x^2)$', []),
+            (8, 'What is the series for $\\frac{1}{1-x}$?', '$1 + x + x^2 + x^3 + ... = \\sum x^n$, for $|x| < 1$.', []),
+            (9, 'How do you find the Maclaurin series for $e^{-x^2}$?', 'Take the series for $e^u$ and substitute $u = -x^2$.', []),
+            (10, 'What is the Binomial Series expansion for $(1+x)^k$?', '$1 + kx + \\frac{k(k-1)}{2!}x^2 + \\frac{k(k-1)(k-2)}{3!}x^3 + ...$', []),
+            (11, 'Linear approximation of $\\sqrt{x}$ at $x=1$.', 'L(x) = 1 + 1/2(x-1)', []),
+            (12, 'Write the Maclaurin Series for $\\cos(x)$.', '$1 - \\frac{x^2}{2!} + \\frac{x^4}{4!} - ... = \\sum (-1)^n \\frac{x^{2n}}{(2n)!}$.', []),
+        ]
+        quiz34.question_set.all().delete()
+        for o, t, a, acc in q_data_34: Question.objects.create(quiz=quiz34, question_order=o, question_text=t, model_answer=a, accepted_answers=acc)
+        self.stdout.write(f'Created Quiz: {quiz34.title}')
+
+        # --- Quiz 35: Sequences: Limit Calculations (Practical / Self-Eval) ---
+        desc_35 = "Practice finding limits of sequences and sums of geometric series."
+        quiz35, _ = Quiz.objects.get_or_create(
+            title='Sequences: Limit Calculations',
+            quiz_type=Quiz.QuizType.PRACTICAL,
+            evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
+            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Sequences & Series', 'description': desc_35}
+        )
+        if quiz35.description != desc_35: quiz35.description = desc_35; quiz35.save()
+
+        q_data_35 = [
+            (1, 'Find the limit of sequence $a_n = \\frac{n+1}{3n-1}$.', '1/3', 'Divide by n: $\\frac{1 + 1/n}{3 - 1/n} \\to 1/3$.'),
+            (2, 'Find $\\lim_{n \\to \\infty} (1 + \\frac{1}{n})^n$.', 'e (approx 2.718)', 'definition of e.'),
+            (3, 'Does sequence $a_n = \\cos(n\\pi)$ converge?', 'No', 'It alternates $1, -1, 1, -1$. It oscillates and never settles on one value.'),
+            (4, 'Limit x->0 of (sin 3x)/x.', '3', '3 * (sin 3x)/3x -> 3*1 = 3.'),
+            (5, 'Find sum of $\\sum_{n=1}^\\infty \\frac{1}{n(n+1)}$ (Telescoping).', '1', 'Partial Frac: $\\frac{1}{n} - \\frac{1}{n+1}$. Sums to $(1 - 1/2) + (1/2 - 1/3) ... = 1$.'),
+            (6, 'Find limit of $a_n = \\frac{\\ln n}{\\sqrt{n}}$.', '0', 'L\'Hopital or growth rates. $\\sqrt{n}$ grows faster than $\\ln n$.'),
+            (7, 'Find limit of $a_n = \\frac{(-1)^n}{n}$.', '0', 'Squeeze Theorem. $-1/n \\le a_n \\le 1/n$. Both bounds go to 0.'),
+            (8, 'Limit x->2 of x^2.', '4', 'Plug in.'),
+            (9, 'Find limit of $a_n = \\sqrt{n+1} - \\sqrt{n}$.', '0', 'Multiply by conjugate $\\frac{\\sqrt{n+1}+\\sqrt{n}}{\\sqrt{n+1}+\\sqrt{n}}$. Becomes $\\frac{1}{\\sqrt{n+1}+\\sqrt{n}} \\to 0$.'),
+            (10, 'Find sum of $0.999...$ as a series.', '1', '$\\sum_{n=1}^\\infty 9(1/10)^n$. $a=0.9, r=0.1$. Sum = $0.9 / (1-0.1) = 0.9/0.9 = 1$.'),
+            (11, 'Find the sum of series $\\sum_{n=1}^\\infty 3(\\frac{1}{2})^{n-1}$.', '6', 'Geometric. $a=3, r=1/2$. Sum = $3 / (1 - 1/2) = 3 / (1/2) = 6$.'),
+            (12, 'Find sum of $\\sum_{n=0}^\\infty \\frac{2^{n+1}}{5^n}$.', '10/3', 'Geometric. Rewrite as $2 \\sum (2/5)^n$. $a=2, r=2/5$. Sum = $2 / (1 - 2/5) = 2 / (3/5) = 10/3$.'),
+        ]
+        quiz35.question_set.all().delete()
+        for o, t, a, exp in q_data_35: Question.objects.create(quiz=quiz35, question_order=o, question_text=t, model_answer=a, explanation=exp, accepted_answers=[])
+        self.stdout.write(f'Created Quiz: {quiz35.title}')
+
+        # --- Quiz 36: Series: Convergence Testing (Practical / Self-Eval) ---
+        desc_36 = "Determine if the following series converge or diverge."
+        quiz36, _ = Quiz.objects.get_or_create(
+            title='Series: Convergence Testing',
+            quiz_type=Quiz.QuizType.PRACTICAL,
+            evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
+            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Sequences & Series', 'description': desc_36}
+        )
+        if quiz36.description != desc_36: quiz36.description = desc_36; quiz36.save()
+
+        q_data_36 = [
+            (1, 'Test $\\sum \\frac{1}{n^3}$.', 'Converges', 'P-Series with $p=3 > 1$.'),
+            (2, 'Test $\\sum \\frac{n}{2n+1}$.', 'Diverges', 'Divergence Test. limit is $1/2 \\neq 0$.'),
+            (3, 'Test $\\sum \\frac{(-1)^n}{n}$.', 'Converges', 'Alternating Harmonic Series converges.'),
+            (4, 'Test $\\sum \\frac{n}{2^n}$.', 'Converges', 'Ratio Test. ratio $\\to 1/2 < 1$.'),
+            (5, 'Test $\\sum \\frac{1}{\\sqrt{n}}$.', 'Diverges', 'P-Series with $p=1/2 \\le 1$.'),
+            (6, 'If f\'(x) changes + to -, that x is a ______.', 'Local Max', None),
+            (7, 'Test $\\sum \\frac{\\sin^2(n)}{n^2}$.', 'Converges', 'Direct Comparison with $\\frac{1}{n^2}$ (which converges). $\\sin^2 n \\le 1$.'),
+            (8, 'Test $\\sum \\frac{1}{n \\ln n}$.', 'Diverges', 'Integral Test. $\\int \\frac{1}{x \\ln x} dx = \\ln(\\ln x) \\to \\infty$.'),
+            (9, 'Test $\\sum \\frac{n^n}{n!}$.', 'Converges (Actually Diverges!)', 'Ratio Test. $\\lim (1+1/n)^n = e > 1$. Wait, careful! $n^n$ grows faster. It DIVERGES.'),
+            (10, 'Test $\\sum (-1)^n \\frac{n}{\\sqrt{n^3 + 2}}$.', 'Converges', 'Alternating Series Test. Terms decrease to 0. (Be careful with absolute convergence check).'),
+            (11, 'Find Radius of Convergence for $\\sum \\frac{x^n}{n}$.', '1', 'Ratio Test. $|x| < 1$, so R=1. (Converges on $[-1, 1)$).'),
+            (12, 'Integral of 0 dx.', 'C', 'Constant.')
+        ]
+        quiz36.question_set.all().delete()
+        for o, t, a, exp in q_data_36: Question.objects.create(quiz=quiz36, question_order=o, question_text=t, model_answer=a, explanation=exp, accepted_answers=[])
+        self.stdout.write(f'Created Quiz: {quiz36.title}')
+
         self.stdout.write(f'Seeding complete.')
+

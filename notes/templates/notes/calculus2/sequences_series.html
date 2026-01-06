@@ -1,0 +1,206 @@
+{% extends 'notes/base_notes.html' %}
+
+{% block title %}Calculus 2 - Sequences and Series{% endblock %}
+{% block note_content %}
+<div class="math-content">
+    
+    <section id="sequences" class="note-section">
+        <h2>1. Sequences</h2>
+        <p>A sequence is an ordered list of numbers \( \{a_n\} \) where each term has a specific position.</p>
+        
+        <div class="formula-box">
+            <strong>Convergence of Sequences</strong>
+            <p>A sequence converges to \( L \) if:</p>
+            <div class="math-display">
+                $$ \lim_{n \to \infty} a_n = L $$
+            </div>
+            <p>If the limit exists and is finite, the sequence converges. Otherwise, it diverges.</p>
+        </div>
+
+        <div class="tip-box">
+            <span class="tip-icon">💡</span>
+            <div>
+                <strong>Monotonic Sequence Theorem:</strong>
+                Every bounded, monotonic sequence is convergent.
+            </div>
+        </div>
+        
+        <div class="example-box">
+            <h3>Example: Sequence Convergence</h3>
+            <p>Determine the convergence of \( a_n = \frac{n}{n+1} \).</p>
+            <p><strong>Solution:</strong></p>
+            <div class="math-display">
+                $$ \lim_{n \to \infty} \frac{n}{n+1} = \lim_{n \to \infty} \frac{1}{1 + 1/n} = 1 $$
+            </div>
+            <p>The sequence converges to 1.</p>
+        </div>
+    </section>
+
+    <section id="series" class="note-section">
+        <h2>2. Infinite Series</h2>
+        <p>An infinite series is the sum of a sequence: \( \sum_{n=1}^{\infty} a_n \).</p>
+        
+        <div class="formula-box">
+            <strong>Definition</strong>
+            <div class="math-display">
+                $$ S = \lim_{k \to \infty} S_k $$
+            </div>
+            <p>where \( S_k = \sum_{n=1}^{k} a_n \) is the \( k \)-th partial sum.</p>
+        </div>
+
+        <div class="formula-box">
+            <strong>Geometric Series</strong>
+            <p>The series \( \sum_{n=0}^{\infty} ar^n \) converges if \( |r| < 1 \) and diverges if \( |r| \ge 1 \).</p>
+            <div class="math-display">
+                $$ S = \frac{a}{1-r} \quad \text{for } |r| < 1 $$
+            </div>
+        </div>
+        
+        <div class="example-box">
+            <h3>Example: Geometric Series</h3>
+            <p>Find the sum of \( \sum_{n=1}^{\infty} 5\left(\frac{2}{3}\right)^{n-1} \).</p>
+            <p><strong>Solution:</strong> \( a=5, r=2/3 \). Since \( |2/3| < 1 \), it converges.</p>
+            <div class="math-display">
+                $$ S = \frac{5}{1 - 2/3} = \frac{5}{1/3} = 15 $$
+            </div>
+        </div>
+    </section>
+
+    <section id="tests" class="note-section">
+        <h2>3. Convergence Tests</h2>
+        
+        <div class="formula-box">
+            <strong>Divergence Test</strong>
+            <p>If \( \lim_{n \to \infty} a_n \neq 0 \), then \( \sum a_n \) diverges.</p>
+        </div>
+
+        <div class="formula-box">
+            <strong>Integral Test</strong>
+            <p>If \( f(x) \) is continuous, positive, and decreasing on \( [1, \infty) \) and \( a_n = f(n) \):</p>
+            <p>\( \sum a_n \) converges if and only if \( \int_{1}^{\infty} f(x) \, dx \) converges.</p>
+        </div>
+        
+        <div class="example-box">
+            <h3>Example: Integral Test</h3>
+            <p>Test \( \sum_{n=1}^{\infty} \frac{1}{n^2 + 1} \).</p>
+            <p><strong>Solution:</strong></p>
+            <div class="math-display">
+                $$ \int_{1}^{\infty} \frac{1}{x^2+1} \, dx = \lim_{t \to \infty} [\tan^{-1} x]_1^t = \frac{\pi}{2} - \frac{\pi}{4} = \frac{\pi}{4} $$
+            </div>
+            <p>The integral converges, so the series converges.</p>
+        </div>
+
+        <div class="formula-box">
+            <strong>Comparison Tests</strong>
+            <ul>
+                <li><strong>Direct Comparison:</strong> If \( 0 \le a_n \le b_n \) and \( \sum b_n \) converges, then \( \sum a_n \) converges.</li>
+                <li><strong>Limit Comparison:</strong> If \( \lim_{n \to \infty} \frac{a_n}{b_n} = c > 0 \) (finite), then both series converge or both diverge.</li>
+            </ul>
+        </div>
+        
+        <div class="example-box">
+            <h3>Example: Limit Comparison Test</h3>
+            <p>Test \( \sum_{n=1}^{\infty} \frac{n-1}{2n^2 + 3} \).</p>
+            <p><strong>Solution:</strong> Compare with \( b_n = \frac{1}{2n} \) (Harmonic series, divergent).</p>
+            <div class="math-display">
+                $$ \lim_{n \to \infty} \frac{(n-1)/(2n^2+3)}{1/2n} = \lim_{n \to \infty} \frac{2n^2 - 2n}{2n^2 + 3} = 1 > 0 $$
+            </div>
+            <p>Both diverge.</p>
+        </div>
+
+        <div class="formula-box">
+            <strong>Ratio Test</strong>
+            <p>Let \( L = \lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right| \).</p>
+            <ul>
+                <li>If \( L < 1 \), the series converges absolutely.</li>
+                <li>If \( L > 1 \), the series diverges.</li>
+                <li>If \( L = 1 \), the test is inconclusive.</li>
+            </ul>
+        </div>
+        
+        <div class="example-box">
+            <h3>Example: Ratio Test</h3>
+            <p>Test \( \sum_{n=1}^{\infty} \frac{n^2}{2^n} \).</p>
+            <p><strong>Solution:</strong></p>
+            <div class="math-display">
+                $$ \left| \frac{a_{n+1}}{a_n} \right| = \frac{(n+1)^2}{2^{n+1}} \cdot \frac{2^n}{n^2} = \frac{1}{2} \left(\frac{n+1}{n}\right)^2 \to \frac{1}{2} < 1 $$
+            </div>
+            <p>The series converges.</p>
+        </div>
+
+        <div class="formula-box">
+            <strong>Root Test</strong>
+            <p>Let \( L = \lim_{n \to \infty} \sqrt[n]{|a_n|} \).</p>
+            <ul>
+                <li>If \( L < 1 \), converges absolutely.</li>
+                <li>If \( L > 1 \), diverges.</li>
+                <li>If \( L = 1 \), inconclusive.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="power-series" class="note-section">
+        <h2>4. Power Series</h2>
+        <p>A power series is a series of the form:</p>
+        
+        <div class="formula-box">
+            <div class="math-display">
+                $$ \sum_{n=0}^{\infty} c_n (x - a)^n $$
+            </div>
+            <p>It has a <strong>Radius of Convergence (R)</strong> and an <strong>Interval of Convergence</strong> 
+            found using the Ratio Test.</p>
+        </div>
+
+        <div class="tip-box">
+            <span class="tip-icon">💡</span>
+            <div>
+                <strong>Remember:</strong>
+                Always check convergence at the endpoints of the interval separately!
+            </div>
+        </div>
+    </section>
+
+    <section id="taylor" class="note-section">
+        <h2>5. Taylor and Maclaurin Series</h2>
+        <p>Functions can be represented as power series.</p>
+        
+        <div class="formula-box">
+            <strong>Taylor Series centered at \( a \):</strong>
+            <div class="math-display">
+                $$ f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!} (x - a)^n $$
+            </div>
+        </div>
+
+        <div class="formula-box">
+            <strong>Maclaurin Series</strong> (Taylor Series with \( a = 0 \))
+            <div class="math-display">
+                $$ f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(0)}{n!} x^n $$
+            </div>
+        </div>
+
+        <div class="formula-box">
+            <strong>Common Maclaurin Series</strong>
+            <div class="math-display">
+                \( e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \dots \)
+            </div>
+            <div class="math-display">
+                \( \sin x = \sum_{n=0}^{\infty} (-1)^n \frac{x^{2n+1}}{(2n+1)!} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \dots \)
+            </div>
+            <div class="math-display">
+                \( \cos x = \sum_{n=0}^{\infty} (-1)^n \frac{x^{2n}}{(2n)!} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \dots \)
+            </div>
+        </div>
+        
+        <div class="example-box">
+            <h3>Example: Finding a Maclaurin Series</h3>
+            <p>Find the Maclaurin series for \( f(x) = \cos x \).</p>
+            <p><strong>Solution:</strong> Derivatives at 0: \( \cos(0)=1, -\sin(0)=0, -\cos(0)=-1, \sin(0)=0, \cos(0)=1 \dots \)</p>
+            <p>Coefficients: \( 1, 0, -1/2!, 0, 1/4! \dots \)</p>
+            <div class="math-display">
+                $$ \cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \dots = \sum_{n=0}^{\infty} (-1)^n \frac{x^{2n}}{(2n)!} $$
+            </div>
+        </div>
+    </section>
+
+</div>
+{% endblock %}

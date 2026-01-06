@@ -1,0 +1,160 @@
+{% extends 'notes/base_notes.html' %}
+
+{% block title %}Calculus 2 - Integrals{% endblock %}
+{% block note_content %}
+<div class="math-content">
+    
+    <section id="antiderivatives" class="note-section">
+        <h2>1. Antiderivatives and Indefinite Integrals</h2>
+        <p>
+            An <strong>antiderivative</strong> of a function \( f(x) \) is a function \( F(x) \) such that \( F'(x) = f(x) \).
+            The collection of all antiderivatives of \( f \) is called the <strong>indefinite integral</strong>.
+        </p>
+        
+        <div class="formula-box">
+            <strong>Indefinite Integral</strong>
+            <div class="math-display">
+                $$ \int f(x) \, dx = F(x) + C $$
+            </div>
+            <p>where \( C \) is the constant of integration.</p>
+        </div>
+
+        <div class="formula-box">
+            <strong>Basic Integration Rules</strong>
+            <div class="math-display">
+                \( \int x^n \, dx = \frac{x^{n+1}}{n+1} + C \quad (n \neq -1) \)
+            </div>
+            <div class="math-display">
+                \( \int \frac{1}{x} \, dx = \ln|x| + C \)
+            </div>
+            <div class="math-display">
+                \( \int e^x \, dx = e^x + C \)
+            </div>
+            <div class="math-display">
+                \( \int \sin x \, dx = -\cos x + C \)
+            </div>
+            <div class="math-display">
+                \( \int \cos x \, dx = \sin x + C \)
+            </div>
+        </div>
+
+        <div class="example-box">
+            <h3>Example: Power Rule</h3>
+            <p>Evaluate \( \int (3x^2 + 5) \, dx \).</p>
+            <p><strong>Solution:</strong></p>
+            <div class="math-display">
+                $$ \int (3x^2 + 5) \, dx = 3 \cdot \frac{x^3}{3} + 5x + C = x^3 + 5x + C $$
+            </div>
+        </div>
+    </section>
+
+    <section id="definite-integral" class="note-section">
+        <h2>2. The Definite Integral</h2>
+        <p>
+            The definite integral represents the signed area under the curve \( y = f(x) \) from \( x=a \) to \( x=b \).
+            It is defined as the limit of a Riemann sum as the number of partitions approaches infinity.
+        </p>
+        
+        <div class="formula-box">
+            <strong>Definition</strong>
+            <div class="math-display">
+                $$ \int_{a}^{b} f(x) \, dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \Delta x $$
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <span class="tip-icon">💡</span>
+            <div>
+                <strong>Key Insight:</strong>
+                The definite integral gives <strong>net signed area</strong>—areas above the x-axis are positive, 
+                while areas below are negative.
+            </div>
+        </div>
+    </section>
+
+    <section id="ftc" class="note-section">
+        <h2>3. The Fundamental Theorem of Calculus (FTC)</h2>
+        <p>
+            The FTC establishes the inverse relationship between differentiation and integration,
+            connecting the two fundamental operations of calculus.
+        </p>
+        
+        <div class="formula-box">
+            <strong>FTC Part 1:</strong> Derivatives of Integrals
+            <div class="math-display">
+                $$ \frac{d}{dx} \int_{a}^{x} f(t) \, dt = f(x) $$
+            </div>
+            <p>This says: if you integrate a function and then differentiate, you get the original function back.</p>
+        </div>
+
+        <div class="example-box">
+            <h3>Example: FTC Part 1</h3>
+            <p>Find the derivative of \( g(x) = \int_{1}^{x} \sec t \, dt \).</p>
+            <p><strong>Solution:</strong> By FTC Part 1:</p>
+            <div class="math-display">
+                $$ g'(x) = \sec x $$
+            </div>
+        </div>
+
+        <div class="formula-box">
+            <strong>FTC Part 2:</strong> Evaluation of Definite Integrals
+            <div class="math-display">
+                $$ \int_{a}^{b} f(x) \, dx = F(b) - F(a) $$
+            </div>
+            <p>where \( F \) is any antiderivative of \( f \).</p>
+        </div>
+
+        <div class="example-box">
+            <h3>Example: Evaluating a Definite Integral</h3>
+            <p>Evaluate \( \int_{1}^{3} (2x + 1) \, dx \).</p>
+            <p><strong>Solution:</strong></p>
+            <p>1. Find the antiderivative: \( F(x) = x^2 + x \)</p>
+            <p>2. Apply FTC Part 2:</p>
+            <div class="math-display">
+                $$ [x^2 + x]_{1}^{3} = (3^2 + 3) - (1^2 + 1) = 12 - 2 = 10 $$
+            </div>
+        </div>
+    </section>
+
+    <section id="net-change" class="note-section">
+        <h2>4. The Net Change Theorem</h2>
+        <p>
+            The integral of a rate of change gives the net change in the quantity.
+            This is a direct application of FTC Part 2.
+        </p>
+        
+        <div class="formula-box">
+            <strong>Net Change</strong>
+            <div class="math-display">
+                $$ \int_{a}^{b} F'(x) \, dx = F(b) - F(a) $$
+            </div>
+        </div>
+
+        <div class="example-box">
+            <h3>Example: Displacement vs Distance</h3>
+            <p>If \( v(t) = t^2 - 2t \) is the velocity of a particle:</p>
+            
+            <p><strong>1. Displacement (Net Change):</strong></p>
+            <div class="math-display">
+                $$ \int_{0}^{3} v(t) \, dt = \int_{0}^{3} (t^2 - 2t) \, dt = \left[\frac{t^3}{3} - t^2\right]_0^3 = 0 $$
+            </div>
+            
+            <p><strong>2. Total Distance:</strong> We integrate the absolute value of velocity.</p>
+            <p>Since \( v(t) < 0 \) on \((0, 2)\) and \( v(t) > 0 \) on \((2, 3)\), we split:</p>
+            <div class="math-display">
+                $$ \int_{0}^{2} -(t^2 - 2t) \, dt + \int_{2}^{3} (t^2 - 2t) \, dt = \frac{4}{3} + \frac{4}{3} = \frac{8}{3} $$
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <span class="tip-icon">⚠️</span>
+            <div>
+                <strong>Common Mistake:</strong>
+                Don't confuse displacement (net change) with total distance traveled. 
+                Displacement can be zero even if the object moved!
+            </div>
+        </div>
+    </section>
+
+</div>
+{% endblock %}

@@ -187,9 +187,9 @@
                         <th>Date</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="quiz-history-tbody">
                     {% for attempt in attempts %}
-                    <tr>
+                     <tr class="quiz-history-row" {% if forloop.counter > 5 %}style="display: none;"{% endif %}>
                         <td class="quiz-name-cell">
                             {{ attempt.quiz.title }}
                             <span class="quiz-type-badge">
@@ -211,6 +211,13 @@
                 </tbody>
             </table>
         </div>
+        {% if attempts|length > 5 %}
+        <div style="padding: 1rem; text-align: center; border-top: 1px solid #f1f5f9;">
+            <button id="show-more-btn" onclick="toggleQuizHistory()" style="background: #0f172a; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s;">
+                Show More ({{ attempts|length|add:"-5" }})
+            </button>
+        </div>
+        {% endif %}
     </div>
     {% else %}
     <div class="empty-state">
@@ -219,5 +226,31 @@
     </div>
     {% endif %}
 </div>
+
+<script>
+function toggleQuizHistory() {
+    const rows = document.querySelectorAll('.quiz-history-row');
+    const button = document.getElementById('show-more-btn');
+    let hiddenCount = 0;
+    
+    rows.forEach((row, index) => {
+        if (index >= 5) {
+            if (row.style.display === 'none') {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+                hiddenCount++;
+            }
+        }
+    });
+    
+    // Update button text
+    if (hiddenCount > 0) {
+        button.textContent = `Show More (${hiddenCount})`;
+    } else {
+        button.textContent = 'Show Less';
+    }
+}
+</script>
 {% endblock %}
 
