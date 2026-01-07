@@ -79,6 +79,10 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
+# Social Account Configuration
+SOCIALACCOUNT_AUTO_SIGNUP = True
+SOCIALACCOUNT_EMAIL_VERIFICATION = "none" # Optional: trust the provider if they verify emails
+
 # AllAuth Configuration
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
@@ -130,10 +134,6 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASE_URL = os.environ.get('DATABASE_URL', None)
 
 if DATABASE_URL:
-    # Ensure URL is in postgres:// format for better library compatibility
-    # if DATABASE_URL.startswith('postgresql://'):
-    #     DATABASE_URL = DATABASE_URL.replace('postgresql://', 'postgres://', 1)
-
     # Use dj_database_url to parse the connection string
     DATABASES = {
         'default': dj_database_url.config(
@@ -147,10 +147,10 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': env('POSTGRES_DB', default=''),
-            'USER': env('POSTGRES_USER', default=''),
-            'PASSWORD': env('POSTGRES_PASSWORD', default=''),
-            'HOST': env('POSTGRES_HOST', default='db'),
+            'NAME': env('POSTGRES_DB', default='postgres'),
+            'USER': env('POSTGRES_USER', default='postgres'),
+            'PASSWORD': env('POSTGRES_PASSWORD', default='postgres'),
+            'HOST': env('POSTGRES_HOST', default='localhost'),
             'PORT': env('POSTGRES_PORT', default='5432'),
         }
     }

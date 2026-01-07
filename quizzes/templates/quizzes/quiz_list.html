@@ -1,296 +1,49 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Quizzes - Calculus Platform{% endblock %}
 
-{% block extra_css %}
-<style>
-    .quiz-container {
-        display: grid;
-        grid-template-columns: 250px 1fr;
-        gap: 2rem;
-        padding: 2rem;
-        max-width: 1400px;
-        margin: 0 auto;
-    }
-
-    /* Sidebar Styles */
-    .filter-sidebar {
-        background: #fff;
-        padding: 1.5rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        height: fit-content;
-    }
-
-    .filter-sidebar h3 {
-        margin-top: 0;
-        margin-bottom: 1.5rem;
-        color: var(--secondary-color, #1e293b);
-        font-size: 1.25rem;
-        border-bottom: 2px solid #e2e8f0;
-        padding-bottom: 0.75rem;
-    }
-
-    .filter-group {
-        margin-bottom: 1.5rem;
-    }
-
-    .filter-group label {
-        display: block;
-        margin-bottom: 0.5rem;
-        color: #64748b;
-        font-weight: 500;
-    }
-
-    /* Grid Styles */
-    .quiz-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1.5rem;
-    }
-
-    /* Card Styles */
-    .quiz-card {
-        background: white;
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        transition: transform 0.2s, box-shadow 0.2s;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .quiz-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        cursor: pointer;
-    }
-
-    .quiz-card-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 2rem 1.5rem;
-        color: white;
-        text-align: center;
-        position: relative;
-    }
-
-    .quiz-card-header h2 {
-        margin: 0;
-        font-size: 1.5rem;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .quiz-card:nth-child(even) .quiz-card-header {
-        background: linear-gradient(135deg, #8b5cf6 0%, #10b981 100%);
-    }
-
-    .quiz-card-body {
-        padding: 1.5rem;
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .quiz-title {
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: #1e293b;
-        margin: 0;
-        line-height: 1.4;
-    }
-
-    .quiz-meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-top: auto;
-    }
-
-    .badge {
-        font-size: 0.75rem;
-        padding: 0.25rem 0.75rem;
-        border-radius: 9999px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    .badge-type {
-        background-color: #e0f2fe;
-        color: #0369a1;
-    }
-
-    .badge-eval {
-        background-color: #fce7f3;
-        color: #be185d;
-    }
-
-    .quiz-card-footer {
-        padding: 1rem 1.5rem;
-        background-color: #f8fafc;
-        border-top: 1px solid #e2e8f0;
-    }
-
-    .btn-start {
-        display: block;
-        width: 100%;
-        padding: 0.75rem;
-        background-color: #0f172a;
-        color: white;
-        text-align: center;
-        text-decoration: none;
-        border-radius: 8px;
-        font-weight: 600;
-        transition: background-color 0.2s;
-    }
-
-    .btn-start:hover {
-        background-color: #334155;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .quiz-container {
-            grid-template-columns: 1fr;
-            padding: 1rem;
-        }
-
-        .filter-sidebar {
-            order: -1; /* Move to top */
-            margin-bottom: 2rem;
-        }
-
-        .filter-group {
-            margin-bottom: 1rem;
-        }
-        
-        /* Make form content wrap if needed or use flex for filters on mobile */
-        .filter-sidebar form {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            align-items: flex-start;
-        }
-        
-        .filter-group {
-            flex: 1 1 200px;
-            margin-bottom: 0;
-        }
-    }
-
-    /* SRS Styles */
-    .srs-section {
-        grid-column: 1 / -1; /* Span full width */
-        margin-bottom: 2rem;
-        background: #fff;
-        padding: 1.5rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        border-left: 5px solid #f59e0b; /* Amber/Gold accent */
-    }
-
-    .srs-header {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 1rem;
-    }
-
-    .srs-header h2 {
-        margin: 0;
-        color: #b45309;
-        font-size: 1.5rem;
-    }
-
-    .srs-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 1.5rem;
-    }
-
-    /* Revision Card */
-    .rev-card {
-        background: white;
-        border: 1px solid #e2e8f0;
-        border-radius: 8px;
-        overflow: hidden;
-        transition: transform 0.2s;
-    }
-
-    .rev-card.unlocked {
-        border-color: #f59e0b;
-        box-shadow: 0 4px 6px -1px rgba(245, 158, 11, 0.1);
-    }
-
-    .rev-card.locked {
-        opacity: 0.7;
-        background-color: #f8fafc;
-        border-style: dashed;
-    }
-
-    .rev-header {
-        background: #fffbeb; /* Amber-50 */
-        padding: 1rem;
-        color: #92400e;
-        font-weight: 700;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .rev-card.locked .rev-header {
-        background: #f1f5f9;
-        color: #64748b;
-    }
-
-    .rev-body {
-        padding: 1rem;
-    }
-    
-    .rev-timer {
-        font-size: 0.85rem;
-        color: #64748b;
-        margin-top: 0.5rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-</style>
-{% endblock %}
-
 {% block content %}
-<div class="quiz-container">
+<div class="page-container">
     
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Assessment Library</h1>
+        <p>Master calculus concepts through our comprehensive quiz collection and spaced repetition system.</p>
+    </div>
+
     <!-- SRS Section -->
     {% if user.is_authenticated and srs_cards %}
     <section class="srs-section">
         <div class="srs-header">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 21h5v-5"/></svg>
-            <h2>Review (Spaced Repetition)</h2>
+            <div class="srs-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 21h5v-5"/></svg>
+            </div>
+            <div>
+                <h2>Deep Review</h2>
+                <span class="srs-subtitle">Spaced Repetition System</span>
+            </div>
         </div>
+        
         <div class="srs-grid">
             {% for card in srs_cards %}
-            <article class="rev-card {% if card.is_locked %}locked{% else %}unlocked{% endif %}">
-                <div class="rev-header">
-                    <span>{{ card.topic }}</span>
+            <article class="srs-card {% if card.is_locked %}locked{% else %}ready{% endif %}">
+                <div class="srs-card-content">
+                    <span class="topic-tag">{{ card.topic }}</span>
+                    <h3>{{ card.quiz.title }}</h3>
+                    
                     {% if card.is_locked %}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                    {% else %}
-                        <span style="font-size:0.8em; background:#fcd34d; padding:2px 8px; border-radius:10px; color:#78350f;">Ready</span>
-                    {% endif %}
-                </div>
-                <div class="rev-body">
-                    <h4 style="margin:0 0 0.5rem 0;">{{ card.quiz.title }}</h4>
-                    {% if card.is_locked %}
-                        <div class="rev-timer">
-                            <span>Available on: {{ card.unlock_date|date:"M d, g:i A" }}</span>
+                        <div class="status-badge locked">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                            <span>Locked until {{ card.unlock_date|date:"M d" }}</span>
                         </div>
-                        <button disabled class="btn-start" style="opacity:0.5; background:#94a3b8; cursor:not-allowed; margin-top:1rem;">Locked</button>
+                        <button disabled class="btn-srs disabled">Review Later</button>
                     {% else %}
-                        <a href="{% url 'take_quiz' card.quiz.quiz_id %}" class="btn-start" style="background:#d97706; margin-top:1rem;">Review Now</a>
+                        <div class="status-badge ready">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                            <span>Ready for Review</span>
+                        </div>
+                        <a href="{% url 'take_quiz' card.quiz.quiz_id %}" class="btn-srs">Start Review</a>
                     {% endif %}
                 </div>
             </article>
@@ -299,91 +52,443 @@
     </section>
     {% endif %}
 
-    <aside class="filter-sidebar">
-        <h3>Filters</h3>
-        <form method="get">
-            <div class="filter-group">
-                <label>Subject</label>
-                <div>
-                    <label style="font-weight: normal; margin-bottom: 0.25rem;">
-                        <input type="radio" name="subject" value="" {% if not current_subject %}checked{% endif %}
-                            onchange="this.form.submit()">
-                        All Subjects
-                    </label>
+    <!-- Main Quiz Library -->
+    <section class="library-section">
+        <div class="library-header">
+            <h2>All Quizzes</h2>
+            
+            <!-- Filters -->
+            <form method="get" class="filter-bar">
+                <div class="filter-group">
+                    <select name="subject" onchange="this.form.submit()" class="filter-select">
+                        <option value="">All Subjects</option>
+                        {% for value, label in subjects %}
+                        <option value="{{ value }}" {% if current_subject == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
-                {% for value, label in subjects %}
-                <div>
-                    <label style="font-weight: normal; margin-bottom: 0.25rem;">
-                        <input type="radio" name="subject" value="{{ value }}" {% if current_subject == value %}checked{% endif %} onchange="this.form.submit()">
-                        {{ label }}
-                    </label>
+                
+                <div class="filter-group">
+                    <select name="quiz_type" onchange="this.form.submit()" class="filter-select">
+                        <option value="">All Types</option>
+                        {% for value, label in quiz_types %}
+                        <option value="{{ value }}" {% if current_type == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
-                {% endfor %}
-            </div>
 
-            <div class="filter-group">
-                <label>Type</label>
-                <div>
-                    <label style="font-weight: normal; margin-bottom: 0.25rem;">
-                        <input type="radio" name="quiz_type" value="" {% if not current_type %}checked{% endif %}
-                            onchange="this.form.submit()">
-                        All Types
-                    </label>
+                <div class="filter-group">
+                    <select name="evaluation_method" onchange="this.form.submit()" class="filter-select">
+                        <option value="">All Evaluations</option>
+                        {% for value, label in eval_methods %}
+                        <option value="{{ value }}" {% if current_eval == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
-                {% for value, label in quiz_types %}
-                <div>
-                    <label style="font-weight: normal; margin-bottom: 0.25rem;">
-                        <input type="radio" name="quiz_type" value="{{ value }}" {% if current_type == value %}checked{% endif %} onchange="this.form.submit()">
-                        {{ label }}
-                    </label>
-                </div>
-                {% endfor %}
-            </div>
 
-            <div class="filter-group">
-                <label>Evaluation</label>
-                <div>
-                    <label style="font-weight: normal; margin-bottom: 0.25rem;">
-                        <input type="radio" name="evaluation_method" value="" {% if not current_eval %}checked{% endif %} onchange="this.form.submit()">
-                        All Methods
-                    </label>
-                </div>
-                {% for value, label in eval_methods %}
-                <div>
-                    <label style="font-weight: normal; margin-bottom: 0.25rem;">
-                        <input type="radio" name="evaluation_method" value="{{ value }}" {% if current_eval == value %}checked{% endif %} onchange="this.form.submit()">
-                        {{ label }}
-                    </label>
-                </div>
-                {% endfor %}
-            </div>
+                {% if current_subject or current_type or current_eval %}
+                <a href="{% url 'quiz_list' %}" class="clear-filters">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    Clear Musts
+                </a>
+                {% endif %}
+            </form>
+        </div>
 
-            <a href="{% url 'quiz_list' %}"
-                style="display: block; text-align: center; font-size: 0.9rem; color: #64748b; margin-top: 1rem; text-decoration: none;">Clear
-                Filters</a>
-        </form>
-    </aside>
-
-    <div class="quiz-grid">
-        {% for quiz in quizzes %}
-        <article class="quiz-card">
-            <div class="quiz-card-header">
-                <h2>{{ quiz.topic }}</h2>
-            </div>
-            <div class="quiz-card-body">
-                <h3 class="quiz-title">{{ quiz.title }}</h3>
-                <div class="quiz-meta">
-                    <span class="badge badge-type">{{ quiz.quiz_type }}</span>
-                    <span class="badge badge-eval">{{ quiz.evaluation_method }}</span>
+        <div class="quiz-grid">
+            {% for quiz in quizzes %}
+            <article class="quiz-card" onclick="window.location.href='{% url 'take_quiz' quiz.quiz_id %}'" style="cursor: pointer;">
+                <div class="quiz-card-top">
+                    <div class="topic-chip">{{ quiz.subject }}</div>
+                    <div class="meta-chip">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        {{ quiz.question_count }} Qs
+                    </div>
                 </div>
+                
+                <div class="quiz-card-body">
+                    <h3 class="quiz-title">{{ quiz.title }}</h3>
+                    <p class="quiz-topic-subtitle">{{ quiz.topic }}</p>
+                    
+                    <div class="tags">
+                        <span class="tag tag-{{ quiz.quiz_type|lower }}">{{ quiz.quiz_type }}</span>
+                        <span class="tag tag-eval">{{ quiz.evaluation_method }}</span>
+                    </div>
+                </div>
+
+                <div class="quiz-card-footer">
+                    <span class="start-text">Start Quiz</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </div>
+                <div class="hover-gradient"></div>
+            </article>
+            {% empty %}
+            <div class="empty-state">
+                <p>No quizzes found matching your criteria.</p>
+                <a href="{% url 'quiz_list' %}" class="btn-reset">Reset Filters</a>
             </div>
-            <div class="quiz-card-footer">
-                <a href="{% url 'take_quiz' quiz.quiz_id %}" class="btn-start">Start Quiz</a>
-            </div>
-        </article>
-        {% empty %}
-        <p>No quizzes available yet.</p>
-        {% endfor %}
-    </div>
+            {% endfor %}
+        </div>
+    </section>
 </div>
+
+<style>
+/* Page Layout */
+.page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 4rem;
+}
+
+/* Hero */
+.hero {
+    padding: 3rem 0 2rem;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.hero p {
+    color: #64748b;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Section Styles */
+.library-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.library-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+}
+
+/* Filter Bar */
+.filter-bar {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-select {
+    padding: 0.5rem 2rem 0.5rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 9999px;
+    background-color: white;
+    font-size: 0.9rem;
+    color: #475569;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 500;
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    transition: all 0.2s;
+}
+
+.filter-select:hover {
+    border-color: #cbd5e1;
+    background-color: #f8fafc;
+}
+
+.filter-select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.clear-filters {
+    color: #ef4444;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+/* SRS Section */
+.srs-section {
+    background: linear-gradient(to right, #fffbeb, #fff);
+    border: 1px solid #fcd34d;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.srs-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.srs-icon {
+    width: 48px;
+    height: 48px;
+    background: #fbbf24;
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px -1px rgba(251, 191, 36, 0.3);
+}
+
+.srs-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #92400e;
+}
+
+.srs-subtitle {
+    color: #b45309;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.srs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.srs-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.srs-card.ready {
+    border-color: #fbbf24;
+    box-shadow: 0 4px 6px -1px rgba(251, 191, 36, 0.1);
+}
+
+.srs-card.locked {
+    background: rgba(255, 255, 255, 0.6);
+    border-style: dashed;
+}
+
+.topic-tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #64748b;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 1rem 0;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+}
+
+.status-badge.ready {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.status-badge.locked {
+    background-color: #f1f5f9;
+    color: #64748b;
+}
+
+.btn-srs {
+    margin-top: auto;
+    display: block;
+    text-align: center;
+    padding: 0.75rem;
+    background: #d97706;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    transition: background 0.2s;
+}
+
+.btn-srs:hover {
+    background: #b45309;
+}
+
+.btn-srs.disabled {
+    background: #cbd5e1;
+    color: #64748b;
+    cursor: not-allowed;
+}
+
+/* Quiz Grid Main */
+.quiz-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.quiz-card {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.quiz-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+}
+
+.quiz-card-top {
+    padding: 1.5rem 1.5rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.topic-chip {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #2563eb;
+    background: #eff6ff;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+}
+
+.meta-chip {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.quiz-card-body {
+    padding: 1rem 1.5rem 2rem;
+    flex-grow: 1;
+}
+
+.quiz-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0.5rem 0 0.5rem;
+    line-height: 1.3;
+}
+
+.quiz-topic-subtitle {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin: 0 0 1.5rem;
+}
+
+.tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.tag {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.tag-theoretical { background: #f0f9ff; color: #0284c7; }
+.tag-practical { background: #fdf4ff; color: #c026d3; }
+
+.quiz-card-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #f1f5f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #2563eb;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.hover-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #2563eb, #7c3aed);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.quiz-card:hover .hover-gradient {
+    opacity: 1;
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem;
+    background: #f8fafc;
+    border-radius: 12px;
+}
+
+.btn-reset {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+@media (max-width: 640px) {
+    .library-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .filter-bar {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+</style>
 {% endblock %}

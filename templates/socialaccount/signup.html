@@ -4,15 +4,14 @@
 {% block title %}{% trans "Sign Up" %}{% endblock %}
 
 {% block content %}
-<div style="max-width: 500px; margin: 4rem auto; padding: 2rem; background: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-    <h2 style="text-align: center; margin-bottom: 2rem; color: #1e293b;">{% trans "Sign Up" %}</h2>
+<div style="max-width: 500px; margin: 4rem auto; padding: 2.5rem; background: white; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); text-align: center;">
+    <h2 style="margin-bottom: 2rem; color: #1e293b; font-weight: 700;">{% trans "Complete Sign Up" %}</h2>
     
-    <p style="text-align: center; color: #64748b; margin-bottom: 2rem;">
-        {% blocktrans with provider_name=account.get_provider.name site_name=site.name %}You are about to use your {{provider_name}} account to login to
-        {{site_name}}. As a final step, please complete the following form:{% endblocktrans %}
+    <p style="color: #64748b; margin-bottom: 2rem; line-height: 1.6;">
+        {% blocktrans with provider_name=account.get_provider.name site_name=site.name %}You are about to link your <strong>{{provider_name}}</strong> account to <strong>{{site_name}}</strong>. Please confirm your details to continue.{% endblocktrans %}
     </p>
 
-    <form class="signup" id="signup_form" method="post" action="{% url 'socialaccount_signup' %}">
+    <form class="signup" id="signup_form" method="post" action="{% url 'socialaccount_signup' %}" style="text-align: left;">
         {% csrf_token %}
         
         <div style="display: flex; flex-direction: column; gap: 1rem;">
@@ -31,24 +30,28 @@
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
         {% endif %}
 
-        <button type="submit" style="width: 100%; margin-top: 2rem; padding: 0.75rem; background: #0f172a; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
-            {% trans "Sign Up" %} &raquo;
+        <button type="submit" style="width: 100%; margin-top: 2rem; padding: 0.75rem; background: #0f172a; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background-color 0.2s;">
+            {% trans "Continue & Sign Up" %} &raquo;
         </button>
     </form>
 </div>
 
 <style>
     .form-field input {
-        padding: 0.6rem;
+        padding: 0.75rem;
         border: 1px solid #cbd5e1;
-        border-radius: 6px;
+        border-radius: 8px;
         font-size: 1rem;
         width: 100%;
+        transition: border-color 0.2s, box-shadow 0.2s;
     }
     .form-field input:focus {
         outline: none;
         border-color: #2563eb;
-        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    button:hover {
+        background-color: #334155 !important;
     }
 </style>
 {% endblock %}

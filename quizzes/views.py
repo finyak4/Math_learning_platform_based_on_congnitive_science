@@ -37,10 +37,12 @@ def is_similar(user_input, accepted_strings):
 
     return False
 
+from django.db.models import Count
+
 def quiz_list(request):
     # Separate standard quizzes and revision quizzes based on title
     # (Assuming Revision quizzes have "Revision" in title as per seed)
-    all_quizzes = Quiz.objects.all().order_by('created_at')
+    all_quizzes = Quiz.objects.annotate(question_count=Count('question')).order_by('created_at')
     
     # 1. Standard Quizzes
     quizzes = all_quizzes.exclude(title__icontains='Revision')
