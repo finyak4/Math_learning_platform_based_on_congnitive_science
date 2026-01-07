@@ -15,10 +15,6 @@ import environ
 import os
 import dj_database_url
 
-if 'NO_PROXY' in os.environ:
-    del os.environ['NO_PROXY']
-if 'no_proxy' in os.environ:
-    del os.environ['no_proxy']
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
