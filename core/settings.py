@@ -126,15 +126,19 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASE_URL = env('DATABASE_URL', default=None)
+DATABASE_URL = os.environ.get('DATABASE_URL', None)
 
 if DATABASE_URL:
-    # Use dj_database_url.parse for a string URL
+    # Ensure URL is in postgres:// format for better library compatibility
+    if DATABASE_URL.startswith('postgresql://'):
+        DATABASE_URL = DATABASE_URL.replace('postgresql://', 'postgres://', 1)
+
+    # Use dj_database_url to parse the connection string
     DATABASES = {
-        'default': dj_database_url.parse(
-            DATABASE_URL,
+        'default': dj_database_url.config(
+            default=DATABASE_URL,
             conn_max_age=600,
-            ssl_require=True
+            ssl_require=False if DEBUG else env.bool('DATABASE_SSL', default=True)
         )
     }
 else:
