@@ -27,6 +27,8 @@ services:
     environment:
       - POSTGRES_HOST
       - POSTGRES_PORT
+      - DATABASE_URL
+      - NO_PROXY=localhost,127.0.0.1
     depends_on:
       db:
         condition: service_healthy
