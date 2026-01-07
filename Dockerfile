@@ -28,4 +28,4 @@ RUN chmod +x /app/entrypoint.sh
 
 # Entrypoint sets up the app (migrations, static files)
 ENTRYPOINT ["/app/entrypoint.sh"]
-CMD gunicorn library_core.wsgi:application --bind=0.0.0.0:$PORT --workers=3 --timeout=120
+CMD gunicorn core.wsgi:application --bind=0.0.0.0:$PORT --workers=3 --timeout=120
