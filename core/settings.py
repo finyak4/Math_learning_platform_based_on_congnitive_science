@@ -130,8 +130,8 @@ DATABASE_URL = os.environ.get('DATABASE_URL', None)
 
 if DATABASE_URL:
     # Ensure URL is in postgres:// format for better library compatibility
-    if DATABASE_URL.startswith('postgresql://'):
-        DATABASE_URL = DATABASE_URL.replace('postgresql://', 'postgres://', 1)
+    # if DATABASE_URL.startswith('postgresql://'):
+    #     DATABASE_URL = DATABASE_URL.replace('postgresql://', 'postgres://', 1)
 
     # Use dj_database_url to parse the connection string
     DATABASES = {
