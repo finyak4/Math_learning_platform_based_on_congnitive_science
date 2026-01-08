@@ -48,6 +48,11 @@ class Command(BaseCommand):
             ('Series: Theory of Power Series', 'Theoretical'),
             ('Sequences: Limit Calculations', 'Practical'),
             ('Series: Convergence Testing', 'Practical'),
+            # Linear Algebra (Mechanics)
+            ('Vectors: Dot Products & Lengths', 'Practical'),
+            ('Vectors: Theoretical Concepts', 'Theoretical'),
+            ('Matrices: Multiplication & Operations', 'Practical'),
+            ('Matrices: Column Space & Rules', 'Theoretical'),
         ]
         
         # Delete quizzes not in the seed file
@@ -76,6 +81,7 @@ class Command(BaseCommand):
             quiz_type=Quiz.QuizType.THEORETICAL,
             evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
             defaults={
+                'domain': Quiz.Domain.CALCULUS,
                 'subject': Quiz.Subject.CALCULUS_1,
                 'topic': 'Limits',
                 'description': description_1,
@@ -150,6 +156,7 @@ class Command(BaseCommand):
             quiz_type=Quiz.QuizType.THEORETICAL,
             evaluation_method=Quiz.EvaluationMethod.AUTOMATED,
             defaults={
+                'domain': Quiz.Domain.CALCULUS,
                 'subject': Quiz.Subject.CALCULUS_1,
                 'topic': 'Limits',
                 'description': description_2,
@@ -213,6 +220,7 @@ class Command(BaseCommand):
             quiz_type=Quiz.QuizType.PRACTICAL,
             evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
             defaults={
+                'domain': Quiz.Domain.CALCULUS,
                 'subject': Quiz.Subject.CALCULUS_1,
                 'topic': 'Limits',
                 'description': description_3,
@@ -317,6 +325,7 @@ class Command(BaseCommand):
             title='Limits: Concept Understanding',
             quiz_type=Quiz.QuizType.THEORETICAL,
             defaults={
+                'domain': Quiz.Domain.CALCULUS,
                 'subject': Quiz.Subject.CALCULUS_1,
                 'topic': 'Limits',
                 'evaluation_method': Quiz.EvaluationMethod.SELF_EVAL,  # Self-Eval from the start
@@ -396,6 +405,7 @@ class Command(BaseCommand):
             quiz_type=Quiz.QuizType.THEORETICAL,
             evaluation_method=Quiz.EvaluationMethod.AUTOMATED,
             defaults={
+                'domain': Quiz.Domain.CALCULUS,
                 'subject': Quiz.Subject.CALCULUS_1,
                 'topic': 'Limits',
                 'description': description_5,
@@ -473,6 +483,7 @@ class Command(BaseCommand):
             quiz_type=Quiz.QuizType.PRACTICAL,
             evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
             defaults={
+                'domain': Quiz.Domain.CALCULUS,
                 'subject': Quiz.Subject.CALCULUS_1,
                 'topic': 'Limits',
                 'description': description_6,
@@ -579,6 +590,7 @@ class Command(BaseCommand):
             quiz_type=Quiz.QuizType.THEORETICAL,
             evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
             defaults={
+                'domain': Quiz.Domain.CALCULUS,
                 'subject': Quiz.Subject.CALCULUS_1,
                 'topic': 'Derivatives',
                 'description': description_7,
@@ -671,6 +683,7 @@ class Command(BaseCommand):
             quiz_type=Quiz.QuizType.THEORETICAL,
             evaluation_method=Quiz.EvaluationMethod.AUTOMATED,
             defaults={
+                'domain': Quiz.Domain.CALCULUS,
                 'subject': Quiz.Subject.CALCULUS_1,
                 'topic': 'Derivatives',
                 'description': description_8,
@@ -750,6 +763,7 @@ class Command(BaseCommand):
             quiz_type=Quiz.QuizType.PRACTICAL,
             evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
             defaults={
+                'domain': Quiz.Domain.CALCULUS,
                 'subject': Quiz.Subject.CALCULUS_1,
                 'topic': 'Derivatives',
                 'description': description_9,
@@ -863,6 +877,7 @@ class Command(BaseCommand):
             quiz_type=Quiz.QuizType.THEORETICAL,
             evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
             defaults={
+                'domain': Quiz.Domain.CALCULUS,
                 'subject': Quiz.Subject.CALCULUS_1,
                 'topic': 'Derivatives',
                 'description': description_10,
@@ -965,6 +980,7 @@ class Command(BaseCommand):
             quiz_type=Quiz.QuizType.THEORETICAL,
             evaluation_method=Quiz.EvaluationMethod.AUTOMATED,
             defaults={
+                'domain': Quiz.Domain.CALCULUS,
                 'subject': Quiz.Subject.CALCULUS_1,
                 'topic': 'Derivatives',
                 'description': description_11,
@@ -1042,6 +1058,7 @@ class Command(BaseCommand):
             quiz_type=Quiz.QuizType.THEORETICAL,
             evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
             defaults={
+                'domain': Quiz.Domain.CALCULUS,
                 'subject': Quiz.Subject.CALCULUS_1,
                 'topic': 'Applications of Derivatives',
                 'description': description_12,
@@ -1143,6 +1160,7 @@ class Command(BaseCommand):
             quiz_type=Quiz.QuizType.THEORETICAL,
             evaluation_method=Quiz.EvaluationMethod.AUTOMATED,
             defaults={
+                'domain': Quiz.Domain.CALCULUS,
                 'subject': Quiz.Subject.CALCULUS_1,
                 'topic': 'Applications of Derivatives',
                 'description': description_13,
@@ -1217,6 +1235,7 @@ class Command(BaseCommand):
             quiz_type=Quiz.QuizType.PRACTICAL,
             evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
             defaults={
+                'domain': Quiz.Domain.CALCULUS,
                 'subject': Quiz.Subject.CALCULUS_1,
                 'topic': 'Applications of Derivatives',
                 'description': description_14,
@@ -1328,6 +1347,7 @@ class Command(BaseCommand):
             quiz_type=Quiz.QuizType.THEORETICAL,
             evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
             defaults={
+                'domain': Quiz.Domain.CALCULUS,
                 'subject': Quiz.Subject.CALCULUS_1,
                 'topic': 'Applications of Derivatives',
                 'description': description_15,
@@ -1426,6 +1446,7 @@ class Command(BaseCommand):
             quiz_type=Quiz.QuizType.THEORETICAL,
             evaluation_method=Quiz.EvaluationMethod.AUTOMATED,
             defaults={
+                'domain': Quiz.Domain.CALCULUS,
                 'subject': Quiz.Subject.CALCULUS_1,
                 'topic': 'Applications of Derivatives',
                 'description': description_16,
@@ -1500,6 +1521,7 @@ class Command(BaseCommand):
             quiz_type=Quiz.QuizType.PRACTICAL,
             evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
             defaults={
+                'domain': Quiz.Domain.CALCULUS,
                 'subject': Quiz.Subject.CALCULUS_1,
                 'topic': 'Applications of Derivatives',
                 'description': description_17,
@@ -1612,6 +1634,7 @@ class Command(BaseCommand):
             quiz_type=Quiz.QuizType.PRACTICAL,
             evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
             defaults={
+                'domain': Quiz.Domain.CALCULUS,
                 'subject': Quiz.Subject.CALCULUS_1,
                 'topic': 'Derivatives',
                 'description': description_18,
@@ -1714,7 +1737,7 @@ class Command(BaseCommand):
             title='Integrals: Basic Forms & Rules',
             quiz_type=Quiz.QuizType.THEORETICAL,
             evaluation_method=Quiz.EvaluationMethod.AUTOMATED,
-            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Integrals', 'description': desc_19}
+            defaults={'domain': Quiz.Domain.CALCULUS, 'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Integrals', 'description': desc_19}
         )
         if quiz19.description != desc_19: quiz19.description = desc_19; quiz19.save()
         
@@ -1742,7 +1765,7 @@ class Command(BaseCommand):
             title='Integrals: FTC Mechanics',
             quiz_type=Quiz.QuizType.THEORETICAL,
             evaluation_method=Quiz.EvaluationMethod.AUTOMATED,
-            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Integrals', 'description': desc_20}
+            defaults={'domain': Quiz.Domain.CALCULUS, 'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Integrals', 'description': desc_20}
         )
         if quiz20.description != desc_20: quiz20.description = desc_20; quiz20.save()
 
@@ -1770,7 +1793,7 @@ class Command(BaseCommand):
             title='Integrals: Conceptual Understanding',
             quiz_type=Quiz.QuizType.THEORETICAL,
             evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
-            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Integrals', 'description': desc_21}
+            defaults={'domain': Quiz.Domain.CALCULUS, 'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Integrals', 'description': desc_21}
         )
         if quiz21.description != desc_21: quiz21.description = desc_21; quiz21.save()
 
@@ -1798,7 +1821,7 @@ class Command(BaseCommand):
             title='Integrals: The Net Change Theorem',
             quiz_type=Quiz.QuizType.THEORETICAL,
             evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
-            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Integrals', 'description': desc_22}
+            defaults={'domain': Quiz.Domain.CALCULUS, 'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Integrals', 'description': desc_22}
         )
         if quiz22.description != desc_22: quiz22.description = desc_22; quiz22.save()
 
@@ -1826,7 +1849,7 @@ class Command(BaseCommand):
             title='Integrals: Antiderivative Skills',
             quiz_type=Quiz.QuizType.PRACTICAL,
             evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
-            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Integrals', 'description': desc_23}
+            defaults={'domain': Quiz.Domain.CALCULUS, 'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Integrals', 'description': desc_23}
         )
         if quiz23.description != desc_23: quiz23.description = desc_23; quiz23.save()
 
@@ -1854,7 +1877,7 @@ class Command(BaseCommand):
             title='Integrals: Definite Integral Practice',
             quiz_type=Quiz.QuizType.PRACTICAL,
             evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
-            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Integrals', 'description': desc_24}
+            defaults={'domain': Quiz.Domain.CALCULUS, 'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Integrals', 'description': desc_24}
         )
         if quiz24.description != desc_24: quiz24.description = desc_24; quiz24.save()
 
@@ -1886,7 +1909,7 @@ class Command(BaseCommand):
             title='Techniques: Substitution & Parts Rules',
             quiz_type=Quiz.QuizType.THEORETICAL,
             evaluation_method=Quiz.EvaluationMethod.AUTOMATED,
-            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Techniques', 'description': desc_25}
+            defaults={'domain': Quiz.Domain.CALCULUS, 'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Techniques', 'description': desc_25}
         )
         if quiz25.description != desc_25: quiz25.description = desc_25; quiz25.save()
 
@@ -1914,7 +1937,7 @@ class Command(BaseCommand):
             title='Techniques: Trig & Partial Fractions Setup',
             quiz_type=Quiz.QuizType.THEORETICAL,
             evaluation_method=Quiz.EvaluationMethod.AUTOMATED,
-            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Techniques', 'description': desc_26}
+            defaults={'domain': Quiz.Domain.CALCULUS, 'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Techniques', 'description': desc_26}
         )
         if quiz26.description != desc_26: quiz26.description = desc_26; quiz26.save()
 
@@ -1942,7 +1965,7 @@ class Command(BaseCommand):
             title='Techniques: Strategy & Recognition',
             quiz_type=Quiz.QuizType.THEORETICAL,
             evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
-            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Techniques', 'description': desc_27}
+            defaults={'domain': Quiz.Domain.CALCULUS, 'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Techniques', 'description': desc_27}
         )
         if quiz27.description != desc_27: quiz27.description = desc_27; quiz27.save()
 
@@ -1970,7 +1993,7 @@ class Command(BaseCommand):
             title='Techniques: Improper Integrals Concepts',
             quiz_type=Quiz.QuizType.THEORETICAL,
             evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
-            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Techniques', 'description': desc_28}
+            defaults={'domain': Quiz.Domain.CALCULUS, 'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Techniques', 'description': desc_28}
         )
         if quiz28.description != desc_28: quiz28.description = desc_28; quiz28.save()
 
@@ -1998,7 +2021,7 @@ class Command(BaseCommand):
             title='Techniques: Solving Integrals',
             quiz_type=Quiz.QuizType.PRACTICAL,
             evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
-            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Techniques', 'description': desc_29}
+            defaults={'domain': Quiz.Domain.CALCULUS, 'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Techniques', 'description': desc_29}
         )
         if quiz29.description != desc_29: quiz29.description = desc_29; quiz29.save()
 
@@ -2026,7 +2049,7 @@ class Command(BaseCommand):
             title='Techniques: Advanced Integration',
             quiz_type=Quiz.QuizType.PRACTICAL,
             evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
-            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Techniques', 'description': desc_30}
+            defaults={'domain': Quiz.Domain.CALCULUS, 'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Techniques', 'description': desc_30}
         )
         if quiz30.description != desc_30: quiz30.description = desc_30; quiz30.save()
 
@@ -2058,7 +2081,7 @@ class Command(BaseCommand):
             title='Sequences: Definitions & Basic Limits',
             quiz_type=Quiz.QuizType.THEORETICAL,
             evaluation_method=Quiz.EvaluationMethod.AUTOMATED,
-            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Sequences & Series', 'description': desc_31}
+            defaults={'domain': Quiz.Domain.CALCULUS, 'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Sequences & Series', 'description': desc_31}
         )
         if quiz31.description != desc_31: quiz31.description = desc_31; quiz31.save()
 
@@ -2086,7 +2109,7 @@ class Command(BaseCommand):
             title='Series: Convergence Test Rules',
             quiz_type=Quiz.QuizType.THEORETICAL,
             evaluation_method=Quiz.EvaluationMethod.AUTOMATED,
-            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Sequences & Series', 'description': desc_32}
+            defaults={'domain': Quiz.Domain.CALCULUS, 'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Sequences & Series', 'description': desc_32}
         )
         if quiz32.description != desc_32: quiz32.description = desc_32; quiz32.save()
 
@@ -2114,7 +2137,7 @@ class Command(BaseCommand):
             title='Sequences: Conceptual Convergence',
             quiz_type=Quiz.QuizType.THEORETICAL,
             evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
-            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Sequences & Series', 'description': desc_33}
+            defaults={'domain': Quiz.Domain.CALCULUS, 'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Sequences & Series', 'description': desc_33}
         )
         if quiz33.description != desc_33: quiz33.description = desc_33; quiz33.save()
 
@@ -2141,7 +2164,7 @@ class Command(BaseCommand):
             title='Series: Theory of Power Series',
             quiz_type=Quiz.QuizType.THEORETICAL,
             evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
-            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Sequences & Series', 'description': desc_34}
+            defaults={'domain': Quiz.Domain.CALCULUS, 'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Sequences & Series', 'description': desc_34}
         )
         if quiz34.description != desc_34: quiz34.description = desc_34; quiz34.save()
 
@@ -2169,7 +2192,7 @@ class Command(BaseCommand):
             title='Sequences: Limit Calculations',
             quiz_type=Quiz.QuizType.PRACTICAL,
             evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
-            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Sequences & Series', 'description': desc_35}
+            defaults={'domain': Quiz.Domain.CALCULUS, 'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Sequences & Series', 'description': desc_35}
         )
         if quiz35.description != desc_35: quiz35.description = desc_35; quiz35.save()
 
@@ -2197,7 +2220,7 @@ class Command(BaseCommand):
             title='Series: Convergence Testing',
             quiz_type=Quiz.QuizType.PRACTICAL,
             evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
-            defaults={'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Sequences & Series', 'description': desc_36}
+            defaults={'domain': Quiz.Domain.CALCULUS, 'subject': Quiz.Subject.CALCULUS_2, 'topic': 'Sequences & Series', 'description': desc_36}
         )
         if quiz36.description != desc_36: quiz36.description = desc_36; quiz36.save()
 
@@ -2218,6 +2241,369 @@ class Command(BaseCommand):
         quiz36.question_set.all().delete()
         for o, t, a, exp in q_data_36: Question.objects.create(quiz=quiz36, question_order=o, question_text=t, model_answer=a, explanation=exp, accepted_answers=[])
         self.stdout.write(f'Created Quiz: {quiz36.title}')
+
+        self.stdout.write(f'Created Quiz: {quiz36.title}')
+
+        # ==========================================
+        # Linear Algebra Quizzes (Subject: Mechanics)
+        # ==========================================
+        
+        # Quiz 1: Vectors: Dot Products & Lengths (Automated)
+        quiz_la_1, created_la_1 = Quiz.objects.get_or_create(
+            title='Vectors: Dot Products & Lengths',
+            quiz_type=Quiz.QuizType.THEORETICAL,
+            evaluation_method=Quiz.EvaluationMethod.AUTOMATED,
+            defaults={
+                'domain': Quiz.Domain.LINEAR_ALGEBRA,
+                'subject': Quiz.Subject.MECHANICS,
+                'topic': 'Vectors & Matrices',
+                'description': "Practice with dot products, norms, and vector properties. Automatically graded.",
+                'created_at': timezone.now()
+            }
+        )
+        if created_la_1: self.stdout.write(f'Created Quiz: {quiz_la_1.title}')
+        
+        quiz_1_data = [
+            {
+                "question_text": "If v = (1, 1) and w = (2, -1), what is the value of the dot product v · w?",
+                "model_answer": "1",
+                "accepted_answers": ["1", "one"],
+                "explanation": "The dot product is (1)(2) + (1)(-1) = 2 - 1 = 1."
+            },
+            {
+                "question_text": "Vectors whose dot product equals zero are called what?",
+                "model_answer": "Orthogonal",
+                "accepted_answers": ["orthogonal", "perpendicular", "normal"],
+                "explanation": "If v · w = 0, the angle between them is 90 degrees."
+            },
+            {
+                "question_text": "Calculate the length (norm) of the vector v = (3, 4).",
+                "model_answer": "5",
+                "accepted_answers": ["5", "five"],
+                "explanation": "Length is the square root of (3^2 + 4^2) = sqrt(9+16) = sqrt(25) = 5."
+            },
+            {
+                "question_text": "A unit vector is a vector whose length equals what number?",
+                "model_answer": "1",
+                "accepted_answers": ["1", "one"],
+                "explanation": "Unit vectors are u = v / ||v||, resulting in a length of 1."
+            },
+            {
+                "question_text": "In the linear combination c(1, 0) + d(0, 1), if the result is vector (5, 2), what is the value of c?",
+                "model_answer": "5",
+                "accepted_answers": ["5", "five"],
+                "explanation": "c(1, 0) + d(0, 1) = (c, d). Therefore c=5 and d=2."
+            },
+            {
+                "question_text": "Complete the inequality name: The Cauchy-_______ Inequality states that |v · w| ≤ ||v|| ||w||.",
+                "model_answer": "Schwarz",
+                "accepted_answers": ["Schwarz", "Bunyakovsky", "Schwarz inequality"],
+                "explanation": "The Cauchy-Schwarz inequality connects geometry (lengths) to algebra (dot products)."
+            },
+            {
+                "question_text": "If vector v is in 3-dimensional space (R3), how many components does it have?",
+                "model_answer": "3",
+                "accepted_answers": ["3", "three"],
+                "explanation": "R3 denotes a space with 3 dimensions (x, y, z)."
+            },
+            {
+                "question_text": "What is the result of the dot product of a vector with itself (v · v)?",
+                "model_answer": "Length squared",
+                "accepted_answers": ["length squared", "norm squared", "magnitude squared", "||v||^2", "|v|^2"],
+                "explanation": "v · v = ||v||^2."
+            },
+            {
+                "question_text": "If w = 2v, what is the angle between vector v and vector w in degrees?",
+                "model_answer": "0",
+                "accepted_answers": ["0", "zero", "0 degrees"],
+                "explanation": "One is a positive scalar multiple of the other, so they point in the exact same direction."
+            },
+            {
+                "question_text": "If you divide a non-zero vector v by its length ||v||, what property does the resulting vector u have?",
+                "model_answer": "It has length 1",
+                "accepted_answers": ["length 1", "unit vector", "norm 1", "magnitude 1"],
+                "explanation": "This process is called 'Normalization'. The direction remains the same, but the length becomes 1. This is crucial in ML for feature scaling."
+            }
+        ]
+        
+        quiz_la_1.question_set.all().delete()
+        for idx, q in enumerate(quiz_1_data, 1):
+            Question.objects.create(
+                quiz=quiz_la_1,
+                question_order=idx,
+                question_text=q['question_text'],
+                model_answer=q['model_answer'],
+                accepted_answers=q['accepted_answers'],
+                explanation=q.get('explanation', '')
+            )
+
+        # Quiz 2: Vectors: Theoretical Concepts (Self-Eval)
+        quiz_la_2, created_la_2 = Quiz.objects.get_or_create(
+            title='Vectors: Theoretical Concepts',
+            quiz_type=Quiz.QuizType.THEORETICAL,
+            evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
+            defaults={
+                'domain': Quiz.Domain.LINEAR_ALGEBRA,
+                'subject': Quiz.Subject.MECHANICS,
+                'topic': 'Vectors & Matrices',
+                'description': "Conceptual understanding of vector geometry and linear combinations. Self-graded.",
+                'created_at': timezone.now()
+            }
+        )
+        if created_la_2: self.stdout.write(f'Created Quiz: {quiz_la_2.title}')
+
+        quiz_2_data = [
+            {
+                "question_text": "Describe the geometric shape formed by all linear combinations of two non-zero, non-parallel vectors, v and w, in 3D space (R3).",
+                "model_answer": "A plane passing through the origin.",
+                "accepted_answers": [],
+                "explanation": "The set of all c*v + d*w generates a 2D plane. It must pass through the origin because c=0, d=0 gives the zero vector."
+            },
+            {
+                "question_text": "Explain why the dot product v · w is negative if the angle between them is obtuse (greater than 90 degrees).",
+                "model_answer": "The formula for dot product is ||v|| ||w|| cos(theta). Lengths are always positive. Cosine is negative for angles between 90 and 180 degrees, making the total product negative.",
+                "accepted_answers": [],
+                "explanation": "This geometric link relies on the cosine behavior."
+            },
+            {
+                "question_text": "Using the Triangle Inequality ||v + w|| ≤ ||v|| + ||w||, explain when the equality holds (when is the 'less than' actually 'equal to')?",
+                "model_answer": "Equality holds only when v and w are in the same direction (parallel and pointing the same way).",
+                "accepted_answers": [],
+                "explanation": "Geometrically, this means the triangle flattens into a straight line."
+            },
+            {
+                "question_text": "How do you algebraically determine if three vectors in R3 lie on the same plane?",
+                "model_answer": "They lie on the same plane if one vector can be written as a linear combination of the other two (linearly dependent). Or, if their volume/determinant is zero.",
+                "accepted_answers": [],
+                "explanation": "If u = c*v + d*w, then u adds no new dimension; it stays in the plane defined by v and w."
+            },
+            {
+                "question_text": "Describe the difference between v = (1, 2, 3) as a point and v = (1, 2, 3) as a vector.",
+                "model_answer": "As a point, it is a specific location in space. As a vector, it is an arrow (magnitude and direction) starting at the origin (0,0,0) and ending at that point.",
+                "accepted_answers": [],
+                "explanation": "Vectors represent displacement; points represent position."
+            },
+            {
+                "question_text": "Why is the zero vector (0,0) orthogonal to every other vector?",
+                "model_answer": "Because the dot product of the zero vector with any vector v is 0 (0*x + 0*y = 0). By definition, dot product = 0 implies orthogonality.",
+                "accepted_answers": [],
+                "explanation": "It creates a unique geometric edge case where the angle is technically undefined, but orthogonality holds algebraically."
+            },
+            {
+                "question_text": "Explain the concept of a 'Linear Combination' in your own words.",
+                "model_answer": "It is the process of taking vectors, scaling them by constant numbers (scalars), and adding the results together (cv + dw).",
+                "accepted_answers": [],
+                "explanation": "This is the fundamental operation of linear algebra."
+            },
+            {
+                "question_text": "If ||v|| = 3 and ||w|| = 4, what are the maximum and minimum possible values for ||v - w||?",
+                "model_answer": "Max: 7, Min: 1",
+                "accepted_answers": [],
+                "explanation": "Max occurs when they point in opposite directions (3 - (-4) distance = 7). Min occurs when they point in same direction (4 - 3 = 1)."
+            },
+            {
+                "question_text": "What does the equation cos(theta) = (v · w) / (||v|| ||w||) tell us about the relationship between vector algebra and geometry?",
+                "model_answer": "It links the algebraic calculation of coordinates (dot product) to geometric intuition (angles).",
+                "accepted_answers": [],
+                "explanation": "This allows us to find angles in high-dimensional spaces where we cannot visualize them."
+            },
+            {
+                "question_text": "Visually, how do you find v + w using the parallelogram rule?",
+                "model_answer": "Place the tail of w at the head of v. The vector from the start of v to the end of w is the sum.",
+                "accepted_answers": [],
+                "explanation": "Alternatively, draw both from the origin and complete the parallelogram; the diagonal is the sum."
+            }
+        ]
+
+        quiz_la_2.question_set.all().delete()
+        for idx, q in enumerate(quiz_2_data, 1):
+            Question.objects.create(
+                quiz=quiz_la_2,
+                question_order=idx,
+                question_text=q['question_text'],
+                model_answer=q['model_answer'],
+                accepted_answers=q['accepted_answers'],
+                explanation=q.get('explanation', '')
+            )
+
+        # Quiz 3: Matrices: Multiplication & Operations (Automated)
+        quiz_la_3, created_la_3 = Quiz.objects.get_or_create(
+            title='Matrices: Multiplication & Operations',
+            quiz_type=Quiz.QuizType.THEORETICAL,
+            evaluation_method=Quiz.EvaluationMethod.AUTOMATED,
+            defaults={
+                'domain': Quiz.Domain.LINEAR_ALGEBRA,
+                'subject': Quiz.Subject.MECHANICS,
+                'topic': 'Vectors & Matrices',
+                'description': "Matrix operations check.",
+                'created_at': timezone.now()
+            }
+        )
+        if created_la_3: self.stdout.write(f'Created Quiz: {quiz_la_3.title}')
+
+        quiz_3_data = [
+            {
+                "question_text": "If A is a 3x2 matrix and B is a 2x5 matrix, what are the dimensions of the product AB?",
+                "model_answer": "3x5",
+                "accepted_answers": ["3x5", "3 by 5", "3 * 5"],
+                "explanation": "(m x n) * (n x p) results in (m x p)."
+            },
+            {
+                "question_text": "Is Matrix Multiplication commutative? (Yes/No)",
+                "model_answer": "No",
+                "accepted_answers": ["No", "no", "false"],
+                "explanation": "In general, AB does not equal BA. Dimensions might not even match."
+            },
+            {
+                "question_text": "Strang's 'Column View': The product Ax is a linear combination of the _______ of A.",
+                "model_answer": "Columns",
+                "accepted_answers": ["columns", "column vectors"],
+                "explanation": "Ax = x1(col1) + x2(col2) + ... This is the most important concept in Chapter 1."
+            },
+            {
+                "question_text": "If A is a 3x3 Identity matrix (I) and v is a vector, what is I*v?",
+                "model_answer": "v",
+                "accepted_answers": ["v", "vector v", "the same vector"],
+                "explanation": "The identity matrix acts like the number 1 in scalar multiplication."
+            },
+            {
+                "question_text": "In the multiplication AB, the entry in row i and column j comes from the dot product of Row i of A and _______ of B.",
+                "model_answer": "Column j",
+                "accepted_answers": ["column j", "Column j", "col j"],
+                "explanation": "This is the standard 'Row-Column' rule for matrix multiplication."
+            },
+            {
+                "question_text": "What is the 'Column Space' of a Matrix A?",
+                "model_answer": "The set of all linear combinations of the columns of A.",
+                "accepted_answers": ["set of all linear combinations of columns", "all linear combinations of columns", "span of columns"],
+                "explanation": "C(A) contains all possible vectors Ax."
+            },
+            {
+                "question_text": "If Matrix A has columns that are dependent, is the matrix invertible? (Yes/No)",
+                "model_answer": "No",
+                "accepted_answers": ["No", "no"],
+                "explanation": "Dependent columns mean the matrix is singular (not invertible)."
+            },
+            {
+                "question_text": "Calculate the inner product (dot product) of row vector [1 2] and column vector [3; 4].",
+                "model_answer": "11",
+                "accepted_answers": ["11", "eleven"],
+                "explanation": "1*3 + 2*4 = 3 + 8 = 11."
+            },
+            {
+                "question_text": "If A is a 2x1 matrix (column) and B is a 1x2 matrix (row), the product AB is what size matrix?",
+                "model_answer": "2x2",
+                "accepted_answers": ["2x2", "2 by 2"],
+                "explanation": "This is an 'Outer Product', which creates a matrix of rank 1."
+            },
+            {
+                "question_text": "The equation Ax = b has a solution only if vector b lies in the _________ of A.",
+                "model_answer": "Column Space",
+                "accepted_answers": ["column space", "C(A)", "range"],
+                "explanation": "Since Ax is a combination of columns, b must be formable by those columns."
+            }
+        ]
+
+        quiz_la_3.question_set.all().delete()
+        for idx, q in enumerate(quiz_3_data, 1):
+            Question.objects.create(
+                quiz=quiz_la_3,
+                question_order=idx,
+                question_text=q['question_text'],
+                model_answer=q['model_answer'],
+                accepted_answers=q['accepted_answers'],
+                explanation=q.get('explanation', '')
+            )
+
+        # Quiz 4: Matrices: Column Space & Rules (Self-Eval)
+        quiz_la_4, created_la_4 = Quiz.objects.get_or_create(
+            title='Matrices: Column Space & Rules',
+            quiz_type=Quiz.QuizType.THEORETICAL,
+            evaluation_method=Quiz.EvaluationMethod.SELF_EVAL,
+            defaults={
+                'domain': Quiz.Domain.LINEAR_ALGEBRA,
+                'subject': Quiz.Subject.MECHANICS,
+                'topic': 'Vectors & Matrices',
+                'description': "Understanding Column Space, Null Space, and matrix algebra rules.",
+                'created_at': timezone.now()
+            }
+        )
+        if created_la_4: self.stdout.write(f'Created Quiz: {quiz_la_4.title}')
+
+        quiz_4_data = [
+            {
+                "question_text": "Explain the difference between the Row-Column rule (dot products) and the Column-Row rule (sum of outer products) for matrix multiplication AB.",
+                "model_answer": "Row-Col rule calculates one number at a time (inner products). Col-Row rule sums up full matrices (Column k of A multiplied by Row k of B). Both give the same result.",
+                "accepted_answers": [],
+                "explanation": "Strang emphasizes the Col-Row rule (outer products) for understanding the structure of the data."
+            },
+            {
+                "question_text": "Why is the Column Space C(A) described as a 'subspace'? What properties must it satisfy?",
+                "model_answer": "It is closed under addition and scalar multiplication. If you take two vectors in the column space and add them, you stay in the space. If you scale one, you stay in the space. It includes the zero vector.",
+                "accepted_answers": [],
+                "explanation": "These are the requirements for any vector subspace."
+            },
+            {
+                "question_text": "Interpret the matrix equation Ax = 0 in terms of columns. What does a non-zero solution x tell us about the columns of A?",
+                "model_answer": "It means a linear combination of the columns equals the zero vector. If x is not zero, the columns are Linearly Dependent.",
+                "accepted_answers": [],
+                "explanation": "x1*c1 + x2*c2 + ... = 0 with non-zero x's implies dependence."
+            },
+            {
+                "question_text": "If A is a 3x3 matrix and its columns lie on a single plane, describe the Column Space C(A). Can Ax = b be solved for any b?",
+                "model_answer": "C(A) is that plane (a 2D subspace of R3). Ax=b cannot be solved for any b; it can only be solved if b lies on that specific plane.",
+                "accepted_answers": [],
+                "explanation": "The matrix is singular. The columns do not span the whole R3 space."
+            },
+            {
+                "question_text": "Why does (AB)C = A(BC)? (Associativity). Explain conceptually, not just by writing the property name.",
+                "model_answer": "Matrix multiplication represents applying linear transformations sequentially. Applying transformation C, then B, then A is the same sequence regardless of how we group the calculations.",
+                "accepted_answers": [],
+                "explanation": "Matrices are functions acting on vectors."
+            },
+            {
+                "question_text": "In the CR decomposition (A = CR), if A is a matrix of rank 1, what are the dimensions of C and R?",
+                "model_answer": "C is a single column (m x 1) and R is a single row (1 x n).",
+                "accepted_answers": [],
+                "explanation": "Every rank 1 matrix is the outer product of one column and one row."
+            },
+            {
+                "question_text": "How does multiplying a matrix A by a diagonal matrix D on the right (AD) affect the columns of A?",
+                "model_answer": "It scales the columns of A. The first column is multiplied by d1, the second by d2, etc.",
+                "accepted_answers": [],
+                "explanation": "Multiplying on the Right affects Columns. Multiplying on the Left affects Rows."
+            },
+            {
+                "question_text": "If A and B are both Upper Triangular matrices, what is true about their product AB?",
+                "model_answer": "AB is also Upper Triangular.",
+                "accepted_answers": [],
+                "explanation": "The linear combinations of triangular columns preserve the triangular structure."
+            },
+            {
+                "question_text": "Explain why the columns of the Identity Matrix are important.",
+                "model_answer": "They are the standard basis vectors (1,0,0...), (0,1,0)... Any vector v can be written as a combination of these columns simply by using the components of v as the weights.",
+                "accepted_answers": [],
+                "explanation": "This is why I*v = v."
+            },
+            {
+                "question_text": "If you view matrix multiplication AB as A acting on the columns of B, what is the result?",
+                "model_answer": "The result is a matrix where the columns are A * (col 1 of B), A * (col 2 of B), etc.",
+                "accepted_answers": [],
+                "explanation": "This allows us to treat matrix multiplication as a collection of matrix-vector products."
+            }
+        ]
+
+        quiz_la_4.question_set.all().delete()
+        for idx, q in enumerate(quiz_4_data, 1):
+            Question.objects.create(
+                quiz=quiz_la_4,
+                question_order=idx,
+                question_text=q['question_text'],
+                model_answer=q['model_answer'],
+                accepted_answers=q['accepted_answers'],
+                explanation=q.get('explanation', '')
+            )
+        self.stdout.write(f'Created Quiz: {quiz_la_4.title}')
 
         self.stdout.write(f'Seeding complete.')
 

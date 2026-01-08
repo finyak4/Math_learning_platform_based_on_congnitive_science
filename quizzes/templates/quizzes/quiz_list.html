@@ -9,7 +9,13 @@
     <!-- Hero Section -->
     <div class="hero">
         <h1>Assessment Library</h1>
-        <p>Master calculus concepts through our comprehensive quiz collection and spaced repetition system.</p>
+        <p>Master mathematical concepts through our comprehensive quiz collection and spaced repetition system.</p>
+    </div>
+
+    <!-- Subject Tabs -->
+    <div class="tabs-container">
+        <a href="{% url 'quiz_list_subject' 'calculus' %}" class="tab {% if active_tab == 'calculus' %}active{% endif %}">Calculus</a>
+        <a href="{% url 'quiz_list_subject' 'linear-algebra' %}" class="tab {% if active_tab == 'linear-algebra' %}active{% endif %}">Linear Algebra</a>
     </div>
 
     <!-- SRS Section -->
@@ -159,6 +165,36 @@
     font-size: 1.1rem;
     max-width: 600px;
     margin: 0 auto;
+    margin: 0 auto;
+}
+
+/* Tabs */
+.tabs-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.tab {
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #64748b;
+    background: #f1f5f9;
+    transition: all 0.2s;
+}
+
+.tab:hover {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+.tab.active {
+    background: #2563eb;
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
 }
 
 /* Section Styles */

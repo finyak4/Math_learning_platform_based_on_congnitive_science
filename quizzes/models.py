@@ -2,10 +2,17 @@ from django.db import models
 from django.conf import settings
 
 class Quiz(models.Model):
+    class Domain(models.TextChoices):
+        CALCULUS = 'Calculus', 'Calculus'
+        LINEAR_ALGEBRA = 'Linear Algebra', 'Linear Algebra'
+
     class Subject(models.TextChoices):
         CALCULUS_1 = 'Calculus I', 'Calculus I'
         CALCULUS_2 = 'Calculus II', 'Calculus II'
         CALCULUS_3 = 'Calculus III', 'Calculus III'
+
+        MECHANICS = 'Mechanics', 'Mechanics'
+        # Focus: The basics of how matrices work and how to solve systems.
 
     class QuizType(models.TextChoices):
         PRACTICAL = 'Practical', 'Practical'
@@ -18,6 +25,7 @@ class Quiz(models.Model):
 
     quiz_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
+    domain = models.CharField(max_length=100, choices=Domain.choices)
     subject = models.CharField(max_length=100, choices=Subject.choices)
     topic = models.CharField(max_length=100)
     quiz_type = models.CharField(max_length=50, choices=QuizType.choices)

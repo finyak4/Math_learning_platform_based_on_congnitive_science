@@ -39,11 +39,20 @@ def is_similar(user_input, accepted_strings):
 
 from django.db.models import Count
 
-def quiz_list(request):
+def quiz_list(request, subject_slug='calculus'):
     # Separate standard quizzes and revision quizzes based on title
-    # (Assuming Revision quizzes have "Revision" in title as per seed)
     all_quizzes = Quiz.objects.annotate(question_count=Count('question')).order_by('created_at')
-    
+
+    # Domain Filtering
+    current_domain = None
+    if subject_slug == 'linear-algebra':
+        current_domain = Quiz.Domain.LINEAR_ALGEBRA
+        all_quizzes = all_quizzes.filter(domain=Quiz.Domain.LINEAR_ALGEBRA)
+    else:
+        # Default to Calculus
+        current_domain = Quiz.Domain.CALCULUS
+        all_quizzes = all_quizzes.filter(domain=Quiz.Domain.CALCULUS)
+
     # 1. Standard Quizzes
     quizzes = all_quizzes.exclude(title__icontains='Revision')
 
@@ -71,14 +80,13 @@ def quiz_list(request):
         
         for state in topic_states:
             # Determine which revision is next based on current_level
-            # current_level 0 -> Needs "Revision 1"
-            # current_level 1 -> Needs "Revision 2"
             target_level = state.current_level + 1
             if target_level > 4:
                 continue # All done for this proof of concept
 
             # Find the specific revision quiz
             # Format: "{Topic}: Revision {Level}..."
+            # Ensure we only pick revision quizzes from the current domain
             rev_quiz = all_quizzes.filter(
                 topic=state.topic, 
                 title__icontains=f'Revision {target_level}'
@@ -110,6 +118,7 @@ def quiz_list(request):
         'current_subject': subject_filter,
         'current_type': type_filter,
         'current_eval': eval_filter,
+        'active_tab': subject_slug, # 'calculus' or 'linear-algebra'
     }
     return render(request, 'quizzes/quiz_list.html', context)
 
