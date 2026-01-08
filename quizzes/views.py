@@ -107,10 +107,23 @@ def quiz_list(request, subject_slug='calculus'):
                     'topic': state.topic
                 })
 
+    # Filter Subject Choices based on Domain
+    visible_subjects = []
+    if subject_slug == 'linear-algebra':
+        visible_subjects = [
+            (Quiz.Subject.MECHANICS, 'Mechanics')
+        ]
+    else:
+        visible_subjects = [
+            (Quiz.Subject.CALCULUS_1, 'Calculus 1'),
+            (Quiz.Subject.CALCULUS_2, 'Calculus 2'),
+            (Quiz.Subject.CALCULUS_3, 'Calculus 3'),
+        ]
+
     context = {
         'quizzes': quizzes,
         'srs_cards': srs_cards, # Pass SRS data
-        'subjects': Quiz.Subject.choices,
+        'subjects': visible_subjects,
         'quiz_types': Quiz.QuizType.choices,
         'eval_methods': Quiz.EvaluationMethod.choices,
         
