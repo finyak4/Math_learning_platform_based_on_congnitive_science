@@ -45,6 +45,18 @@ class Command(BaseCommand):
             (2, 'Sequences & Series: Revision 2', 'Sequences & Series'),
             (3, 'Sequences & Series: Revision 3', 'Sequences & Series'),
             (4, 'Sequences & Series: Revision 4', 'Sequences & Series'),
+            
+            # Linear Algebra: Vectors & Matrices
+            (1, 'Vectors & Matrices: Revision 1', 'Vectors & Matrices'),
+            (2, 'Vectors & Matrices: Revision 2', 'Vectors & Matrices'),
+            (3, 'Vectors & Matrices: Revision 3', 'Vectors & Matrices'),
+            (4, 'Vectors & Matrices: Revision 4', 'Vectors & Matrices'),
+            
+            # Linear Algebra: Solving Linear Equations
+            (1, 'Solving Linear Equations: Revision 1', 'Solving Linear Equations'),
+            (2, 'Solving Linear Equations: Revision 2', 'Solving Linear Equations'),
+            (3, 'Solving Linear Equations: Revision 3', 'Solving Linear Equations'),
+            (4, 'Solving Linear Equations: Revision 4', 'Solving Linear Equations'),
         ]
 
         # Common description for all revision quizzes
@@ -55,7 +67,9 @@ class Command(BaseCommand):
             quiz, created = Quiz.objects.get_or_create(
                 title=title,
                 defaults={
-                    'subject': Quiz.Subject.CALCULUS_2 if topic in ['Integrals', 'Techniques', 'Sequences & Series'] else Quiz.Subject.CALCULUS_1,
+                    'domain': Quiz.Domain.LINEAR_ALGEBRA if topic in ['Vectors & Matrices', 'Solving Linear Equations'] else Quiz.Domain.CALCULUS,
+                    'subject': Quiz.Subject.MECHANICS if topic in ['Vectors & Matrices', 'Solving Linear Equations'] 
+                               else (Quiz.Subject.CALCULUS_2 if topic in ['Integrals', 'Techniques', 'Sequences & Series'] else Quiz.Subject.CALCULUS_1),
                     'topic': topic,
                     'quiz_type': Quiz.QuizType.REVISION,
                     'evaluation_method': Quiz.EvaluationMethod.SELF_EVAL,
@@ -65,9 +79,18 @@ class Command(BaseCommand):
             )
             
             if not created:
-                self.stdout.write(f'Revision Quiz "{title}" already exists. Ensuring description/mode.')
+                self.stdout.write(f'Revision Quiz "{title}" already exists. Ensuring description/mode/domain.')
                 quiz.description = rev_description
                 quiz.evaluation_method = Quiz.EvaluationMethod.SELF_EVAL
+                
+                # Ensure Domain/Subject are correct for existing quizzes
+                if topic in ['Vectors & Matrices', 'Solving Linear Equations']:
+                    quiz.domain = Quiz.Domain.LINEAR_ALGEBRA
+                    quiz.subject = Quiz.Subject.MECHANICS
+                else:
+                     quiz.domain = Quiz.Domain.CALCULUS
+                     # Re-apply Calculus subject logic if needed, but usually domain is the critical fix
+                
                 quiz.save()
             else:
                 self.stdout.write(f'Created Revision Quiz: {title}')
@@ -275,8 +298,7 @@ class Command(BaseCommand):
                         (5, 'Weierstrass Substitution (half-angle) is for?', 'Rational trig functions.', None),
                         (6, 'Evaluate Integral 0 to 1 of 1/sqrt(x).', '2', 'Converges (p=1/2 < 1).'),
                     ]
-
-            # ================= CALCULUS 2: SEQUENCES & SERIES =================
+            
             elif topic == 'Sequences & Series':
                 if level == 1:
                     questions_data = [
@@ -313,6 +335,84 @@ class Command(BaseCommand):
                         (4, 'Interval of convergence check endpoints?', 'Yes, manually.', None),
                         (5, 'Binomial Series for (1+x)^k start?', '1 + kx + ...', None),
                         (6, 'Sum of Alternating Harmonic Series?', 'ln(2)', None),
+                    ]
+
+            # ================= LIN ALG: VECTORS & MATRICES =================
+            elif topic == 'Vectors & Matrices':
+                if level == 1:
+                    questions_data = [
+                        (1, 'Dot product of $v=(1,2)$ and $w=(3,-1)$?', '1', '$1(3) + 2(-1) = 3 - 2 = 1$.'),
+                        (2, 'Length of vector $(3,4)$?', '5', '$\\sqrt{3^2+4^2} = \\sqrt{25} = 5$.'),
+                        (3, 'Unit vector definition?', 'Vector with length $(\\|v\\|) = 1$.', None),
+                        (4, 'Angle if dot product is 0?', '$90^\\circ$ (Orthogonal)', None),
+                        (5, 'Linear combination of $v$ and $w$?', '$cv + dw$', None),
+                        (6, 'Schwarz Inequality?', '$|v \\cdot w| \\le \\|v\\| \\|w\\|$', None),
+                    ]
+                elif level == 2:
+                    questions_data = [
+                        (1, 'Triangle Inequality?', '$\\|v+w\\| \\le \\|v\\| + \\|w\\|$', None),
+                        (2, 'When does Triangle Inequality become equality?', 'Vectors are parallel (same direction).', None),
+                        (3, 'Column Space $C(A)$ consists of all linear combinations of...?', 'The columns of $A$.', None),
+                        (4, 'Matrix multiplication $AB$: entry $(i,j)$ is dot product of?', 'Row $i$ of $A$ and Column $j$ of $B$.', None),
+                        (5, 'Is matrix multiplication commutative?', 'No usually not ($AB \\neq BA$).', None),
+                        (6, 'Outer product of $(2 \\times 1)$ and $(1 \\times 2)$ size?', '$2 \\times 2$', None),
+                    ]
+                elif level == 3:
+                    questions_data = [
+                        (1, 'Rank 1 matrix can be written as?', '$uv^T$ (Column times Row)', None),
+                        (2, 'Associative Property means?', '$(AB)C = A(BC)$', None),
+                        (3, 'If $A$ has dependent columns, is it invertible?', 'No', None),
+                        (4, '$Ax=b$ solvable only if $b$ is in...?', 'Column Space $C(A)$.', None),
+                        (5, 'Inner product rule $(Ax)\\cdot y = ?$ ', '$x \\cdot (A^T y)$', None),
+                        (6, 'How many components in $R^4$?', '4', None),
+                    ]
+                elif level == 4:
+                    questions_data = [
+                        (1, 'Condition for Independent Columns?', '$Ax=0$ has only $x=0$ solution.', None),
+                        (2, 'Matrices acting on vectors: $Ax$ is a combination of columns, $xA$ is combination of?', 'Rows', None),
+                        (3, 'Why $C(A)$ is a subspace?', 'Closed under addition and scalar multiplication.', None),
+                        (4, 'Geometric shape of $C(A)$ for $3 \\times 3$ singular matrix?', 'Plane or Line (through origin).', None),
+                        (5, 'Effect of multiplying by Diagonal matrix on Right ($AD$)?', 'Scales the columns.', None),
+                        (6, 'Effect of multiplying by Permutation matrix on Left ($PA$)?', 'Reorders the rows.', None),
+                    ]
+            
+            # ================= LIN ALG: SOLVING LINEAR EQUATIONS =================
+            elif topic == 'Solving Linear Equations':
+                if level == 1:
+                    questions_data = [
+                        (1, 'Purpose of Elimination?', 'To transform $A$ into Upper Triangular $U$.', None),
+                        (2, 'What is a Pivot?', 'First non-zero entry in a row.', None),
+                        (3, 'Singular matrix means?', 'Not invertible (Determinant 0).', None),
+                        (4, 'Inverse of $(AB)$?', '$B^{-1} A^{-1}$', None),
+                        (5, 'Determinant of $2 \\times 2$ $\\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}$?', '$ad - bc$', None),
+                        (6, 'Identity matrix $I$ property?', '$IA = A$ and $AI = A$.', None),
+                    ]
+                elif level == 2:
+                    questions_data = [
+                        (1, 'Breakdown of elimination (Pivot=0) is fixed by?', 'Row Exchange', None),
+                        (2, 'Multiplier $l_{21}$ formula?', 'Entry to kill / Pivot', None),
+                        (3, 'Inverse of Elementary Matrix $E$ (subtraction)?', 'Add back (flip sign of multiplier).', None),
+                        (4, 'Gauss-Jordan method transforms $[A|I]$ into?', '$[I|A^{-1}]$', None),
+                        (5, 'Does $A+B$ have nice inverse formula?', 'No.', None),
+                        (6, 'If row of zeros appears, is $A$ invertible?', 'No.', None),
+                    ]
+                elif level == 3:
+                    questions_data = [
+                        (1, '$A = LU$ factorization: $L$ is?', 'Lower Triangular (multipliers).', None),
+                        (2, 'Diagonals of $L$ are?', '1s', None),
+                        (3, 'Symmetric Matrix definition?', '$A = A^T$', None),
+                        (4, 'Transpose of $(AB)$?', '$B^T A^T$', None),
+                        (5, 'Permutation Matrix Inverse $P^{-1} = ?$', '$P^T$', None),
+                        (6, 'Inverse of Diagonal Matrix $D$?', 'Diagonal matrix with $1/d_{ii}$', None),
+                    ]
+                elif level == 4:
+                    questions_data = [
+                        (1, 'Operation count for Elimination ($n \\times n$)?', '$n^3 / 3$', None),
+                        (2, 'Symmetric Factorization $A = ?$', '$LDL^T$', None),
+                        (3, 'Why solve $Ax=b$ instead of finding $A^{-1}$?', 'Faster/More stable ($n^3$ vs $3n^3$).', None),
+                        (4, '$PA = LU$ is used when?', 'Row exchanges are required.', None),
+                        (5, 'Is $R^T R$ always symmetric?', 'Yes.', None),
+                        (6, 'Band Matrix efficiency?', 'Operations proportional to $n$ (not $n^3$).', None),
                     ]
 
             # Create Questions

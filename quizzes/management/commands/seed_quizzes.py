@@ -2323,9 +2323,9 @@ class Command(BaseCommand):
                 "explanation": "One is a positive scalar multiple of the other, so they point in the exact same direction."
             },
             {
-                "question_text": "If you divide a non-zero vector v by its length ||v||, what property does the resulting vector u have?",
+                "question_text": "If you divide a non-zero vector v by its length ||v||, what property does the resulting vector you have?",
                 "model_answer": "It has length 1",
-                "accepted_answers": ["length 1", "unit vector", "norm 1", "magnitude 1"],
+                "accepted_answers": ["length 1", "unit vector", "norm 1", "magnitude 1", "unit"],
                 "explanation": "This process is called 'Normalization'. The direction remains the same, but the length becomes 1. This is crucial in ML for feature scaling."
             }
         ]
@@ -2617,7 +2617,7 @@ class Command(BaseCommand):
             defaults={
                 'domain': Quiz.Domain.LINEAR_ALGEBRA,
                 'subject': Quiz.Subject.MECHANICS,
-                'topic': 'Vectors & Matrices',
+                'topic': 'Solving Linear Equations',
                 'description': "Understanding pivots, multipliers, and elimination steps.",
                 'created_at': timezone.now()
             }
@@ -2632,55 +2632,55 @@ class Command(BaseCommand):
                 "explanation": "Pivots are the crucial diagonal entries that must not be zero to proceed without row exchanges."
             },
             {
-                "question_text": "If we subtract 3 times Row 1 from Row 2, what is the 'multiplier' ($l_{21}$) associated with this operation?",
+                "question_text": "If we subtract $3$ times Row 1 from Row 2, what is the 'multiplier' ($l_{21}$) associated with this operation?",
                 "model_answer": "3",
                 "accepted_answers": ["3", "three"],
                 "explanation": "The multiplier is the number you multiply the pivot row by to cancel the entry below it."
             },
             {
-                "question_text": "Elimination converts matrix A into an ______ Triangular matrix U.",
+                "question_text": "Elimination converts matrix $A$ into an ______ Triangular matrix $U$.",
                 "model_answer": "Upper",
                 "accepted_answers": ["upper", "Upper"],
-                "explanation": "The result of forward elimination is U, where all entries below the diagonal are zero."
+                "explanation": "The result of forward elimination is $U$, where all entries below the diagonal are zero."
             },
             {
                 "question_text": "A matrix that has no inverse is technically called _______.",
                 "model_answer": "Singular",
                 "accepted_answers": ["singular", "non-invertible", "degenerate"],
-                "explanation": "A singular matrix has a determinant of 0 and fewer than n pivots."
+                "explanation": "A singular matrix has a determinant of $0$ and fewer than $n$ pivots."
             },
             {
-                "question_text": "What is the inverse of the matrix product AB? (Write in terms of A^-1 and B^-1)",
+                "question_text": "What is the inverse of the matrix product $AB$? (Write in terms of $A^{-1}$ and $B^{-1}$)",
                 "model_answer": "B^-1 A^-1",
                 "accepted_answers": ["B^-1 A^-1", "B^-1A^-1", "inverse of B times inverse of A", "Binv Ainv"],
-                "explanation": "The 'Shoes and Socks' rule: to undo the operation AB, you must unwrap B first, then A."
+                "explanation": "The 'Shoes and Socks' rule: to undo the operation $AB$, you must unwrap $B$ first, then $A$."
             },
             {
-                "question_text": "For a 2x2 matrix [[a, b], [c, d]], the quantity (ad - bc) is known as the _______.",
+                "question_text": "For a $2 \\times 2$ matrix $\\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}$, the quantity $(ad - bc)$ is known as the _______.",
                 "model_answer": "Determinant",
                 "accepted_answers": ["determinant", "det"],
-                "explanation": "If ad - bc = 0, the matrix is singular."
+                "explanation": "If $ad - bc = 0$, the matrix is singular."
             },
             {
-                "question_text": "The Gauss-Jordan method solves for A inverse by applying elimination to the augmented matrix [A  _ ]. Fill in the blank.",
+                "question_text": "The Gauss-Jordan method solves for $A$ inverse by applying elimination to the augmented matrix $[A \\ | \\ I]$. Fill in the blank.",
                 "model_answer": "I",
                 "accepted_answers": ["I", "Identity", "Identity matrix"],
-                "explanation": "We transform [A I] into [I A^-1]."
+                "explanation": "We transform $[A \\ | \\ I]$ into $[I \\ | \\ A^{-1}]$."
             },
             {
-                "question_text": "If a matrix A has a row of all zeros, can it be invertible? (Yes/No)",
+                "question_text": "If a matrix $A$ has a row of all zeros, can it be invertible? (Yes/No)",
                 "model_answer": "No",
                 "accepted_answers": ["No", "no", "false"],
                 "explanation": "A row of zeros implies the pivots cannot fill the diagonal, meaning the matrix is singular."
             },
             {
-                "question_text": "What matrix E would you multiply A by to subtract 2 * Row 1 from Row 2? (Describe the entry E_21)",
+                "question_text": "What matrix $E$ would you multiply $A$ by to subtract $2 \\times \\text{Row 1}$ from $\\text{Row 2}$? (Describe the entry $E_{21}$)",
                 "model_answer": "-2",
                 "accepted_answers": ["-2", "negative 2"],
                 "explanation": "Elementary matrices have the negative of the multiplier in the position being eliminated (off-diagonal)."
             },
             {
-                "question_text": "Once we have Ux = c, we solve for x using _______ substitution.",
+                "question_text": "Once we have $Ux = c$, we solve for $x$ using _______ substitution.",
                 "model_answer": "Back",
                 "accepted_answers": ["back", "backward"],
                 "explanation": "We solve the equations from bottom to top."
@@ -2706,7 +2706,7 @@ class Command(BaseCommand):
             defaults={
                 'domain': Quiz.Domain.LINEAR_ALGEBRA,
                 'subject': Quiz.Subject.MECHANICS,
-                'topic': 'Vectors & Matrices',
+                'topic': 'Solving Linear Equations',
                 'description': "Understanding invertibility, failure cases, and geometric interpretations.",
                 'created_at': timezone.now()
             }
@@ -2716,63 +2716,63 @@ class Command(BaseCommand):
         quiz_6_data = [
             {
                 "question_text": "Explain the difference between a 'Temporary Failure' and a 'Permanent Failure' in Gaussian elimination.",
-                "model_answer": "Temporary failure occurs when a 0 appears in a pivot position, but a non-zero entry exists below it (fixed by row exchange). Permanent failure occurs when a 0 is in the pivot position and all entries below it are also 0 (matrix is singular/not invertible).",
+                "model_answer": "Temporary failure occurs when a $0$ appears in a pivot position, but a non-zero entry exists below it (fixed by row exchange). Permanent failure occurs when a $0$ is in the pivot position and all entries below it are also $0$ (matrix is singular/not invertible).",
                 "accepted_answers": [],
                 "explanation": "This distinguishes between needing a permutation and the system having no unique solution."
             },
             {
                 "question_text": "Why is the inverse of an Elementary Matrix (one that does a row subtraction) easy to find without calculation?",
-                "model_answer": "Because the operation is just 'adding back' what was subtracted. If E subtracts 5*Row1 from Row2, E^-1 adds 5*Row1 to Row2.",
+                "model_answer": "Because the operation is just 'adding back' what was subtracted. If $E$ subtracts $5 \\times \\text{Row 1}$ from $\\text{Row 2}$, $E^{-1}$ adds $5 \\times \\text{Row 1}$ to $\\text{Row 2}$.",
                 "accepted_answers": [],
                 "explanation": "In the matrix, you simply flip the sign of the off-diagonal multiplier."
             },
             {
                 "question_text": "Why do we say that Matrix Multiplication is 'Associative' and how does this help in understanding LU factorization?",
-                "model_answer": "Associativity means (AB)C = A(BC). This allows us to group all the elementary elimination matrices (E) together into one matrix L without worrying about the vector x. E(Ax) = (EA)x.",
+                "model_answer": "Associativity means $(AB)C = A(BC)$. This allows us to group all the elementary elimination matrices ($E$) together into one matrix $L$ without worrying about the vector $x$. $E(Ax) = (EA)x$.",
                 "accepted_answers": [],
                 "explanation": "It justifies why we can talk about factoring the matrix A itself, separate from the specific equations."
             },
             {
-                "question_text": "Visually/Geometrically, what does a singular matrix (2x2) represent in terms of the row equations?",
+                "question_text": "Visually/Geometrically, what does a singular matrix ($2 \\times 2$) represent in terms of the row equations?",
                 "model_answer": "The two lines defined by the rows are parallel (and distinct) or the exact same line. They do not intersect at a unique single point.",
                 "accepted_answers": [],
                 "explanation": "In 3D, the planes would not intersect at a point (they might form a line, a tunnel, or be parallel)."
             },
             {
-                "question_text": "Explain the 'Shoes and Socks' analogy for the inverse of a product (AB)^-1.",
-                "model_answer": "You put on socks (A) then shoes (B). To reverse this, you must take off shoes (B^-1) first, then socks (A^-1). Hence (AB)^-1 = B^-1 A^-1.",
+                "question_text": "Explain the 'Shoes and Socks' analogy for the inverse of a product $(AB)^{-1}$.",
+                "model_answer": "You put on socks ($A$) then shoes ($B$). To reverse this, you must take off shoes ($B^{-1}$) first, then socks ($A^{-1}$). Hence $(AB)^{-1} = B^{-1} A^{-1}$.",
                 "accepted_answers": [],
                 "explanation": "Order of operations reverses when inverting."
             },
             {
-                "question_text": "If A is invertible, what must be true about the equation Ax = b?",
-                "model_answer": "It has exactly one unique solution x for every vector b.",
+                "question_text": "If $A$ is invertible, what must be true about the equation $Ax = b$?",
+                "model_answer": "It has exactly one unique solution $x$ for every vector $b$.",
                 "accepted_answers": [],
-                "explanation": "Invertibility <-> Nonsingularity <-> Unique Solution."
+                "explanation": "Invertibility $\\leftrightarrow$ Nonsingularity $\\leftrightarrow$ Unique Solution."
             },
             {
-                "question_text": "Describe the diagonal entries of the inverse of a Diagonal Matrix D.",
-                "model_answer": "The entries are the reciprocals (1/d_ii) of the original diagonal entries.",
+                "question_text": "Describe the diagonal entries of the inverse of a Diagonal Matrix $D$.",
+                "model_answer": "The entries are the reciprocals ($1/d_{ii}$) of the original diagonal entries.",
                 "accepted_answers": [],
-                "explanation": "If D has 2 and 5 on diagonal, D^-1 has 1/2 and 1/5."
+                "explanation": "If $D$ has 2 and 5 on diagonal, $D^{-1}$ has $1/2$ and $1/5$."
             },
             {
-                "question_text": "Why is it computationally expensive to calculate A^-1 explicitly compared to just solving Ax=b?",
-                "model_answer": "Finding A^-1 is equivalent to solving Ax=e for n different columns. It effectively triples the work (or more) compared to a single elimination pass for one b.",
+                "question_text": "Why is it computationally expensive to calculate $A^{-1}$ explicitly compared to just solving $Ax=b$?",
+                "model_answer": "Finding $A^{-1}$ is equivalent to solving $Ax=e$ for $n$ different columns. It effectively triples the work (or more) compared to a single elimination pass for one $b$.",
                 "accepted_answers": [],
                 "explanation": "Strang emphasizes: Don't compute the inverse unless you have to! Solve the system instead."
             },
             {
-                "question_text": "If A and B are square and invertible, why is A + B not necessarily invertible?",
-                "model_answer": "There is no formula for (A+B)^-1. Example: A=I and B=-I. Both are invertible, but sum is 0 (singular).",
+                "question_text": "If $A$ and $B$ are square and invertible, why is $A + B$ not necessarily invertible?",
+                "model_answer": "There is no formula for $(A+B)^{-1}$. Example: $A=I$ and $B=-I$. Both are invertible, but sum is $0$ (singular).",
                 "accepted_answers": [],
                 "explanation": "Inverses handle multiplication well, but addition poorly."
             },
             {
-                "question_text": "In the Gauss-Jordan method, we go from [A I] to [I A^-1]. What is happening to the matrix representing the row operations during this process?",
-                "model_answer": "The matrix of row operations accumulates to become A^-1. Effectively, (Row Ops Matrix) * [A I] = [I A^-1].",
+                "question_text": "In the Gauss-Jordan method, we go from $[A \\ | \\ I]$ to $[I \\ | \\ A^{-1}]$. What is happening to the matrix representing the row operations during this process?",
+                "model_answer": "The matrix of row operations accumulates to become $A^{-1}$. Effectively, $(\\text{Row Ops}) [A \\ | \\ I] = [I \\ | \\ A^{-1}]$.",
                 "accepted_answers": [],
-                "explanation": "The operations that turn A into I are exactly the operations that turn I into A^-1."
+                "explanation": "The operations that turn $A$ into $I$ are exactly the operations that turn $I$ into $A^{-1}$."
             }
         ]
 
@@ -2795,7 +2795,7 @@ class Command(BaseCommand):
             defaults={
                 'domain': Quiz.Domain.LINEAR_ALGEBRA,
                 'subject': Quiz.Subject.MECHANICS,
-                'topic': 'Vectors & Matrices',
+                'topic': 'Solving Linear Equations',
                 'description': "LU decomposition, permutation matrices, and symmetric rules.",
                 'created_at': timezone.now()
             }
@@ -2804,64 +2804,64 @@ class Command(BaseCommand):
 
         quiz_7_data = [
             {
-                "question_text": "In the factorization A = LU, L stands for _______ Triangular matrix.",
+                "question_text": "In the factorization $A = LU$, $L$ stands for _______ Triangular matrix.",
                 "model_answer": "Lower",
                 "accepted_answers": ["Lower", "lower"],
-                "explanation": "L contains the multipliers used during elimination."
+                "explanation": "$L$ contains the multipliers used during elimination."
             },
             {
-                "question_text": "What number is always on the main diagonal of the standard L matrix in A = LU?",
+                "question_text": "What number is always on the main diagonal of the standard $L$ matrix in $A = LU$?",
                 "model_answer": "1",
                 "accepted_answers": ["1", "one"],
-                "explanation": "The diagonals of L are 1s; the pivots appear on the diagonal of U."
+                "explanation": "The diagonals of $L$ are $1$s; the pivots appear on the diagonal of $U$."
             },
             {
-                "question_text": "A matrix P that exchanges rows of another matrix is called a _______ matrix.",
+                "question_text": "A matrix $P$ that exchanges rows of another matrix is called a _______ matrix.",
                 "model_answer": "Permutation",
                 "accepted_answers": ["permutation", "Permutation"],
-                "explanation": "P is the identity matrix with rows reordered."
+                "explanation": "$P$ is the identity matrix with rows reordered."
             },
             {
-                "question_text": "If A is a Symmetric matrix, then A must equal what?",
+                "question_text": "If $A$ is a Symmetric matrix, then $A$ must equal what?",
                 "model_answer": "A Transpose",
                 "accepted_answers": ["A Transpose", "A^T", "transpose of A", "A_T"],
-                "explanation": "Symmetric means a_ij = a_ji."
+                "explanation": "Symmetric means $a_{ij} = a_{ji}$."
             },
             {
-                "question_text": "What is the Transpose of the product (AB)?",
+                "question_text": "What is the Transpose of the product $(AB)$?",
                 "model_answer": "B^T A^T",
                 "accepted_answers": ["B^T A^T", "B' A'", "B transpose A transpose"],
                 "explanation": "Like inverses, transposes reverse the order of multiplication."
             },
             {
-                "question_text": "For a Permutation matrix P, P inverse is always equal to P _______.",
+                "question_text": "For a Permutation matrix $P$, $P$ inverse is always equal to $P$ _______.",
                 "model_answer": "Transpose",
                 "accepted_answers": ["Transpose", "transpose", "T", "^T"],
-                "explanation": "P^T P = I. This is a special property of orthogonal matrices."
+                "explanation": "$P^T P = I$. This is a special property of orthogonal matrices."
             },
             {
-                "question_text": "The computational cost of elimination for an n by n matrix is proportional to n to the power of _______.",
+                "question_text": "The computational cost of elimination for an $n \\times n$ matrix is proportional to $n$ to the power of _______.",
                 "model_answer": "3",
                 "accepted_answers": ["3", "three"],
-                "explanation": "The operation count is approximately n^3 / 3."
+                "explanation": "The operation count is approximately $n^3 / 3$."
             },
             {
-                "question_text": "In the Symmetric Factorization A = LDL^T, D stands for what kind of matrix?",
+                "question_text": "In the Symmetric Factorization $A = LDL^T$, $D$ stands for what kind of matrix?",
                 "model_answer": "Diagonal",
                 "accepted_answers": ["diagonal", "Diagonal"],
-                "explanation": "We separate the pivots out of U, leaving U with 1s on diagonal, becoming L^T for symmetric matrices."
+                "explanation": "We separate the pivots out of $U$, leaving $U$ with $1$s on diagonal, becoming $L^T$ for symmetric matrices."
             },
             {
-                "question_text": "Is the matrix product R^T R always symmetric? (Yes/No)",
+                "question_text": "Is the matrix product $R^T R$ always symmetric? (Yes/No)",
                 "model_answer": "Yes",
                 "accepted_answers": ["Yes", "yes", "true"],
-                "explanation": "(R^T R)^T = R^T (R^T)^T = R^T R. It returns to itself."
+                "explanation": "$(R^T R)^T = R^T (R^T)^T = R^T R$. It returns to itself."
             },
             {
-                "question_text": "How many 3x3 Permutation matrices exist?",
+                "question_text": "How many $3 \\times 3$ Permutation matrices exist?",
                 "model_answer": "6",
                 "accepted_answers": ["6", "six"],
-                "explanation": "n factorial (3! = 3*2*1 = 6)."
+                "explanation": "$n$ factorial ($3! = 3 \\times 2 \\times 1 = 6$)."
             }
         ]
 
@@ -2884,7 +2884,7 @@ class Command(BaseCommand):
             defaults={
                 'domain': Quiz.Domain.LINEAR_ALGEBRA,
                 'subject': Quiz.Subject.MECHANICS,
-                'topic': 'Vectors & Matrices',
+                'topic': 'Solving Linear Equations',
                 'description': "Advanced logic behind elimination, L, U, P, and symmetry.",
                 'created_at': timezone.now()
             }
@@ -2893,64 +2893,64 @@ class Command(BaseCommand):
 
         quiz_8_data = [
             {
-                "question_text": "Why is the factorization A = LU more useful than just running elimination from scratch every time?",
-                "model_answer": "If you have to solve Ax = b for many different vectors b, you factor A once (n^3 cost), then use L and U to solve each b very quickly (n^2 cost) via substitution.",
+                "question_text": "Why is the factorization $A = LU$ more useful than just running elimination from scratch every time?",
+                "model_answer": "If you have to solve $Ax = b$ for many different vectors $b$, you factor $A$ once ($n^3$ cost), then use $L$ and $U$ to solve each $b$ very quickly ($n^2$ cost) via substitution.",
                 "accepted_answers": [],
                 "explanation": "It separates the coefficient matrix processing from the specific right-hand side."
             },
             {
-                "question_text": "Describe the structure of the matrix L compared to the elimination matrices E. Why is L 'cleaner'?",
-                "model_answer": "L contains the multipliers exactly in their positions below the diagonal. The product of E's mixes terms, but the inverse of E's (which forms L) places the multipliers perfectly without mixing.",
+                "question_text": "Describe the structure of the matrix $L$ compared to the elimination matrices $E$. Why is $L$ 'cleaner'?",
+                "model_answer": "$L$ contains the multipliers exactly in their positions below the diagonal. The product of $E$'s mixes terms, but the inverse of $E$'s (which forms $L$) places the multipliers perfectly without mixing.",
                 "accepted_answers": [],
-                "explanation": "This is a minor miracle of linear algebra that makes A=LU so elegant."
+                "explanation": "This is a minor miracle of linear algebra that makes $A=LU$ so elegant."
             },
             {
-                "question_text": "If we need row exchanges to solve Ax=b, the factorization becomes PA = LU. What is P and why is it needed?",
-                "model_answer": "P is a Permutation Matrix. It reorders the rows of A beforehand so that pivots are in the correct non-zero positions, allowing the standard LU process to proceed.",
+                "question_text": "If we need row exchanges to solve $Ax=b$, the factorization becomes $PA = LU$. What is $P$ and why is it needed?",
+                "model_answer": "$P$ is a Permutation Matrix. It reorders the rows of $A$ beforehand so that pivots are in the correct non-zero positions, allowing the standard $LU$ process to proceed.",
                 "accepted_answers": [],
-                "explanation": "Elimination fails if a zero is in the pivot spot; P fixes this logic."
+                "explanation": "Elimination fails if a zero is in the pivot spot; $P$ fixes this logic."
             },
             {
-                "question_text": "Why does the operation count decrease from n^3/3 (Elimination) to n^2 (Back Substitution)?",
+                "question_text": "Why does the operation count decrease from $n^3/3$ (Elimination) to $n^2$ (Back Substitution)?",
                 "model_answer": "Elimination works on the whole 3D block of the matrix (rows * cols * steps). Substitution only works on the 2D triangle of the matrix. One dimension lower.",
                 "accepted_answers": [],
-                "explanation": "Integration analogy: Integral of x^2 is x^3/3."
+                "explanation": "Integration analogy: Integral of $x^2$ is $x^3/3$."
             },
             {
-                "question_text": "Show/Explain why (Ax) · y = x · (A^T y). (Dot Product Transpose Property)",
-                "model_answer": "The dot product (Ax) · y is (Ax)^T y = x^T A^T y. This is the same as x · (A^T y).",
+                "question_text": "Show/Explain why $(Ax) \\cdot y = x \\cdot (A^T y)$. (Dot Product Transpose Property)",
+                "model_answer": "The dot product $(Ax) \\cdot y$ is $(Ax)^T y = x^T A^T y$. This is the same as $x \\cdot (A^T y)$.",
                 "accepted_answers": [],
                 "explanation": "This property effectively defines the transpose: it moves the matrix across the dot product."
             },
             {
-                "question_text": "What is the relationship between symmetric matrices and elimination? (Hint: LDL^T)",
-                "model_answer": "If A is symmetric (and no row exchanges needed), U is the transpose of L (scaled by pivots). We write A = LDL^T, saving half the storage/work.",
+                "question_text": "What is the relationship between symmetric matrices and elimination? (Hint: $LDL^T$)",
+                "model_answer": "If $A$ is symmetric (and no row exchanges needed), $U$ is the transpose of $L$ (scaled by pivots). We write $A = LDL^T$, saving half the storage/work.",
                 "accepted_answers": [],
                 "explanation": "Symmetry is preserved during elimination."
             },
             {
                 "question_text": "Why is the inverse of a Permutation Matrix equal to its transpose?",
-                "model_answer": "Permutations are orthogonal matrices. The rows are unit vectors and orthogonal to each other. Thus P^T P = I.",
+                "model_answer": "Permutations are orthogonal matrices. The rows are unit vectors and orthogonal to each other. Thus $P^T P = I$.",
                 "accepted_answers": [],
                 "explanation": "Swapping rows back is the same as swapping columns in the reverse order."
             },
             {
                 "question_text": "Explain the concept of 'Band Matrices' and why they are computationally efficient.",
-                "model_answer": "Band matrices only have non-zero entries near the diagonal (within a bandwidth w). Elimination only affects this band, reducing cost from n^3 to n*w^2.",
+                "model_answer": "Band matrices only have non-zero entries near the diagonal (within a bandwidth $w$). Elimination only affects this band, reducing cost from $n^3$ to $n \\cdot w^2$.",
                 "accepted_answers": [],
                 "explanation": "This is crucial for engineering applications with sparse connections."
             },
             {
-                "question_text": "If A is invertible and symmetric, is A^-1 symmetric? Why?",
-                "model_answer": "Yes. (A^-1)^T = (A^T)^-1 = A^-1. Since A is symmetric, transposing the inverse gets you back the inverse.",
+                "question_text": "If $A$ is invertible and symmetric, is $A^{-1}$ symmetric? Why?",
+                "model_answer": "Yes. $(A^{-1})^T = (A^T)^{-1} = A^{-1}$. Since $A$ is symmetric, transposing the inverse gets you back the inverse.",
                 "accepted_answers": [],
                 "explanation": "Symmetry is robust; it survives inversion."
             },
             {
-                "question_text": "What happens to the L and U factors if you multiply A by 2?",
-                "model_answer": "L remains the same (multipliers are ratios, so 2x/2y = x/y). U is multiplied by 2 (the pivots double).",
+                "question_text": "What happens to the $L$ and $U$ factors if you multiply $A$ by $2$?",
+                "model_answer": "$L$ remains the same (multipliers are ratios, so $2x/2y = x/y$). $U$ is multiplied by $2$ (the pivots double).",
                 "accepted_answers": [],
-                "explanation": "L depends on the ratio of rows; U contains the actual scale of the numbers."
+                "explanation": "$L$ depends on the ratio of rows; $U$ contains the actual scale of the numbers."
             }
         ]
 
