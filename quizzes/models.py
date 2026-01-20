@@ -5,11 +5,14 @@ class Quiz(models.Model):
     class Domain(models.TextChoices):
         CALCULUS = 'Calculus', 'Calculus'
         LINEAR_ALGEBRA = 'Linear Algebra', 'Linear Algebra'
+        STATISTICS = 'Statistics', 'Statistics'
 
     class Subject(models.TextChoices):
         CALCULUS_1 = 'Calculus I', 'Calculus I'
         CALCULUS_2 = 'Calculus II', 'Calculus II'
         CALCULUS_3 = 'Calculus III', 'Calculus III'
+        
+        PROBABILITY = 'Probability', 'Probability'
 
         MECHANICS = 'Mechanics', 'Mechanics'
         # Focus: The basics of how matrices work and how to solve systems.

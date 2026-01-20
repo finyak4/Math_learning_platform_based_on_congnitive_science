@@ -52,6 +52,12 @@ class Command(BaseCommand):
             (3, 'Vectors & Matrices: Revision 3', 'Vectors & Matrices'),
             (4, 'Vectors & Matrices: Revision 4', 'Vectors & Matrices'),
             
+            
+            # Probability
+            (1, 'Probability: Revision 1', 'Probability and Counting'),
+            (2, 'Probability: Revision 2', 'Probability and Counting'),
+            (3, 'Probability: Revision 3', 'Probability and Counting'),
+            (4, 'Probability: Revision 4', 'Probability and Counting'),
             # Linear Algebra: Solving Linear Equations
             (1, 'Solving Linear Equations: Revision 1', 'Solving Linear Equations'),
             (2, 'Solving Linear Equations: Revision 2', 'Solving Linear Equations'),
@@ -67,9 +73,9 @@ class Command(BaseCommand):
             quiz, created = Quiz.objects.get_or_create(
                 title=title,
                 defaults={
-                    'domain': Quiz.Domain.LINEAR_ALGEBRA if topic in ['Vectors & Matrices', 'Solving Linear Equations'] else Quiz.Domain.CALCULUS,
+                    'domain': Quiz.Domain.LINEAR_ALGEBRA if topic in ['Vectors & Matrices', 'Solving Linear Equations'] else (Quiz.Domain.STATISTICS if topic == 'Probability and Counting' else Quiz.Domain.CALCULUS),
                     'subject': Quiz.Subject.MECHANICS if topic in ['Vectors & Matrices', 'Solving Linear Equations'] 
-                               else (Quiz.Subject.CALCULUS_2 if topic in ['Integrals', 'Techniques', 'Sequences & Series'] else Quiz.Subject.CALCULUS_1),
+                               else (Quiz.Subject.PROBABILITY if topic == 'Probability and Counting' else (Quiz.Subject.CALCULUS_2 if topic in ['Integrals', 'Techniques', 'Sequences & Series'] else Quiz.Subject.CALCULUS_1)),
                     'topic': topic,
                     'quiz_type': Quiz.QuizType.REVISION,
                     'evaluation_method': Quiz.EvaluationMethod.SELF_EVAL,
@@ -87,6 +93,9 @@ class Command(BaseCommand):
                 if topic in ['Vectors & Matrices', 'Solving Linear Equations']:
                     quiz.domain = Quiz.Domain.LINEAR_ALGEBRA
                     quiz.subject = Quiz.Subject.MECHANICS
+                elif topic == 'Probability and Counting':
+                    quiz.domain = Quiz.Domain.STATISTICS
+                    quiz.subject = Quiz.Subject.PROBABILITY
                 else:
                      quiz.domain = Quiz.Domain.CALCULUS
                      # Re-apply Calculus subject logic if needed, but usually domain is the critical fix
@@ -415,6 +424,45 @@ class Command(BaseCommand):
                         (6, 'Band Matrix efficiency?', 'Operations proportional to $n$ (not $n^3$).', None),
                     ]
 
+
+            # ================= PROBABILITY =================
+            elif topic == 'Probability and Counting':
+                if level == 1:
+                    questions_data = [
+                        (1, "Define 'Sample Space'.", "The set of all possible outcomes of an experiment.", None),
+                        (2, "What does $nPk$ represent?", "The number of ways to choose and arrange $k$ items from $n$ distinct items.", None),
+                        (3, "Explain $P(A^c) = 1 - P(A)$.", "The probability of an event NOT happening is 1 minus the probability it DOES happen, because total probability is 1.", None),
+                        (4, "How many rearrangements of 'LEVEL'?", "$5! / (2! 2!) = 30$.", None),
+                        (5, "When do you multiply probabilities?", "When the events are independent (or using conditional probability logic $P(A)P(B|A)$).", None),
+                        (6, "What is a 'disjoint' event?", "Two events that share no outcomes (Intersection is empty).", None),
+                    ]
+                elif level == 2:
+                    questions_data = [
+                        (1, "What is $\\binom{n}{n}$?", "1. There is only one way to choose everyone.", None),
+                        (2, "Does $n!$ grow faster than $2^n$?", "Yes, much faster.", None),
+                        (3, "Solve $x_1 + x_2 + x_3 = 10$ for non-negative integers.", "Stars/Bars: $\\binom{10+3-1}{3-1} = \\binom{12}{2}$.", None),
+                        (4, "What is the Pigeonhole Principle?", "If $n+1$ items go into $n$ boxes, one box has $>1$ item.", None),
+                        (5, "Difference between Set and Sequence?", "Sequence has order; Set does not.", None),
+                        (6, "How many subsets of $\{1, 2, 3\}$?", "$2^3 = 8$.", None),
+                    ]
+                elif level == 3:
+                     questions_data = [
+                        (1, "State the 1st Axiom of Probability.", "$P(A) \\ge 0$ for any event $A$.", None),
+                        (2, "In the Birthday Problem ($n=23$), is prob > 50%?", "Yes, approx 50.7%.", None),
+                        (3, "If $P(A)=0$, is it impossible?", "Discrete: Yes. Continuous: No (point mass is 0 but exists).", None),
+                        (4, "What is a Bernoulli Trial?", "An experiment with 2 outcomes (Success/Failure).", None),
+                        (5, "Outcomes of 10 coin flips?", "$2^{10} = 1024$.", None),
+                        (6, "What is $P(A|B)$ if $A$ and $B$ are independent?", "$P(A)$.", None),
+                     ]
+                elif level == 4:
+                     questions_data = [
+                        (1, "Explain 'Adjusting for Overcounting'.", "If your counting method produces each valid outcome $c$ times, divide the total by $c$.", None),
+                        (2, "Binomial Theorem expansion of $(x+y)^n$?", "Sum of $(\\binom{n}{k} x^k y^{n-k})$.", None),
+                        (3, "Vandermonde's Identity concept?", "Summing committee possibilities across gender splits.", None),
+                        (4, "Can Probability be negative?", "No.", None),
+                        (5, "Why divide by $n$ for circular arrangements?", "To account for $n$ rotations being identical.", None),
+                        (6, "Complement of 'All heads'?", "At least one tail.", None),
+                     ]
             # Create Questions
             for order, text, answer, explanation in questions_data:
                 Question.objects.create(

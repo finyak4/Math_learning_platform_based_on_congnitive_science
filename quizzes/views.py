@@ -48,6 +48,9 @@ def quiz_list(request, subject_slug='calculus'):
     if subject_slug == 'linear-algebra':
         current_domain = Quiz.Domain.LINEAR_ALGEBRA
         all_quizzes = all_quizzes.filter(domain=Quiz.Domain.LINEAR_ALGEBRA)
+    elif subject_slug == 'statistics':
+        current_domain = Quiz.Domain.STATISTICS
+        all_quizzes = all_quizzes.filter(domain=Quiz.Domain.STATISTICS)
     else:
         # Default to Calculus
         current_domain = Quiz.Domain.CALCULUS
@@ -112,6 +115,10 @@ def quiz_list(request, subject_slug='calculus'):
     if subject_slug == 'linear-algebra':
         visible_subjects = [
             (Quiz.Subject.MECHANICS, 'Mechanics')
+        ]
+    elif subject_slug == 'statistics':
+        visible_subjects = [
+            (Quiz.Subject.PROBABILITY, 'Probability')
         ]
     else:
         visible_subjects = [
