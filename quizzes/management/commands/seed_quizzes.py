@@ -106,25 +106,25 @@ class Command(BaseCommand):
 
         # Questions for Quiz 1
         questions_data = [
-            (1, 'State the three conditions that must be met for a function to be **continuous** at x=c.', 
-             '1. f(c) is defined. 2. The limit of f(x) as x approaches c exists. 3. The limit equals the function value.'),
-            (2, 'Explain the difference between a **Removable Discontinuity** (hole) and a **Non-Removable Discontinuity** (jump/asymptote) in terms of limits.', 
-             'Removable: The limit exists, but f(c) is undefined or different. Non-Removable: The limit does not exist (left and right limits differ or go to infinity).'),
-            (3, 'If lim_{x->c} f(x) exists, does f(c) have to exist? Give a counter-example if no.', 
-             'No. A counter-example is a graph with a hole at x=c. The limit approaches the hole, but the point itself is undefined.'),
-            (4, 'Explain the **Squeeze Theorem** (Sandwich Theorem) to a friend who doesn\'t know calculus. Use an analogy.', 
-             'If two functions squeeze a third function between them, and both the top and bottom functions approach the same limit L, the middle function is forced to go to L as well. (Analogy: Two policemen walking an arrested person between them).'),
-            (5, 'Why is 0/0 called \'indeterminate\' but 5/0 is just \'undefined\'?', 
-             '5/0 is undefined because you cannot divide by zero. 0/0 is indeterminate because the answer depends on the specific functions involved; it could be 5, 0, infinity, or anything else depending on which zero is \'stronger\'.'),
-            (6, 'How do you define a **Vertical Asymptote** at x=c using limits?', 
-             'A vertical asymptote exists at x=c if the limit as x approaches c (from left or right) is positive or negative infinity.'),
-            (7, 'How do you define a **Horizontal Asymptote** using limits?', 
-             'A horizontal asymptote y=L exists if the limit of f(x) as x approaches infinity (or negative infinity) equals L.'),
+            (1, 'State the three conditions that must be met for a function to be continuous at $x=c$.', 
+             '1. $f(c)$ is defined. 2. The limit of $f(x)$ as $x \\to c$ exists. 3. The limit equals the function value.'),
+            (2, 'Explain the difference between a Removable Discontinuity (hole) and a Non-Removable Discontinuity (jump/asymptote) in terms of limits.', 
+             'Removable: The limit exists, but $f(c)$ is undefined or different. Non-Removable: The limit does not exist (left and right limits differ or go to infinity).'),
+            (3, 'If $\\lim_{x \\to c} f(x)$ exists, does $f(c)$ have to exist? Give a counter-example if no.', 
+             'No. A counter-example is a graph with a hole at $x=c$. The limit approaches the hole, but the point itself is undefined.'),
+            (4, 'Explain the Squeeze Theorem (Sandwich Theorem) to a friend who doesn\'t know calculus. Use an analogy.', 
+             'If two functions squeeze a third function between them, and both the top and bottom functions approach the same limit $L$, the middle function is forced to go to $L$ as well. (Analogy: Two policemen walking an arrested person between them).'),
+            (5, 'Why is $0/0$ called "indeterminate" but $5/0$ is just "undefined"?', 
+             '$5/0$ is undefined because you cannot divide by zero. $0/0$ is indeterminate because the answer depends on the specific functions involved; it could be 5, 0, $\\infty$, or anything else depending on which zero is "stronger".'),
+            (6, 'How do you define a Vertical Asymptote at $x=c$ using limits?', 
+             'A vertical asymptote exists at $x=c$ if the limit as $x \\to c$ (from left or right) is $\\pm \\infty$.'),
+            (7, 'How do you define a Horizontal Asymptote using limits?', 
+             'A horizontal asymptote $y=L$ exists if the limit of $f(x)$ as $x \\to \\infty$ (or $-\\infty$) equals $L$.'),
             (8, 'If the Left-Hand Limit does not equal the Right-Hand Limit, what can you say about the general Limit?', 
              'The general limit does not exist (DNE).'),
-            (9, 'If f(x) is continuous on [0, 5], f(0) = -2, and f(5) = 10, what does the Intermediate Value Theorem (IVT) guarantee happens at least once between x=0 and x=5?', 
-             'The IVT guarantees that f(x) must equal 0 (cross the x-axis) at least once between x=0 and x=5, because it must pass through every value between -2 and 10.'),
-            (10, 'Describe the behavior of the graph f(x) = sin(1/x) as x approaches 0. Does the limit exist?', 
+            (9, 'If $f(x)$ is continuous on $[0, 5]$, $f(0) = -2$ and $f(5) = 10$, what does the Intermediate Value Theorem (IVT) guarantee happens at least once between $x=0$ and $x=5$?', 
+             'The IVT guarantees that $f(x)$ must equal 0 (cross the x-axis) at least once between $x=0$ and $x=5$, because it must pass through every value between -2 and 10.'),
+            (10, 'Describe the behavior of the graph $f(x) = \\sin(1/x)$ as $x$ approaches 0. Does the limit exist?', 
              'The graph oscillates infinitely fast between -1 and 1 as it gets closer to 0. The limit does not exist because it never settles on a single value.')
         ]
 
@@ -180,16 +180,16 @@ class Command(BaseCommand):
              self.stdout.write('Quiz 2 already exists.')
              
         questions_data_2 = [
-            (1, 'To prove a function is continuous at x=c, we must show that the Limit as x approaches c equals ______.', 'f(c)', ["f(c)", "function value", "value of f", "f of c"]),
-            (2, 'If the limit as x approaches c exists, but f(c) is undefined, this specific type of discontinuity is called a ______ discontinuity.', 'removable', ["removable", "point", "hole"]),
-            (3, 'If the Limit from the Left is 3 and the Limit from the Right is 5, then the Limit as x approaches c ______.', 'does not exist', ["does not exist", "dne", "undefined", "no limit"]), 
-            (4, 'The theorem stating that if f(x) <= g(x) <= h(x) and the outer functions approach the same limit, then g(x) must also approach that limit, is called the ______ Theorem.', 'squeeze', ["squeeze", "sandwich", "pinching"]),
-            (5, 'When direct substitution results in 0/0, this result is known as an ______ form.', 'indeterminate', ["indeterminate"]),
-            (6, 'A Vertical Asymptote exists at x=c if the limit as x approaches c equals ______.', 'infinity', ["infinity", "infinite", "inf", "positive infinity"]),
-            (7, 'To find Horizontal Asymptotes, we must evaluate the limit as x approaches ______.', 'infinity', ["infinity", "infinite", "inf", "+-infinity"]),
-            (8, 'The Intermediate Value Theorem guarantees that if f(x) is continuous and changes signs between x=a and x=b, there must be at least one ______ between a and b.', 'root', ["root", "zero", "x-intercept", "solution"]),
-            (9, 'For the function f(x) = sin(1/x), the limit as x approaches 0 does not exist because the function ______ infinitely fast.', 'oscillates', ["oscillates", "fluctuates", "wiggles"]),
-            (10, 'True or False: If a function has a limit at x=c, it MUST be defined at x=c.', 'false', ["false", "no", "f"])
+            (1, 'To prove a function is continuous at $x=c$, we must show that the Limit as $x \\to c$ equals ______.', 'f(c)', ["f(c)", "function value", "value of f", "f of c"]),
+            (2, 'If the limit as $x \\to c$ exists, but $f(c)$ is undefined, this specific type of discontinuity is called a ______ discontinuity.', 'removable', ["removable", "point", "hole"]),
+            (3, 'If the Limit from the Left is 3 and the Limit from the Right is 5, then the Limit as $x \\to c$ ______.', 'does not exist', ["does not exist", "dne", "undefined", "no limit"]), 
+            (4, 'The theorem stating that if $f(x) \\le g(x) \\le h(x)$ and the outer functions approach the same limit, then $g(x)$ must also approach that limit, is called the ______ Theorem.', 'squeeze', ["squeeze", "sandwich", "pinching"]),
+            (5, 'When direct substitution results in $0/0$, this result is known as an ______ form.', 'indeterminate', ["indeterminate"]),
+            (6, 'A Vertical Asymptote exists at $x=c$ if the limit as $x \\to c$ equals ______.', 'infinity', ["infinity", "infinite", "inf", "positive infinity"]),
+            (7, 'To find Horizontal Asymptotes, we must evaluate the limit as $x$ approaches ______.', 'infinity', ["infinity", "infinite", "inf", "+-infinity"]),
+            (8, 'The Intermediate Value Theorem guarantees that if $f(x)$ is continuous and changes signs between $x=a$ and $x=b$, there must be at least one ______ between $a$ and $b$.', 'root', ["root", "zero", "x-intercept", "solution"]),
+            (9, 'For the function $f(x) = \\sin(1/x)$, the limit as $x \\to 0$ does not exist because the function ______ infinitely fast.', 'oscillates', ["oscillates", "fluctuates", "wiggles"]),
+            (10, 'True or False: If a function has a limit at $x=c$, it MUST be defined at $x=c$.', 'false', ["false", "no", "f"])
         ]
 
         # Delete all existing questions to ensure database matches seed file
@@ -352,7 +352,7 @@ class Command(BaseCommand):
         # Questions for Quiz 4
         # Note: Using LaTeX for math terms
         questions_data_4 = [
-            (1, 'Define what it means for a function to be **differentiable** at $x=c$ in relation to continuity.', 'Differentiability is a stronger condition than continuity. If a function is differentiable at $x=c$, it MUST be continuous there. However, a function can be continuous but NOT differentiable (for example, at a sharp corner like $|x|$ at 0).', []),
+            (1, 'Define what it means for a function to be differentiable at $x=c$ in relation to continuity.', 'Differentiability is a stronger condition than continuity. If a function is differentiable at $x=c$, it MUST be continuous there. However, a function can be continuous but NOT differentiable (for example, at a sharp corner like $|x|$ at 0).', []),
 
             (2, 'Explain why the limit of a constant function, like $f(x) = 7$, is always the constant itself as $x$ approaches any value.', 'Because the function value never changes regardless of what $x$ is doing. The "gap" between $f(x)$ and 7 is always zero, so the limit is 7.', []),
 
@@ -613,29 +613,29 @@ class Command(BaseCommand):
             self.stdout.write('Quiz 7 already exists.')
 
         questions_data_7 = [
-            (1, 'State the formal **Limit Definition of the Derivative** of a function $f(x)$.', 
+            (1, 'State the formal Limit Definition of the Derivative of a function $f(x)$.', 
              '$f\'(x) = \lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$. (Alternatively, the alternate form using $x \\to a$ is also acceptable).', []),
 
-            (2, 'Explain the geometric relationship between a **Secant Line** and a **Tangent Line**.', 
+            (2, 'Explain the geometric relationship between a Secant Line and a Tangent Line.', 
              'A secant line connects two distinct points on a curve. A tangent line is the limiting position of the secant line as the two points get infinitely close to each other. The slope of the secant approaches the slope of the tangent.', []),
 
-            (3, 'If a function is **Differentiable** at a point, must it be **Continuous** at that point? Explain why.', 
+            (3, 'If a function is Differentiable at a point, must it be Continuous at that point? Explain why.', 
              'Yes. For the derivative to exist, the graph must be smooth and connected. If there were a break (discontinuity), the "rise" would be non-zero while the "run" approaches zero, or the limits wouldn\'t match, making the derivative undefined.', []),
 
-            (4, 'Give two examples of visual features on a graph where a function is **Continuous but NOT Differentiable**.', 
+            (4, 'Give two examples of visual features on a graph where a function is Continuous but NOT Differentiable.', 
              '1. A sharp corner or "cusp" (like $|x|$ at 0).\n2. A vertical tangent line (where the slope is infinite).', []),
             
             # Interleaving: Limits
-            (5, r'Explain why the limit $\lim_{x \to 0} \frac{1}{x}$ does not exist.', 
+            (5, 'Explain why the limit $\lim_{x \to 0} \frac{1}{x}$ does not exist.', 
              'As $x$ approaches 0 from the right, the value goes to positive infinity. As $x$ approaches 0 from the left, it goes to negative infinity. Since the left and right behaviors do not match (and are unbounded), the limit DNE.', []),
 
-            (6, 'If the derivative $f\'(x)$ is **positive** over an interval, what does this tell you about the behavior of the original function $f(x)$?', 
+            (6, 'If the derivative $f\'(x)$ is positive over an interval, what does this tell you about the behavior of the original function $f(x)$?', 
              'It means the function $f(x)$ is increasing (going up from left to right) over that interval.', []),
 
-            (7, 'What does the **Second Derivative** $f\'\'(x)$ tell us about the shape of the graph of $f(x)$?', 
+            (7, 'What does the Second Derivative $f\'\'(x)$ tell us about the shape of the graph of $f(x)$?', 
              'It describes the concavity. If $f\'\' > 0$, the graph is concave up (like a cup). If $f\'\' < 0$, the graph is concave down (like a frown).', []),
 
-            (8, 'Explain the difference between **Average Rate of Change** and **Instantaneous Rate of Change**.', 
+            (8, 'Explain the difference between Average Rate of Change and Instantaneous Rate of Change.', 
              'Average Rate of Change is calculated over a time interval (slope of secant). Instantaneous Rate of Change is calculated at a single specific moment (slope of tangent, using a limit).', []),
 
             # INTERLEAVING: LIMITS
@@ -645,11 +645,11 @@ class Command(BaseCommand):
             (10, 'In the Leibniz notation $\\frac{dy}{dx}$, is this symbol literally a fraction? Explain.', 
              'Not literally. It represents the limit of the fraction $\\frac{\\Delta y}{\\Delta x}$ as $\\Delta x$ approaches zero. However, in methods like separation of variables or differentials, we often treat it algebraically *like* a fraction.', []),
 
-            (11, 'Conceptually, why is the derivative of a **Constant Function** equal to zero?', 
+            (11, 'Conceptually, why is the derivative of a Constant Function equal to zero?', 
              'Geometrically, a constant function is a horizontal line. Horizontal lines have a slope of 0 everywhere, so the rate of change is always 0.', []),
 
-            (12, 'Why do we need the **Chain Rule**? What specific type of functions does it apply to?', 
-             'We need it to differentiate **composite functions** (functions inside other functions, like $f(g(x))$). It allows us to multiply the rate of change of the outer function by the rate of change of the inner function.', []),
+            (12, 'Why do we need the Chain Rule? What specific type of functions does it apply to?', 
+             'We need it to differentiate composite functions (functions inside other functions, like $f(g(x))$). It allows us to multiply the rate of change of the outer function by the rate of change of the inner function.', []),
         ]
 
         # Delete all existing questions to ensure database matches seed file
@@ -828,7 +828,7 @@ class Command(BaseCommand):
              'Use Quotient Rule: $\\frac{u\'v - uv\'}{v^2}$.\n$u=x, u\'=1$. $v=x+1, v\'=1$.\nNumerator: $1(x+1) - x(1) = x + 1 - x = 1$.\nDenominator: $(x+1)^2$.'),
 
             (9, 
-             'A particle\'s position is given by $s(t) = t^2 - 4t + 3$. What is its **velocity** at $t = 5$?', 
+             'A particle\'s position is given by $s(t) = t^2 - 4t + 3$. What is its velocity at $t = 5$?', 
              '6', 
              'Velocity is the derivative of position.\n1. $v(t) = s\'(t) = 2t - 4$.\n2. Evaluate at $t=5$: $2(5) - 4 = 10 - 4 = 6$.'),
 
@@ -838,7 +838,7 @@ class Command(BaseCommand):
              'Use Chain Rule twice.\nOuter: $u^3 \\to 3u^2$.\nInner 1: $\\sin(v) \\to \\cos(v)$.\nInner 2: $2x \\to 2$.\n\nMultiply: $3(\\sin(2x))^2 \\cdot \\cos(2x) \\cdot 2 = 6\\sin^2(2x)\\cos(2x)$.'),
 
             (11, 
-             'At which x-value is the function $f(x) = |x - 2|$ **NOT** differentiable? Why?', 
+             'At which x-value is the function $f(x) = |x - 2|$ NOT differentiable? Why?', 
              '2', 
              'The graph of $|x-2|$ is a V-shape shifted to $x=2$. At the tip of the V ($x=2$), there is a sharp corner (cusp). Derivatives are undefined at sharp corners.'),
 
@@ -1082,11 +1082,11 @@ class Command(BaseCommand):
 
         questions_data_12 = [
             (1, 
-             'Explain why a **Critical Point** (where f\'(c)=0) is a *candidate* for a local maximum or minimum, but not a guarantee. Give a counter-example.', 
+             'Explain why a Critical Point (where f\'(c)=0) is a *candidate* for a local maximum or minimum, but not a guarantee. Give a counter-example.', 
              'A derivative of zero means the tangent is horizontal, but the function could flatten out and then continue going up (like y = x^3 at x=0). This is called a "saddle point" or inflection point, not a max/min.', []),
 
             (2, 
-             'State **Rolle\'s Theorem**. How is it a special case of the Mean Value Theorem?', 
+             'State Rolle\'s Theorem. How is it a special case of the Mean Value Theorem?', 
              'Rolle\'s Theorem states that if f(a) = f(b), there must be a point between them where f\'(c) = 0. This is just the MVT where the average rate of change is zero (the secant line is horizontal).', []),
 
             # Interleaved 3 -> Position 3
@@ -1095,11 +1095,11 @@ class Command(BaseCommand):
              'Because the natural logarithm ln(x) is not defined for negative numbers (domain restriction). You cannot have a slope where the graph does not exist.', []),
 
             (4, 
-             'Explain the **First Derivative Test**. How do you use the *signs* of f\'(x) to classify a critical point?', 
+             'Explain the First Derivative Test. How do you use the *signs* of f\'(x) to classify a critical point?', 
              'You check the sign of f\'(x) on both sides of the critical point. If f\' changes from Positive to Negative, it\'s a Peak (Max). If it changes from Negative to Positive, it\'s a Valley (Min).', []),
 
             (5, 
-             'Geometrically, what does it mean for a function to be **Concave Up**? Relate this to the tangent lines.', 
+             'Geometrically, what does it mean for a function to be Concave Up? Relate this to the tangent lines.', 
              'Concave Up means the graph opens upward (like a cup). Geometrically, the graph lies *above* its tangent lines, and the slopes of the tangent lines are increasing.', []),
 
             # Interleaved 6 -> Position 6
@@ -1108,11 +1108,11 @@ class Command(BaseCommand):
              'Method 1 (Product): cos(x)cos(x) - sin(x)sin(x) = cos(2x). Method 2 (Identity): Rewrite as 0.5sin(2x). Deriv is 0.5 * cos(2x) * 2 = cos(2x).', []),
 
             (7, 
-             'Why does the **Second Derivative Test** work? (i.e., Why does f\'\'(c) < 0 imply a Maximum?)', 
+             'Why does the Second Derivative Test work? (i.e., Why does f\'\'(c) < 0 imply a Maximum?)', 
              'If f\'\'(c) < 0, the function is Concave Down (frowning). A horizontal tangent (f\'=0) at the top of a frown must be a Peak (Maximum).', []),
 
             (8, 
-             'What is an **Inflection Point**? strictly in terms of the second derivative.', 
+             'What is an Inflection Point? strictly in terms of the second derivative.', 
              'An inflection point is a point where the second derivative f\'\'(x) *changes sign* (from positive to negative or vice versa). It is not enough for f\'\' to just be zero.', []),
 
             # Interleaved 9 -> Position 9
@@ -1121,15 +1121,15 @@ class Command(BaseCommand):
              'If the function flattens out to a horizontal asymptote y=5, the slope (derivative) must approach 0.', []),
 
             (10, 
-             'When applying **L\'Hôpital\'s Rule**, why must we check that the limit is an "Indeterminate Form" first?', 
+             'When applying L\'Hôpital\'s Rule, why must we check that the limit is an "Indeterminate Form" first?', 
              'Because if the limit is determinate (like 5/0 or 0/5), L\'Hôpital\'s Rule gives the wrong answer. It only works when there is a "struggle" between numerator and denominator (0/0 or inf/inf).', []),
 
             (11, 
-             'What does the "+ C" represent when finding the **General Antiderivative**? Why is it geometrically necessary?', 
+             'What does the "+ C" represent when finding the General Antiderivative? Why is it geometrically necessary?', 
              'It represents the "Constant of Integration." Geometrically, it means a family of vertically shifted curves. Since the derivative (slope) is the same regardless of vertical height, we must account for all possible vertical starting positions.', []),
 
             (12, 
-             'How does **Optimization** (finding global max/min) on a *closed* interval [a, b] differ from an *open* interval?', 
+             'How does Optimization (finding global max/min) on a *closed* interval [a, b] differ from an *open* interval?', 
              'On a closed interval, you MUST check the endpoints (f(a) and f(b)) in addition to the critical points. The absolute max/min could occur at the very edge of the domain.', [])
         ]
 
@@ -1264,7 +1264,7 @@ class Command(BaseCommand):
              '1. Find $f\'(x) = 6x^2 - 18x + 12$.\n2. Set to 0: $6(x^2 - 3x + 2) = 0$.\n3. Factor: $6(x-1)(x-2) = 0$.\n4. Critical points at $x=1, x=2$.'),
 
             (2, 
-             'Determine the intervals where $f(x) = x^3 - 12x$ is **Decreasing**.', 
+             'Determine the intervals where $f(x) = x^3 - 12x$ is Decreasing.', 
              '(-2, 2)', 
              '1. $f\'(x) = 3x^2 - 12$.\n2. Critical points: $3(x^2 - 4) = 0 \\to x = \\pm 2$.\n3. Test intervals: For $x=0$ (between -2 and 2), $f\'(0) = -12$ (Negative).\n4. Since $f\' < 0$, it is decreasing on $(-2, 2)$.'),
 
@@ -1279,7 +1279,7 @@ class Command(BaseCommand):
              '1. Average slope: $(f(4)-f(0))/(4-0) = (16-0)/4 = 4$.\n2. Instantaneous slope: $f\'(c) = 2c$.\n3. Set equal: $2c = 4 \\to c = 2$.'),
 
             (5, 
-             'Use the **Second Derivative Test** to classify the critical point $x=0$ for $f(x) = 1 - x^2$.', 
+             'Use the Second Derivative Test to classify the critical point $x=0$ for $f(x) = 1 - x^2$.', 
              'Local Maximum', 
              '1. $f\'(x) = -2x$. Critical point at $x=0$.\n2. $f\'\'(x) = -2$.\n3. Evaluate: $f\'\'(0) = -2$ (Negative).\n4. Negative concavity means a frown, so it is a Maximum.'),
 
@@ -1304,7 +1304,7 @@ class Command(BaseCommand):
              'Logarithms grow much slower than polynomials. Using L\'Hopital: Deriv top is $1/x$, Deriv bottom is 1. Limit $(1/x)/1$ as $x \\to \\infty$ is 0.'),
 
             (10, 
-             'Find the point of **inflection** for $f(x) = x^3 - 6x^2$.', 
+             'Find the point of inflection for $f(x) = x^3 - 6x^2$.', 
              'x = 2', 
              '1. $f\'(x) = 3x^2 - 12x$.\n2. $f\'\'(x) = 6x - 12$.\n3. Set $f\'\' = 0 \\to 6x = 12 \\to x = 2$.\n4. Check sign change: $f\'\'(1) = -6$, $f\'\'(3) = +6$. Signs change, so it is an inflection point.'),
 
@@ -1383,11 +1383,11 @@ class Command(BaseCommand):
              '$1 / (1 + x^2)$', []),
 
             (4, 
-             'Why does L\'Hôpital\'s Rule **fail** for the limit $\\lim_{x \\to \\infty} \\frac{x + \\sin x}{x}$? Explain structurally.', 
+             'Why does L\'Hôpital\'s Rule fail for the limit $\\lim_{x \\to \\infty} \\frac{x + \\sin x}{x}$? Explain structurally.', 
              'Because the derivative of the top is $1 + \\cos x$. As $x \\to \\infty$, this oscillates and has no limit. L\'Hôpital requires the limit of the derivatives to exist. (You must solve this by dividing by x instead).', []),
 
             (5, 
-             'If $f\'(x)$ represents velocity, what physical concept corresponds to an **Inflection Point** on the position graph?', 
+             'If $f\'(x)$ represents velocity, what physical concept corresponds to an Inflection Point on the position graph?', 
              'An inflection point on position is where Concavity changes. Concavity corresponds to Acceleration. So, it is the moment where acceleration changes from positive to negative (jerk), or maximum speed.', []),
 
             (6, 
@@ -1407,7 +1407,7 @@ class Command(BaseCommand):
              'It approaches 0. Negative exponents mean "1 over e^x". As denominator gets huge, fraction goes to 0.', []),
 
             (10, 
-             'Visually, if f\'(x) is an **Odd Function** (symmetric origin), what symmetry does the graph of f(x) likely have?', 
+             'Visually, if f\'(x) is an Odd Function (symmetric origin), what symmetry does the graph of f(x) likely have?', 
              'If the slopes are symmetric odd (like $x^2$ slopes are linear), the function is often Even (symmetric Y-axis). (e.g., antideriv of $x$ is $x^2/2$).', []),
 
             (11, 
@@ -1546,7 +1546,7 @@ class Command(BaseCommand):
         # (Order, Text, Model Answer, Explanation)
         questions_data_17 = [
             (1, 
-             'Find the open intervals where $f(x) = xe^{-x}$ is **Increasing**.', 
+             'Find the open intervals where $f(x) = xe^{-x}$ is Increasing.', 
              '(-infinity, 1)', 
              '1. Product Rule: $f\'(x) = 1 \\cdot e^{-x} + x(-e^{-x})$.\n2. Factor: $e^{-x}(1 - x)$.\n3. Critical pt at $x=1$ (since $e^{-x}$ is never 0).\n4. Test $x=0$: $1(1) = +$. Test $x=2$: $e^{-2}(-1) = -$.\n5. Increasing where positive: $(-\\infty, 1)$.'),
 
