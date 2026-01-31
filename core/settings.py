@@ -82,6 +82,7 @@ SOCIALACCOUNT_PROVIDERS = {
 # Social Account Configuration
 SOCIALACCOUNT_AUTO_SIGNUP = True
 SOCIALACCOUNT_EMAIL_VERIFICATION = "none" # Optional: trust the provider if they verify emails
+SOCIALACCOUNT_EMAIL_AUTHENTICATION = True
 
 # AllAuth Configuration
 ACCOUNT_EMAIL_REQUIRED = True

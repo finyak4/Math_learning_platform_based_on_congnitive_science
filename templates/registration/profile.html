@@ -222,7 +222,7 @@
     {% else %}
     <div class="empty-state">
         <p style="font-size: 1.1rem; color: #64748b; margin-bottom: 1.5rem;">You haven't taken any quizzes yet.</p>
-        <a href="{% url 'quiz_list' %}" class="btn-action">Take a Quiz</a>
+        <a href="{% url 'quizzes:quiz_list' %}" class="btn-action">Take a Quiz</a>
     </div>
     {% endif %}
 </div>

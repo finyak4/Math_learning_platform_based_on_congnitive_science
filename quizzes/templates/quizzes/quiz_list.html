@@ -14,9 +14,9 @@
 
     <!-- Subject Tabs -->
     <div class="tabs-container">
-        <a href="{% url 'quiz_list_subject' 'calculus' %}" class="tab {% if active_tab == 'calculus' %}active{% endif %}">Calculus</a>
-        <a href="{% url 'quiz_list_subject' 'linear-algebra' %}" class="tab {% if active_tab == 'linear-algebra' %}active{% endif %}">Linear Algebra</a>
-        <a href="{% url 'quiz_list_subject' 'statistics' %}" class="tab {% if active_tab == 'statistics' %}active{% endif %}">Statistics</a>
+        <a href="{% url 'quizzes:quiz_list_subject' 'calculus' %}" class="tab {% if active_tab == 'calculus' %}active{% endif %}">Calculus</a>
+        <a href="{% url 'quizzes:quiz_list_subject' 'linear-algebra' %}" class="tab {% if active_tab == 'linear-algebra' %}active{% endif %}">Linear Algebra</a>
+        <a href="{% url 'quizzes:quiz_list_subject' 'statistics' %}" class="tab {% if active_tab == 'statistics' %}active{% endif %}">Statistics</a>
     </div>
 
     <!-- SRS Section -->
@@ -50,7 +50,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
                             <span>Ready for Review</span>
                         </div>
-                        <a href="{% url 'take_quiz' card.quiz.quiz_id %}" class="btn-srs">Start Review</a>
+                        <a href="{% url 'quizzes:take_quiz' card.quiz.quiz_id %}" class="btn-srs">Start Review</a>
                     {% endif %}
                 </div>
             </article>
@@ -94,7 +94,7 @@
                 </div>
 
                 {% if current_subject or current_type or current_eval %}
-                <a href="{% url 'quiz_list' %}" class="clear-filters">
+                <a href="{% url 'quizzes:quiz_list' %}" class="clear-filters">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                     Clear Musts
                 </a>
@@ -104,7 +104,7 @@
 
         <div class="quiz-grid">
             {% for quiz in quizzes %}
-            <article class="quiz-card" onclick="window.location.href='{% url 'take_quiz' quiz.quiz_id %}'" style="cursor: pointer;">
+            <article class="quiz-card" onclick="window.location.href='{% url 'quizzes:take_quiz' quiz.quiz_id %}'" style="cursor: pointer;">
                 <div class="quiz-card-top">
                     <div class="topic-chip">{{ quiz.subject }}</div>
                     <div class="meta-chip">
@@ -132,7 +132,7 @@
             {% empty %}
             <div class="empty-state">
                 <p>No quizzes found matching your criteria.</p>
-                <a href="{% url 'quiz_list' %}" class="btn-reset">Reset Filters</a>
+                <a href="{% url 'quizzes:quiz_list' %}" class="btn-reset">Reset Filters</a>
             </div>
             {% endfor %}
         </div>

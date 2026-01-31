@@ -140,7 +140,7 @@
     </div>
     {% endif %}
 
-    <form method="post" action="{% url 'submit_quiz' quiz.quiz_id %}">
+    <form method="post" action="{% url 'quizzes:submit_quiz' quiz.quiz_id %}">
         {% csrf_token %}
 
         <div class="quiz-card">
