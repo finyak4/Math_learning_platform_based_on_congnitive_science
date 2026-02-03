@@ -330,7 +330,7 @@ def get_linear_algebra_quizzes():
         {
             'title': 'Gaussian Elimination & Pivots',
             'type': Quiz.QuizType.THEORETICAL,
-            'eval_method': Quiz.EvaluationMethod.SELF_EVAL,
+            'eval_method': Quiz.EvaluationMethod.AUTOMATED,
             'domain': Quiz.Domain.LINEAR_ALGEBRA,
             'subject': Quiz.Subject.MECHANICS,
             'topic': 'Solving Linear Equations',
@@ -380,7 +380,7 @@ def get_linear_algebra_quizzes():
                 },
                 {
                     "question_order": 7,
-                    "question_text": "The Gauss-Jordan method solves for $A$ inverse by applying elimination to the augmented matrix $[A \\ | \\ I]$. Fill in the blank.",
+                    "question_text": "The Gauss-Jordan method solves for $A$ inverse by applying elimination to the augmented matrix $[A \\ | \\ ...]$. Fill in the blank.",
                     "model_answer": "I",
                     "accepted_answers": ["I", "Identity", "Identity matrix"],
                     "explanation": "We transform $[A \\ | \\ I]$ into $[I \\ | \\ A^{-1}]$."
@@ -492,7 +492,7 @@ def get_linear_algebra_quizzes():
         {
             'title': 'LU Factorization & Transposes',
             'type': Quiz.QuizType.THEORETICAL,
-            'eval_method': Quiz.EvaluationMethod.SELF_EVAL,
+            'eval_method': Quiz.EvaluationMethod.AUTOMATED,
             'domain': Quiz.Domain.LINEAR_ALGEBRA,
             'subject': Quiz.Subject.MECHANICS,
             'topic': 'Solving Linear Equations',
@@ -972,191 +972,6 @@ def get_linear_algebra_quizzes():
                     "model_answer": "6. You can choose the 3 diagonal entries and the 3 upper-triangle entries freely. The lower entries are forced by symmetry.",
                     "accepted_answers": [],
                     "explanation": "3 (diagonal) + 3 (off-diagonal) = 6."
-                }
-            ]
-        },
-        # REVISION QUIZZES
-        {
-            'title': 'Vector Spaces: Revision 1',
-            'type': Quiz.QuizType.REVISION,
-            'eval_method': Quiz.EvaluationMethod.AUTOMATED,
-            'domain': Quiz.Domain.LINEAR_ALGEBRA,
-            'subject': Quiz.Subject.MECHANICS,
-            'topic': 'Vector Spaces',
-            'description': "Review: Subspaces and Nullspaces (Unique Questions).",
-            'questions': [
-                {
-                    "question_order": 1,
-                    "question_text": "Is the set of all polynomials of degree exactly 2 a subspace of the vector space of all polynomials?",
-                    "model_answer": "No",
-                    "accepted_answers": ["No", "no"],
-                    "explanation": "Not closed under addition. (x^2 + x) + (-x^2) = x, which has degree 1."
-                },
-                {
-                    "question_order": 2,
-                    "question_text": "Is the set of all integer vectors (coordinates are integers) a subspace of R^2?",
-                    "model_answer": "No",
-                    "accepted_answers": ["No", "no"],
-                    "explanation": "Not closed under scalar multiplication (e.g., multiply by 0.5)."
-                },
-                {
-                    "question_order": 3,
-                    "question_text": "True or False: The intersection of any two subspaces is always a subspace.",
-                    "model_answer": "True",
-                    "accepted_answers": ["True", "true", "yes"],
-                    "explanation": "If u, v are in both, then cu+dv is in both."
-                },
-                {
-                    "question_order": 4,
-                    "question_text": "True or False: The union of any two subspaces is always a subspace.",
-                    "model_answer": "False",
-                    "accepted_answers": ["False", "false", "no"],
-                    "explanation": "Take the x-axis and y-axis. Their sum contains (1,1), which is not in the union."
-                },
-                {
-                    "question_order": 5,
-                    "question_text": "Does every subspace W of V (where V is an n-dimensional vector space) contain the zero vector?",
-                    "model_answer": "Yes",
-                    "accepted_answers": ["Yes", "yes"],
-                    "explanation": "0 must be in any subspace."
-                }
-            ]
-        },
-        {
-            'title': 'Vector Spaces: Revision 2',
-            'type': Quiz.QuizType.REVISION,
-            'eval_method': Quiz.EvaluationMethod.AUTOMATED,
-            'domain': Quiz.Domain.LINEAR_ALGEBRA,
-            'subject': Quiz.Subject.MECHANICS,
-            'topic': 'Vector Spaces',
-            'description': "Review: Basis, Dimension, and Rank (Unique Questions).",
-            'questions': [
-                {
-                    "question_order": 1,
-                    "question_text": "Can a basis for a vector space ever contain the zero vector?",
-                    "model_answer": "No",
-                    "accepted_answers": ["No", "no"],
-                    "explanation": "The zero vector makes the set linearly dependent."
-                },
-                {
-                    "question_order": 2,
-                    "question_text": "If a vector space V has dimension n, is it possible to have n+1 linearly independent vectors in V?",
-                    "model_answer": "No",
-                    "accepted_answers": ["No", "no"],
-                    "explanation": "Max independent vectors = dimension."
-                },
-                {
-                    "question_order": 3,
-                    "question_text": "If dim(V) = n, can a set of n-1 vectors span V?",
-                    "model_answer": "No",
-                    "accepted_answers": ["No", "no"],
-                    "explanation": "You need at least n vectors to span an n-dimensional space."
-                },
-                {
-                    "question_order": 4,
-                    "question_text": "A basis is a ______ generating set for a vector space.",
-                    "model_answer": "minimal",
-                    "accepted_answers": ["minimal", "smallest"],
-                    "explanation": "If you remove any vector, it no longer spans."
-                },
-                {
-                    "question_order": 5,
-                    "question_text": "Is the basis for a vector space unique (only one possible basis)?",
-                    "model_answer": "No",
-                    "accepted_answers": ["No", "no"],
-                    "explanation": "There are infinitely many bases (e.g., rotate the axes)."
-                },
-                {
-                    "question_order": 6,
-                    "question_text": "Is the dimension of a vector space unique?",
-                    "model_answer": "Yes",
-                    "accepted_answers": ["Yes", "yes"],
-                    "explanation": "Every basis has the same number of vectors."
-                }
-            ]
-        },
-        {
-            'title': 'Vector Spaces: Revision 3',
-            'type': Quiz.QuizType.REVISION,
-            'eval_method': Quiz.EvaluationMethod.SELF_EVAL,
-            'domain': Quiz.Domain.LINEAR_ALGEBRA,
-            'subject': Quiz.Subject.MECHANICS,
-            'topic': 'Vector Spaces',
-            'description': "Review: The Four Subspaces (Unique Questions).",
-            'questions': [
-                {
-                    "question_order": 1,
-                    "question_text": "The Row Space and the Nullspace are orthogonal complements in which space: R^n or R^m?",
-                    "model_answer": "R^n",
-                    "accepted_answers": [],
-                    "explanation": "They live in the input space (n components)."
-                },
-                {
-                    "question_order": 2,
-                    "question_text": "The Column Space and the Left Nullspace are orthogonal complements in which space?",
-                    "model_answer": "R^m",
-                    "accepted_answers": [],
-                    "explanation": "They live in the output space (m components)."
-                },
-                {
-                    "question_order": 3,
-                    "question_text": "Formula: Dim(Column Space) + Dim(Left Nullspace) = ______.",
-                    "model_answer": "m",
-                    "accepted_answers": [],
-                    "explanation": "r + (m-r) = m."
-                },
-                {
-                    "question_order": 4,
-                    "question_text": "Formula: Dim(Row Space) + Dim(Nullspace) = ______.",
-                    "model_answer": "n",
-                    "accepted_answers": [],
-                    "explanation": "r + (n-r) = n."
-                },
-                {
-                    "question_order": 5,
-                    "question_text": "If Matrix A is symmetric, its Row Space is identical to its ______ Space.",
-                    "model_answer": "Column",
-                    "accepted_answers": [],
-                    "explanation": "Rows equals Columns for symmetric matrices."
-                }
-            ]
-        },
-        {
-            'title': 'Vector Spaces: Revision 4',
-            'type': Quiz.QuizType.REVISION,
-            'eval_method': Quiz.EvaluationMethod.SELF_EVAL,
-            'domain': Quiz.Domain.LINEAR_ALGEBRA,
-            'subject': Quiz.Subject.MECHANICS,
-            'topic': 'Vector Spaces',
-            'description': "Review: Fundamental Theorem (Unique Questions).",
-            'questions': [
-                {
-                    "question_order": 1,
-                    "question_text": "Does the Rank of A always equal the Rank of A Transpose?",
-                    "model_answer": "Yes",
-                    "accepted_answers": [],
-                    "explanation": "Row rank always equals column rank."
-                },
-                {
-                    "question_order": 2,
-                    "question_text": "For an m x n matrix, if rank r = n, what does the Nullspace contain?",
-                    "model_answer": "Only the zero vector {0}.",
-                    "accepted_answers": [],
-                    "explanation": "Full column rank means no free variables."
-                },
-                {
-                    "question_order": 3,
-                    "question_text": "If rank r = m (full row rank), then the Column Space is equal to ______.",
-                    "model_answer": "R^m",
-                    "accepted_answers": [],
-                    "explanation": "We can solve Ax=b for every b."
-                },
-                {
-                    "question_order": 4,
-                    "question_text": "The Singular Value Decomposition (SVD) writes matrix A as a sum of rank-______ matrices.",
-                    "model_answer": "1",
-                    "accepted_answers": [],
-                    "explanation": "A = sum(sigma_i * u_i * v_i^T)."
                 }
             ]
         }

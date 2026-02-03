@@ -63,6 +63,12 @@ class Command(BaseCommand):
             (2, 'Solving Linear Equations: Revision 2', 'Solving Linear Equations'),
             (3, 'Solving Linear Equations: Revision 3', 'Solving Linear Equations'),
             (4, 'Solving Linear Equations: Revision 4', 'Solving Linear Equations'),
+
+            # Linear Algebra: Vector Spaces
+            (1, 'Vector Spaces: Revision 1', 'Vector Spaces'),
+            (2, 'Vector Spaces: Revision 2', 'Vector Spaces'),
+            (3, 'Vector Spaces: Revision 3', 'Vector Spaces'),
+            (4, 'Vector Spaces: Revision 4', 'Vector Spaces'),
         ]
 
         # Common description for all revision quizzes
@@ -73,8 +79,8 @@ class Command(BaseCommand):
             quiz, created = Quiz.objects.get_or_create(
                 title=title,
                 defaults={
-                    'domain': Quiz.Domain.LINEAR_ALGEBRA if topic in ['Vectors & Matrices', 'Solving Linear Equations'] else (Quiz.Domain.STATISTICS if topic == 'Probability and Counting' else Quiz.Domain.CALCULUS),
-                    'subject': Quiz.Subject.MECHANICS if topic in ['Vectors & Matrices', 'Solving Linear Equations'] 
+                    'domain': Quiz.Domain.LINEAR_ALGEBRA if topic in ['Vectors & Matrices', 'Solving Linear Equations', 'Vector Spaces'] else (Quiz.Domain.STATISTICS if topic == 'Probability and Counting' else Quiz.Domain.CALCULUS),
+                    'subject': Quiz.Subject.MECHANICS if topic in ['Vectors & Matrices', 'Solving Linear Equations', 'Vector Spaces'] 
                                else (Quiz.Subject.PROBABILITY if topic == 'Probability and Counting' else (Quiz.Subject.CALCULUS_2 if topic in ['Integrals', 'Techniques', 'Sequences & Series'] else Quiz.Subject.CALCULUS_1)),
                     'topic': topic,
                     'quiz_type': Quiz.QuizType.REVISION,
@@ -90,7 +96,7 @@ class Command(BaseCommand):
                 quiz.evaluation_method = Quiz.EvaluationMethod.SELF_EVAL
                 
                 # Ensure Domain/Subject are correct for existing quizzes
-                if topic in ['Vectors & Matrices', 'Solving Linear Equations']:
+                if topic in ['Vectors & Matrices', 'Solving Linear Equations', 'Vector Spaces']:
                     quiz.domain = Quiz.Domain.LINEAR_ALGEBRA
                     quiz.subject = Quiz.Subject.MECHANICS
                 elif topic == 'Probability and Counting':
@@ -462,6 +468,44 @@ class Command(BaseCommand):
                         (4, "Can Probability be negative?", "No.", None),
                         (5, "Why divide by $n$ for circular arrangements?", "To account for $n$ rotations being identical.", None),
                         (6, "Complement of 'All heads'?", "At least one tail.", None),
+                     ]
+            # ================= LIN ALG: VECTOR SPACES =================
+            elif topic == 'Vector Spaces':
+                if level == 1:
+                    questions_data = [
+                        (1, "Is the set of all polynomials of degree exactly 2 a subspace?", "No", "Not closed under addition (x^2 + x - x^2 = x, degree 1)."),
+                        (2, "Is the set of integer vectors a subspace of R^2?", "No", "Not closed under scalar multiplication (e.g. 0.5 * v)."),
+                        (3, "True/False: Intersection of two subspaces is a subspace.", "True", "If u,v in both, their combination is in both."),
+                        (4, "True/False: Union of two subspaces is a subspace.", "False", "Sum of elements from each might not be in either."),
+                        (5, "Does every subspace contain the zero vector?", "Yes", "Required property."),
+                        (6, "Is the line y=3x+1 a subspace of R^2?", "No", "It does not pass through the origin (0,0)."),
+                    ]
+                elif level == 2:
+                    questions_data = [
+                        (1, "Can a basis contain the zero vector?", "No", "Zero vector creates dependence."),
+                        (2, "Max number of independent vectors in n-dim space?", "n", None),
+                        (3, "Can n-1 vectors span an n-dim space?", "No", "Not enough vectors."),
+                        (4, "A basis is a ______ generating set.", "Minimal", "Removing any vector breaks the span."),
+                        (5, "Is the basis for a vector space unique?", "No", "Infinitely many bases exist."),
+                        (6, "Is the dimension of a vector space unique?", "Yes", "All bases have the same count."),
+                    ]
+                elif level == 3:
+                     questions_data = [
+                        (1, "Row Space is orthogonal complement to Nullspace in...?", "R^n", "Input space."),
+                        (2, "Column Space is orthogonal complement to Left Nullspace in...?", "R^m", "Output space."),
+                        (3, "Dim(Column Space) + Dim(Left Nullspace) = ?", "m", "Rank + (m-r) = m."),
+                        (4, "Dim(Row Space) + Dim(Nullspace) = ?", "n", "Rank + (n-r) = n."),
+                        (5, "For symmetric matrix, Row Space equals ______?", "Column Space", "A = A^T."),
+                        (6, "Which subspace contains the error term e = b - Ax?", "Left Nullspace", "Error is orthogonal to C(A)."),
+                     ]
+                elif level == 4:
+                     questions_data = [
+                        (1, "Does Rank(A) always equal Rank(A^T)?", "Yes", "Fundamental Theorem."),
+                        (2, "If Rank r=n, what is the Nullspace?", "{0}", "Zero vector only."),
+                        (3, "If Rank r=m, what is the Column Space?", "R^m", "Full row rank."),
+                        (4, "SVD sum of rank-______ matrices?", "1", "sigma * u * v^T."),
+                        (5, "Dimension of Column Space is also known as ______.", "Rank", None),
+                        (6, "If A is 4x3 and rank is 3, dimension of Nullspace?", "0", "3 - 3 = 0."),
                      ]
             # Create Questions
             for order, text, answer, explanation in questions_data:

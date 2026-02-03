@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .models import Quiz, Question, QuizAttempt, TopicState
 from django.utils import timezone
 from datetime import timedelta
@@ -148,6 +149,7 @@ def take_quiz(request, quiz_id):
     
     # Check if already attempted
     if QuizAttempt.objects.filter(user=request.user, quiz=quiz).exists():
+        messages.warning(request, "You have already attempted this quiz.")
         # Redirect to results or profile (for now, simply redirect to list)
         return redirect('quizzes:quiz_list')
 
@@ -158,6 +160,7 @@ def take_quiz(request, quiz_id):
         'quiz': quiz,
         'questions': questions,
     }
+    return render(request, 'quizzes/quiz_take.html', context)
 
 @login_required
 def submit_quiz(request, quiz_id):
@@ -165,21 +168,65 @@ def submit_quiz(request, quiz_id):
         return redirect('quizzes:take_quiz', quiz_id=quiz_id)
         
     quiz = get_object_or_404(Quiz, pk=quiz_id)
+
+    # Check if already attempted to prevent double submission
+    if QuizAttempt.objects.filter(user=request.user, quiz=quiz).exists():
+        messages.warning(request, "You have already submitted this quiz.")
+        return redirect('quizzes:quiz_list')
+
     questions = quiz.question_set.all().order_by('question_order')
     
     score = 0
     total = questions.count()
-    
-    for q in questions:
-        # Assuming input name is 'answer_QUESTIONID' or similar?
-        # Let's check quiz_take.html? No time. Standardize on question_{id}
-        user_answer = request.POST.get(f'question_{q.question_id}')
+    results = []
+
+    # Check for Self-Evaluation flow
+    if quiz.evaluation_method == Quiz.EvaluationMethod.SELF_EVAL:
+        # STAGE 1: If 'final_submit' is NOT present, render the self-evaluation page
+        if request.POST.get('final_submit') != 'true':
+            user_answers = {}
+            for q in questions:
+                user_answers[q.question_id] = request.POST.get(f'question_{q.question_id}')
+            
+            context = {
+                'quiz': quiz,
+                'questions': questions,
+                'user_answers': user_answers,
+            }
+            return render(request, 'quizzes/quiz_self_eval.html', context)
         
-        if user_answer:
-            # Check against model answer / accepted answers
-            candidates = [q.model_answer] + (q.accepted_answers if q.accepted_answers else [])
-            if is_similar(user_answer, candidates):
-                 score += 1
+        # STAGE 2: 'final_submit' IS present - User has graded themselves
+        else:
+            for q in questions:
+                # Checkbox name is "correct_{id}"
+                is_marked_correct = request.POST.get(f'correct_{q.question_id}') == 'on'
+                if is_marked_correct:
+                    score += 1
+                
+                results.append({
+                    'question': q,
+                    'user_answer': "Self Evaluated",  # We don't persist the text answer across the second form submission currently
+                    'is_correct': is_marked_correct
+                })
+
+    else:
+        # AUTOMATED Grading
+        for q in questions:
+            user_answer = request.POST.get(f'question_{q.question_id}')
+            is_correct = False
+            
+            if user_answer:
+                # Check against model answer / accepted answers
+                candidates = [q.model_answer] + (q.accepted_answers if q.accepted_answers else [])
+                if is_similar(user_answer, candidates):
+                     score += 1
+                     is_correct = True
+            
+            results.append({
+                'question': q,
+                'user_answer': user_answer if user_answer else "No Answer",
+                'is_correct': is_correct
+            })
     
     percentage = (score / total) * 100 if total > 0 else 0
     
@@ -191,13 +238,55 @@ def submit_quiz(request, quiz_id):
         percentage=percentage
     )
     
+    # SRS Logic
+    if percentage >= 70:
+        if quiz.quiz_type == Quiz.QuizType.REVISION:
+            # Updating existing TopicState
+            try:
+                state = TopicState.objects.get(user=request.user, topic=quiz.topic)
+                state.current_level += 1
+                state.last_reviewed_at = timezone.now()
+                # Simple Spaced Repetition Interval: 
+                # Level 1 -> 1 day, Level 2 -> 3 days, Level 3 -> 7 days, Level 4 -> 14 days
+                days_to_add = 1
+                if state.current_level == 2:
+                    days_to_add = 3
+                elif state.current_level == 3:
+                     days_to_add = 7
+                elif state.current_level >= 4:
+                     days_to_add = 14
+                     
+                state.next_review_at = timezone.now() + timedelta(days=days_to_add)
+                state.save()
+                messages.success(request, f"Great job! Revision completed. Next review in {days_to_add} days.")
+            except TopicState.DoesNotExist:
+                # Should not happen if flow is correct, but safe fallback
+                pass
+        
+        elif (quiz.quiz_type == Quiz.QuizType.THEORETICAL or quiz.quiz_type == Quiz.QuizType.PRACTICAL) and quiz.evaluation_method == Quiz.EvaluationMethod.SELF_EVAL:
+             # Standard Quiz passed -> Initialize TopicState if not exists
+             # For simpler logic, passing ANY standard quiz in a topic initializes the SRS loop
+             # But we only want to Init it once.
+             state, created = TopicState.objects.get_or_create(
+                 user=request.user,
+                 topic=quiz.topic,
+                 defaults={
+                     'current_level': 0,
+                     'last_reviewed_at': timezone.now(),
+                     'next_review_at': timezone.now() + timedelta(days=1)
+                 }
+             )
+             if created:
+                 messages.info(request, f"Topic '{quiz.topic}' added to your Revision Schedule!")
+    
     # Render Result
     context = {
         'quiz': quiz,
         'score': score,
         'total': total,
         'percentage': percentage,
-        'questions': questions # Might be useful for review
+        'results': results,
+        'is_self_eval': quiz.evaluation_method == Quiz.EvaluationMethod.SELF_EVAL
     }
     return render(request, 'quizzes/quiz_result.html', context)
 
