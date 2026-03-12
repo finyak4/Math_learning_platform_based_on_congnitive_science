@@ -80,7 +80,7 @@ class Command(BaseCommand):
                 title=title,
                 defaults={
                     'domain': Quiz.Domain.LINEAR_ALGEBRA if topic in ['Vectors & Matrices', 'Solving Linear Equations', 'Vector Spaces'] else (Quiz.Domain.STATISTICS if topic == 'Probability and Counting' else Quiz.Domain.CALCULUS),
-                    'subject': Quiz.Subject.MECHANICS if topic in ['Vectors & Matrices', 'Solving Linear Equations', 'Vector Spaces'] 
+                    'subject': Quiz.Subject.FOUNDATIONS if topic in ['Vectors & Matrices', 'Solving Linear Equations', 'Vector Spaces'] 
                                else (Quiz.Subject.PROBABILITY if topic == 'Probability and Counting' else (Quiz.Subject.CALCULUS_2 if topic in ['Integrals', 'Techniques', 'Sequences & Series'] else Quiz.Subject.CALCULUS_1)),
                     'topic': topic,
                     'quiz_type': Quiz.QuizType.REVISION,
@@ -98,7 +98,7 @@ class Command(BaseCommand):
                 # Ensure Domain/Subject are correct for existing quizzes
                 if topic in ['Vectors & Matrices', 'Solving Linear Equations', 'Vector Spaces']:
                     quiz.domain = Quiz.Domain.LINEAR_ALGEBRA
-                    quiz.subject = Quiz.Subject.MECHANICS
+                    quiz.subject = Quiz.Subject.FOUNDATIONS
                 elif topic == 'Probability and Counting':
                     quiz.domain = Quiz.Domain.STATISTICS
                     quiz.subject = Quiz.Subject.PROBABILITY

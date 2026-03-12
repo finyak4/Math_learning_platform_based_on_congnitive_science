@@ -115,7 +115,7 @@ def quiz_list(request, subject_slug='calculus'):
     visible_subjects = []
     if subject_slug == 'linear-algebra':
         visible_subjects = [
-            (Quiz.Subject.MECHANICS, 'Mechanics')
+            (Quiz.Subject.FOUNDATIONS, 'Foundations')
         ]
     elif subject_slug == 'statistics':
         visible_subjects = [

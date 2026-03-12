@@ -14,7 +14,8 @@ class Quiz(models.Model):
         
         PROBABILITY = 'Probability', 'Probability'
 
-        MECHANICS = 'Mechanics', 'Mechanics'
+        FOUNDATIONS = 'Foundations', 'Foundations'
+        GEOMETRY_AND_VOLUME = 'Geometry & Volume', 'Geometry & Volume'
         # Focus: The basics of how matrices work and how to solve systems.
 
     class QuizType(models.TextChoices):

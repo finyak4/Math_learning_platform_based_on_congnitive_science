@@ -8,7 +8,7 @@ def get_linear_algebra_quizzes():
             'type': Quiz.QuizType.THEORETICAL,
             'eval_method': Quiz.EvaluationMethod.AUTOMATED,
             'domain': Quiz.Domain.LINEAR_ALGEBRA,
-            'subject': Quiz.Subject.MECHANICS,
+            'subject': Quiz.Subject.FOUNDATIONS,
             'topic': 'Vectors & Matrices',
             'description': "Practice with dot products, norms, and vector properties. Automatically graded.",
             'questions': [
@@ -89,7 +89,7 @@ def get_linear_algebra_quizzes():
             'type': Quiz.QuizType.THEORETICAL,
             'eval_method': Quiz.EvaluationMethod.SELF_EVAL,
             'domain': Quiz.Domain.LINEAR_ALGEBRA,
-            'subject': Quiz.Subject.MECHANICS,
+            'subject': Quiz.Subject.FOUNDATIONS,
             'topic': 'Vectors & Matrices',
             'description': "Conceptual understanding of vector geometry and linear combinations. Self-graded.",
             'questions': [
@@ -170,7 +170,7 @@ def get_linear_algebra_quizzes():
             'type': Quiz.QuizType.THEORETICAL,
             'eval_method': Quiz.EvaluationMethod.AUTOMATED,
             'domain': Quiz.Domain.LINEAR_ALGEBRA,
-            'subject': Quiz.Subject.MECHANICS,
+            'subject': Quiz.Subject.FOUNDATIONS,
             'topic': 'Vectors & Matrices',
             'description': "Matrix operations check.",
             'questions': [
@@ -251,7 +251,7 @@ def get_linear_algebra_quizzes():
             'type': Quiz.QuizType.THEORETICAL,
             'eval_method': Quiz.EvaluationMethod.SELF_EVAL,
             'domain': Quiz.Domain.LINEAR_ALGEBRA,
-            'subject': Quiz.Subject.MECHANICS,
+            'subject': Quiz.Subject.FOUNDATIONS,
             'topic': 'Vectors & Matrices',
             'description': "Understanding matrix algebra, inverses, and partitions.",
             'questions': [
@@ -332,7 +332,7 @@ def get_linear_algebra_quizzes():
             'type': Quiz.QuizType.THEORETICAL,
             'eval_method': Quiz.EvaluationMethod.AUTOMATED,
             'domain': Quiz.Domain.LINEAR_ALGEBRA,
-            'subject': Quiz.Subject.MECHANICS,
+            'subject': Quiz.Subject.FOUNDATIONS,
             'topic': 'Solving Linear Equations',
             'description': "Understanding pivots, multipliers, and elimination steps.",
             'questions': [
@@ -413,7 +413,7 @@ def get_linear_algebra_quizzes():
             'type': Quiz.QuizType.THEORETICAL,
             'eval_method': Quiz.EvaluationMethod.SELF_EVAL,
             'domain': Quiz.Domain.LINEAR_ALGEBRA,
-            'subject': Quiz.Subject.MECHANICS,
+            'subject': Quiz.Subject.FOUNDATIONS,
             'topic': 'Solving Linear Equations',
             'description': "Understanding invertibility, failure cases, and geometric interpretations.",
             'questions': [
@@ -494,7 +494,7 @@ def get_linear_algebra_quizzes():
             'type': Quiz.QuizType.THEORETICAL,
             'eval_method': Quiz.EvaluationMethod.AUTOMATED,
             'domain': Quiz.Domain.LINEAR_ALGEBRA,
-            'subject': Quiz.Subject.MECHANICS,
+            'subject': Quiz.Subject.FOUNDATIONS,
             'topic': 'Solving Linear Equations',
             'description': "LU decomposition, permutation matrices, and symmetric rules.",
             'questions': [
@@ -575,7 +575,7 @@ def get_linear_algebra_quizzes():
             'type': Quiz.QuizType.THEORETICAL,
             'eval_method': Quiz.EvaluationMethod.SELF_EVAL,
             'domain': Quiz.Domain.LINEAR_ALGEBRA,
-            'subject': Quiz.Subject.MECHANICS,
+            'subject': Quiz.Subject.FOUNDATIONS,
             'topic': 'Solving Linear Equations',
             'description': "Advanced logic behind elimination, L, U, P, and symmetry.",
             'questions': [
@@ -656,7 +656,7 @@ def get_linear_algebra_quizzes():
             'type': Quiz.QuizType.THEORETICAL,
             'eval_method': Quiz.EvaluationMethod.AUTOMATED,
             'domain': Quiz.Domain.LINEAR_ALGEBRA,
-            'subject': Quiz.Subject.MECHANICS,
+            'subject': Quiz.Subject.FOUNDATIONS,
             'topic': 'Vector Spaces',
             'description': "Concepts of subspaces, nullspace, and rank. Automatically graded.",
             'questions': [
@@ -737,7 +737,7 @@ def get_linear_algebra_quizzes():
             'type': Quiz.QuizType.THEORETICAL,
             'eval_method': Quiz.EvaluationMethod.AUTOMATED,
             'domain': Quiz.Domain.LINEAR_ALGEBRA,
-            'subject': Quiz.Subject.MECHANICS,
+            'subject': Quiz.Subject.FOUNDATIONS,
             'topic': 'Vector Spaces',
             'description': "Understanding basis vectors, dimension, and solvability conditions. Automatically graded.",
             'questions': [
@@ -818,7 +818,7 @@ def get_linear_algebra_quizzes():
             'type': Quiz.QuizType.THEORETICAL,
             'eval_method': Quiz.EvaluationMethod.SELF_EVAL,
             'domain': Quiz.Domain.LINEAR_ALGEBRA,
-            'subject': Quiz.Subject.MECHANICS,
+            'subject': Quiz.Subject.FOUNDATIONS,
             'topic': 'Vector Spaces',
             'description': "Deep dive into Column Space, Nullspace, spanning, and independence.",
             'questions': [
@@ -899,7 +899,7 @@ def get_linear_algebra_quizzes():
             'type': Quiz.QuizType.THEORETICAL,
             'eval_method': Quiz.EvaluationMethod.SELF_EVAL,
             'domain': Quiz.Domain.LINEAR_ALGEBRA,
-            'subject': Quiz.Subject.MECHANICS,
+            'subject': Quiz.Subject.FOUNDATIONS,
             'topic': 'Vector Spaces',
             'description': "Connecting dimensions, orthogonality, and the four subspaces.",
             'questions': [
@@ -972,6 +972,330 @@ def get_linear_algebra_quizzes():
                     "model_answer": "6. You can choose the 3 diagonal entries and the 3 upper-triangle entries freely. The lower entries are forced by symmetry.",
                     "accepted_answers": [],
                     "explanation": "3 (diagonal) + 3 (off-diagonal) = 6."
+                }
+            ]
+        },
+        {
+            'title': 'Orthogonal Subspaces',
+            'type': Quiz.QuizType.THEORETICAL,
+            'eval_method': Quiz.EvaluationMethod.AUTOMATED,
+            'domain': Quiz.Domain.LINEAR_ALGEBRA,
+            'subject': Quiz.Subject.GEOMETRY_AND_VOLUME,
+            'topic': 'Orthogonality',
+            'description': "Ch 4.1: Orthogonality of the Four Fundamental Subspaces.",
+            'questions': [
+                {
+                    "question_order": 1,
+                    "question_text": "Two vectors $v$ and $w$ are orthogonal if their _______ product is zero.",
+                    "model_answer": "dot",
+                    "accepted_answers": ["dot", "inner", "scalar"],
+                    "explanation": "Geometrically, $v^T w = 0$ means the angle between them is 90 degrees."
+                },
+                {
+                    "question_order": 2,
+                    "question_text": "The Nullspace $N(A)$ is the orthogonal complement of the _______ Space.",
+                    "model_answer": "Row",
+                    "accepted_answers": ["Row", "row", "Row Space", "row space", "C(A^T)"],
+                    "explanation": "Every vector $x$ in the nullspace satisfies $Ax = 0$, meaning $x$ has a zero dot product with every row of $A$."
+                },
+                {
+                    "question_order": 3,
+                    "question_text": "The Left Nullspace $N(A^T)$ is the orthogonal complement of the _______ Space.",
+                    "model_answer": "Column",
+                    "accepted_answers": ["Column", "column", "Column Space", "column space", "C(A)"],
+                    "explanation": " These two spaces exist in $\\mathbb{R}^m$ and are perpendicular to each other."
+                },
+                {
+                    "question_order": 4,
+                    "question_text": "If subspace $V$ and subspace $W$ are orthogonal complements in $\\mathbb{R}^n$, then $\\dim(V) + \\dim(W) = $ _______.",
+                    "model_answer": "n",
+                    "accepted_answers": ["n", "N"],
+                    "explanation": "Their dimensions perfectly add up to the dimension of the whole space (e.g., a 1D line and a 2D plane in 3D space)."
+                },
+                {
+                    "question_order": 5,
+                    "question_text": "The squared length of a vector $v$, denoted as $\\|v\\|^2$, is algebraically calculated as $v^T$ times _______.",
+                    "model_answer": "v",
+                    "accepted_answers": ["v"],
+                    "explanation": "This is the Pythagorean theorem in $n$-dimensions: $v_1^2 + v_2^2 + ... + v_n^2$."
+                },
+                {
+                    "question_order": 6,
+                    "question_text": "Review: If a $4 \\times 5$ matrix has a rank of $3$, what is the dimension of its Nullspace?",
+                    "model_answer": "2",
+                    "accepted_answers": ["2", "two"],
+                    "explanation": "Dimension of $N(A) = n - r = 5 - 3 = 2$."
+                },
+                {
+                    "question_order": 7,
+                    "question_text": "If $x$ is in the nullspace of $A$ and $y$ is in the row space of $A$, then $x^T y = $ _______.",
+                    "model_answer": "0",
+                    "accepted_answers": ["0", "zero"],
+                    "explanation": "Because they are orthogonal complements, any vector in one is perpendicular to any vector in the other."
+                },
+                {
+                    "question_order": 8,
+                    "question_text": "Review: Matrix multiplication $AB$ is only possible if the number of columns of $A$ equals the number of _______ of $B$.",
+                    "model_answer": "rows",
+                    "accepted_answers": ["rows"],
+                    "explanation": "Inner dimensions must match: $(m \\times n) \\times (n \\times p)$."
+                },
+                {
+                    "question_order": 9,
+                    "question_text": "True or False: The zero vector is orthogonal to every vector in $\\mathbb{R}^n$.",
+                    "model_answer": "True",
+                    "accepted_answers": ["True", "true", "T", "t", "yes", "Yes"],
+                    "explanation": "$0^T v = 0$ for any vector $v$."
+                },
+                {
+                    "question_order": 10,
+                    "question_text": "If $A$ is an $m \\times n$ matrix, its row space lives in $\\mathbb{R}^n$, and its column space lives in $\\mathbb{R}^?$. (Fill in the missing dimension)",
+                    "model_answer": "m",
+                    "accepted_answers": ["m", "M"],
+                    "explanation": "The columns have $m$ components (one for each row)."
+                }
+            ]
+        },
+        {
+            'title': 'Projections & Least Squares Fundamentals',
+            'type': Quiz.QuizType.THEORETICAL,
+            'eval_method': Quiz.EvaluationMethod.AUTOMATED,
+            'domain': Quiz.Domain.LINEAR_ALGEBRA,
+            'subject': Quiz.Subject.GEOMETRY_AND_VOLUME,
+            'topic': 'Orthogonality',
+            'description': "Ch 4.2-4.3: Projection matrices and the normal equations.",
+            'questions': [
+                {
+                    "question_order": 1,
+                    "question_text": "The error vector $e = b - p$ is _______ to the subspace we are projecting onto.",
+                    "model_answer": "orthogonal",
+                    "accepted_answers": ["orthogonal", "perpendicular", "normal"],
+                    "explanation": " The shortest distance to a subspace is always the perpendicular line."
+                },
+                {
+                    "question_order": 2,
+                    "question_text": "A projection matrix $P$ has the property $P^2 = $ _______.",
+                    "model_answer": "P",
+                    "accepted_answers": ["P", "p"],
+                    "explanation": "Projecting a vector a second time changes nothing. It is already in the subspace."
+                },
+                {
+                    "question_order": 3,
+                    "question_text": "Is a standard projection matrix $P$ always symmetric? (Yes/No)",
+                    "model_answer": "Yes",
+                    "accepted_answers": ["Yes", "yes", "true", "True"],
+                    "explanation": "Orthogonal projections always result in symmetric matrices: $P^T = P$."
+                },
+                {
+                    "question_order": 4,
+                    "question_text": "The normal equations for solving least squares are $A^T A \\hat{x} = $ _______.",
+                    "model_answer": "A^T b",
+                    "accepted_answers": ["A^T b", "A^Tb", "A transpose b"],
+                    "explanation": "We multiply both sides of $Ax = b$ by $A^T$ to move the problem into the row space."
+                },
+                {
+                    "question_order": 5,
+                    "question_text": "The matrix $A^T A$ is invertible if and only if $A$ has independent _______.",
+                    "model_answer": "columns",
+                    "accepted_answers": ["columns", "cols"],
+                    "explanation": "Independent columns mean the nullspace of $A$ is just the zero vector, which guarantees $A^T A$ is non-singular."
+                },
+                {
+                    "question_order": 6,
+                    "question_text": "The projection matrix onto the entire space $\\mathbb{R}^n$ is the _______ matrix.",
+                    "model_answer": "Identity",
+                    "accepted_answers": ["Identity", "identity", "I"],
+                    "explanation": "If the subspace is the whole space, every vector is already perfectly 'projected'."
+                },
+                {
+                    "question_order": 7,
+                    "question_text": "If $b$ is already in the column space of $A$, its projection $p$ onto $C(A)$ is exactly _______.",
+                    "model_answer": "b",
+                    "accepted_answers": ["b"],
+                    "explanation": "There is no error ($e=0$) if the vector is already in the subspace."
+                },
+                {
+                    "question_order": 8,
+                    "question_text": "Review: The inverse of a matrix product $(AB)$ is equal to _______.",
+                    "model_answer": "B^-1 A^-1",
+                    "accepted_answers": ["B^-1 A^-1", "B^-1A^-1", "B inverse A inverse"],
+                    "explanation": "The 'shoes and socks' rule: you must reverse the order to undo the operations."
+                },
+                {
+                    "question_order": 9,
+                    "question_text": "If $P$ is the projection matrix onto the column space, the projection onto the left nullspace is given by $( _______ - P)$.",
+                    "model_answer": "I",
+                    "accepted_answers": ["I", "Identity", "Identity matrix"],
+                    "explanation": "Since the column space and left nullspace are orthogonal complements, $p + e = b$, so $Pb + (I-P)b = b$."
+                },
+                {
+                    "question_order": 10,
+                    "question_text": "In the 1D projection formula $p = x a$, the scalar $x$ is calculated as $(a^T b)$ divided by _______.",
+                    "model_answer": "a^T a",
+                    "accepted_answers": ["a^T a", "a^Ta", "a transpose a", "length of a squared", "norm of a squared"],
+                    "explanation": "This scales the vector $a$ by the ratio of the dot product to the length squared of $a$."
+                }
+            ]
+        },
+        {
+            'title': 'Least Squares & Best Fit',
+            'type': Quiz.QuizType.THEORETICAL,
+            'eval_method': Quiz.EvaluationMethod.SELF_EVAL,
+            'domain': Quiz.Domain.LINEAR_ALGEBRA,
+            'subject': Quiz.Subject.GEOMETRY_AND_VOLUME,
+            'topic': 'Orthogonality',
+            'description': "Ch 4.3: The deep concepts behind fitting data to linear models.",
+            'questions': [
+                {
+                    "question_order": 1,
+                    "question_text": "Explain algebraically *why* we multiply both sides of $Ax = b$ by $A^T$ to find the least squares solution.",
+                    "model_answer": "The error vector $e = b - A\\hat{x}$ must be orthogonal to the column space of $A$. This means every column of $A$ has a zero dot product with $e$. Algebraically, $A^T e = 0$, so $A^T (b - A\\hat{x}) = 0$, which rearranges to $A^T A \\hat{x} = A^T b$.",
+                    "accepted_answers": [],
+                    "explanation": "This turns an unsolvable system into a solvable one by projecting the problem into the row space."
+                },
+                {
+                    "question_order": 2,
+                    "question_text": "When fitting a line $y = C + Dt$ to 3 data points, what do the columns of the matrix $A$ represent?",
+                    "model_answer": "Column 1 is all 1s (representing the constant intercept $C$). Column 2 contains the time variables $t_1, t_2, t_3$ (representing the slope multiplier $D$).",
+                    "accepted_answers": [],
+                    "explanation": "The vector $\\hat{x}$ will contain the optimal values for $C$ and $D$."
+                },
+                {
+                    "question_order": 3,
+                    "question_text": "Geometrically, what does the least squares solution $\\hat{x}$ represent when $Ax=b$ has no exact solution?",
+                    "model_answer": "It finds the combination of columns of $A$ that gets as close as geometrically possible to $b$. The result, $A\\hat{x}$, is the exact orthogonal projection $p$ of the vector $b$ onto the column space.",
+                    "accepted_answers": [],
+                    "explanation": "It minimizes the distance $\\|b - Ax\\|^2$."
+                },
+                {
+                    "question_order": 4,
+                    "question_text": "What happens to the general projection formula $P = A(A^T A)^{-1}A^T$ if $A$ is a square, invertible matrix?",
+                    "model_answer": "It simplifies to the Identity matrix $I$. If $A$ is invertible, its columns already span the entire space $\\mathbb{R}^n$. Projecting a vector onto the entire space just returns the vector itself ($Pb = b$).",
+                    "accepted_answers": [],
+                    "explanation": "Algebraically: $A(A^{-1}(A^T)^{-1})A^T = (A A^{-1})((A^T)^{-1} A^T) = I \\cdot I = I$."
+                },
+                {
+                    "question_order": 5,
+                    "question_text": "Explain why the matrix $A^T A$ is always guaranteed to be a symmetric matrix.",
+                    "model_answer": "A matrix is symmetric if it equals its own transpose. Taking the transpose of the product: $(A^T A)^T = A^T (A^T)^T = A^T A$. It returns exactly to itself.",
+                    "accepted_answers": [],
+                    "explanation": "This symmetric property is why normal equations are computationally well-behaved."
+                },
+                {
+                    "question_order": 6,
+                    "question_text": "If the columns of $A$ are completely orthogonal to each other, what special form does $A^T A$ take?",
+                    "model_answer": "It becomes a diagonal matrix. The off-diagonal entries are the dot products of different columns, which are all zero. The diagonal entries are the squared lengths of each column.",
+                    "accepted_answers": [],
+                    "explanation": "This makes the least squares equations uncoupled—you can solve for each variable independently!"
+                },
+                {
+                    "question_order": 7,
+                    "question_text": "Review: If a matrix $A$ is singular, why can't we simply use $A^{-1}$ to solve $Ax=b$?",
+                    "model_answer": "A singular matrix collapses space (determinant is 0). Multiple inputs map to the same output, so the mapping is not 1-to-1, and you cannot reverse it. $A^{-1}$ literally does not exist.",
+                    "accepted_answers": [],
+                    "explanation": "You can't un-crush a crushed dimension."
+                },
+                {
+                    "question_order": 8,
+                    "question_text": "Why do we minimize the *square* of the errors (Least Squares) rather than just the absolute errors?",
+                    "model_answer": "1) Squaring makes the calculus easy because derivatives of squares are linear. 2) It connects directly to geometry and the Pythagorean theorem ($c^2 = a^2 + b^2$), defining orthogonal projections.",
+                    "accepted_answers": [],
+                    "explanation": "Absolute value functions have sharp corners and are hard to differentiate."
+                },
+                {
+                    "question_order": 9,
+                    "question_text": "If the error vector $e$ calculated in least squares is exactly the zero vector, what does that tell you about the original vector $b$?",
+                    "model_answer": "It means $b$ was already perfectly inside the column space of $A$. The original system $Ax=b$ actually had an exact solution, and no 'approximation' was necessary.",
+                    "accepted_answers": [],
+                    "explanation": "$p + 0 = b$, meaning $p = b$."
+                },
+                {
+                    "question_order": 10,
+                    "question_text": "Describe the projection matrix onto the Left Nullspace of $A$, given that we already know $P$ (the projection matrix onto the Column Space).",
+                    "model_answer": "It is simply $I - P$. Since the Column Space and Left Nullspace are orthogonal complements that make up the whole space $\\mathbb{R}^m$, any vector $b$ splits perfectly into $p$ (in the column space) and $e$ (in the left nullspace).",
+                    "accepted_answers": [],
+                    "explanation": "$e = b - Pb = (I - P)b$."
+                }
+            ]
+        },
+        {
+            'title': 'Gram-Schmidt & Orthogonal Matrices',
+            'type': Quiz.QuizType.THEORETICAL,
+            'eval_method': Quiz.EvaluationMethod.SELF_EVAL,
+            'domain': Quiz.Domain.LINEAR_ALGEBRA,
+            'subject': Quiz.Subject.GEOMETRY_AND_VOLUME,
+            'topic': 'Orthogonality',
+            'description': "Ch 4.4: Creating orthonormal bases and the QR factorization.",
+            'questions': [
+                {
+                    "question_order": 1,
+                    "question_text": "What defines an 'orthogonal matrix' $Q$? Give the defining equation for its transpose/inverse.",
+                    "model_answer": "A square matrix $Q$ is orthogonal if its columns are orthonormal (length 1, mutually perpendicular). Because of this, $Q^T Q = I$, which means its transpose is exactly its inverse: $Q^T = Q^{-1}$.",
+                    "accepted_answers": [],
+                    "explanation": "This makes calculating the inverse trivially easy."
+                },
+                {
+                    "question_order": 2,
+                    "question_text": "Explain the conceptual goal of the Gram-Schmidt process in your own words.",
+                    "model_answer": "It takes a set of skewed, independent basis vectors and straightens them out into an orthonormal basis. It does this by taking each new vector, projecting it onto the already-straightened vectors, and subtracting that projection to leave only the pure, orthogonal 'new' direction.",
+                    "accepted_answers": [],
+                    "explanation": "It systematically scrapes away the overlap between vectors."
+                },
+                {
+                    "question_order": 3,
+                    "question_text": "In Gram-Schmidt, how do we find the second orthogonal vector $B$ from the original vectors $a$ and $b$?",
+                    "model_answer": "$B = b - p$, where $p$ is the projection of $b$ onto the first vector $a$. Specifically, $B = b - \\frac{a^T b}{a^T a} a$.",
+                    "accepted_answers": [],
+                    "explanation": "We subtract the part of $b$ that goes in the direction of $a$."
+                },
+                {
+                    "question_order": 4,
+                    "question_text": "Why is calculating the projection matrix $P$ onto a subspace incredibly easy if the basis vectors of that matrix $Q$ are orthonormal?",
+                    "model_answer": "The ugly formula $P = A(A^T A)^{-1}A^T$ simplifies beautifully. Since $Q^T Q = I$, the inverse part disappears, and the projection matrix is simply $P = Q Q^T$.",
+                    "accepted_answers": [],
+                    "explanation": "Orthonormal bases eliminate all the cross-talk between dimensions."
+                },
+                {
+                    "question_order": 5,
+                    "question_text": "What is the $QR$ factorization?",
+                    "model_answer": "It factors a matrix $A$ into an orthogonal matrix $Q$ (containing the orthonormal vectors from Gram-Schmidt) and an upper triangular matrix $R$ (which records the dot products/coefficients used to do the orthogonalizing).",
+                    "accepted_answers": [],
+                    "explanation": "Like $A=LU$ simplifies solving equations, $A=QR$ simplifies least squares."
+                },
+                {
+                    "question_order": 6,
+                    "question_text": "Why does multiplying a vector $x$ by an orthogonal matrix $Q$ preserve its length perfectly?",
+                    "model_answer": "Algebraically: $\\|Qx\\|^2 = (Qx)^T(Qx) = x^T Q^T Q x = x^T I x = x^T x = \\|x\\|^2$. Geometrically: $Q$ represents rigid transformations like rotations, which don't stretch space.",
+                    "accepted_answers": [],
+                    "explanation": "Orthogonal matrices are rigid."
+                },
+                {
+                    "question_order": 7,
+                    "question_text": "Review: What does it mean conceptually for a vector to be in the Nullspace of $A$?",
+                    "model_answer": "It means the vector is a specific set of weights that linearly combines the columns of $A$ to perfectly cancel each other out, resulting in the zero vector. It indicates linear dependence among the columns.",
+                    "accepted_answers": [],
+                    "explanation": "If the columns are independent, only the zero vector does this."
+                },
+                {
+                    "question_order": 8,
+                    "question_text": "If $Q$ is a rectangular matrix (taller than it is wide) with orthonormal columns, is the product $QQ^T$ equal to the Identity matrix $I$?",
+                    "model_answer": "No. $Q^T Q = I$, but $QQ^T$ is the projection matrix $P$ onto the column space of $Q$. It only equals $I$ if $Q$ is a square matrix (meaning it spans the whole space).",
+                    "accepted_answers": [],
+                    "explanation": "Order matters! $QQ^T$ is $m \\times m$, but only has rank $n$."
+                },
+                {
+                    "question_order": 9,
+                    "question_text": "How does the Gram-Schmidt factorization ($A=QR$) compare conceptually to Gaussian Elimination ($A=LU$)?",
+                    "model_answer": "Both systematically strip away parts of the matrix to reveal its structure. $LU$ makes $A$ lower triangular by subtracting rows to get zeros. $QR$ makes $A$ orthogonal by subtracting projections to get 90-degree angles.",
+                    "accepted_answers": [],
+                    "explanation": "They are the two foundational factorizations in linear algebra."
+                },
+                {
+                    "question_order": 10,
+                    "question_text": "In $A=QR$, why is the matrix $R$ always upper triangular?",
+                    "model_answer": "Because of the order of Gram-Schmidt. The $k$-th vector $q_k$ is formed only using the first $k$ vectors of $A$. Later vectors in $Q$ do not contribute to earlier vectors in $A$, meaning all entries below the diagonal in $R$ are zero.",
+                    "accepted_answers": [],
+                    "explanation": "Vector 1 only depends on Vector 1. Vector 2 depends on 1 and 2, etc."
                 }
             ]
         }
