@@ -1,6 +1,5 @@
-🧠 [Project Name]: A Cognitive-Science-Based Learning Platform
-📖 About The Project
-[Project Name] is an open-source learning management system (LMS) and quiz platform built on the principles of cognitive psychology, specifically drawing from the book Make It Stick: The Science of Successful Learning.
+🧠 A Cognitive-Science-Based Learning Platform 📖 
+is an open-source learning management system (LMS) and quiz platform built on the principles of cognitive psychology, specifically drawing from the book Make It Stick: The Science of Successful Learning.
 
 Unlike traditional learning platforms that rely on passive video consumption and multiple-choice recognition, this platform is engineered to create desirable difficulties. By forcing learners to actively retrieve information, explain concepts in their own words, and tackle interleaved problem sets, the platform ensures long-term retention and deeper conceptual mastery.
 
